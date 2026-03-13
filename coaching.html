@@ -424,7 +424,7 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero" style="position:relative;overflow:hidden;">
-  <video muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.45;"><source src="academy-bg.mp4" type="video/mp4"></video>
+  <video autoplay muted loop playsinline preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.45;"><source src="academy-bg.mp4" type="video/mp4"></video>
   <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
   <!-- Big watermark bg -->
   <div class="hero-watermark" style="position:relative;z-index:2;">
@@ -604,49 +604,65 @@
       return;
     }
 
-    // ── Desktop: lazy load + stall recovery ──────────────────────────
+    // ── Desktop: lazy load + stall recovery with aggressive replay ──────────────────────────
     var loaded = false;
     var stallTimer = null;
+    var retryCount = 0;
+    var maxRetries = 3;
 
     function tryPlay() {
       if (v.paused) {
-        v.play().catch(function () {});
+        var playPromise = v.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function (err) {
+            // Autoplay policy or other error
+          });
+        }
       }
     }
 
     function onCanPlay() {
+      retryCount = 0;
       tryPlay();
     }
 
     function onStall() {
-      // If stalled for >3s, reload from current time
       clearTimeout(stallTimer);
       stallTimer = setTimeout(function () {
-        var t = v.currentTime;
-        v.load();
-        v.currentTime = 0;
-        tryPlay();
-      }, 3000);
+        if (retryCount < maxRetries) {
+          retryCount++;
+          v.load();
+          tryPlay();
+        }
+      }, 1500);
     }
 
     function onPlaying() {
       clearTimeout(stallTimer);
+      retryCount = 0;
     }
 
     function loadVideo() {
       if (loaded) return;
       loaded = true;
+      
       v.addEventListener('canplay', onCanPlay);
+      v.addEventListener('canplaythrough', onCanPlay);
       v.addEventListener('stalled', onStall);
       v.addEventListener('waiting', onStall);
       v.addEventListener('playing', onPlaying);
       v.addEventListener('error', function () {
-        setTimeout(function () { v.load(); tryPlay(); }, 2000);
+        if (retryCount < maxRetries) {
+          retryCount++;
+          setTimeout(function () { v.load(); tryPlay(); }, 1000);
+        }
       });
-      v.load();
+      
+      // Immediate attempt to play with autoplay
+      tryPlay();
     }
 
-    // Use IntersectionObserver to only load when near viewport
+    // Use IntersectionObserver to manage when near viewport
     if ('IntersectionObserver' in window) {
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -655,13 +671,13 @@
             obs.unobserve(v);
           }
         });
-      }, { rootMargin: '300px' });
+      }, { rootMargin: '500px' });
       obs.observe(v);
     } else {
       loadVideo();
     }
 
-    // Pause when scrolled out of view to free up bandwidth for visible videos
+    // Resume/pause based on visibility
     if ('IntersectionObserver' in window) {
       var visObs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -671,7 +687,7 @@
             v.pause();
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.25 });
       visObs.observe(v);
     }
   });
