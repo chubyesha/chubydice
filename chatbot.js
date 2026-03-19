@@ -208,6 +208,31 @@
       z-index: 10000;
       pointer-events: none;
     }
+
+    #cd-suggested {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 16px 12px;
+      border-bottom: 1px solid #2A2A2A;
+    }
+    .cd-chip {
+      background: #1A1A1A;
+      border: 1px solid #2A2A2A;
+      color: rgba(255,255,255,0.75);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.78rem;
+      padding: 5px 11px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+    .cd-chip:hover {
+      border-color: #F5C518;
+      color: #F5C518;
+      background: rgba(245,197,24,0.07);
+    }
   `;
   document.head.appendChild(style);
 
@@ -236,6 +261,13 @@
       <div id="cd-chat-messages">
         <div class="cd-msg bot">Hey! I'm Digital Dice 👋 Ask me about classes, events, coaching, or anything about the Dancehall experience.</div>
       </div>
+      <div id="cd-suggested">
+        <button class="cd-chip">What classes are available?</button>
+        <button class="cd-chip">How do I book a session?</button>
+        <button class="cd-chip">Tell me about Chuby</button>
+        <button class="cd-chip">Upcoming events?</button>
+        <button class="cd-chip">Coaching options</button>
+      </div>
       <div id="cd-typing"><span></span><span></span><span></span></div>
       <form id="cd-chat-form">
         <textarea id="cd-chat-input" placeholder="Ask about classes, events..." rows="1"></textarea>
@@ -258,6 +290,7 @@
   const win = document.getElementById("cd-chat-window");
   const closeBtn = document.getElementById("cd-chat-close");
   const messages = document.getElementById("cd-chat-messages");
+  const suggested = document.getElementById("cd-suggested");
   const typing = document.getElementById("cd-typing");
   const form = document.getElementById("cd-chat-form");
   const input = document.getElementById("cd-chat-input");
@@ -287,6 +320,15 @@
     typing.classList.toggle("show", val);
     if (val) scrollBottom();
   }
+
+  /* ── Suggested chips ── */
+  suggested.addEventListener("click", (e) => {
+    const chip = e.target.closest(".cd-chip");
+    if (!chip || loading) return;
+    input.value = chip.textContent;
+    suggested.style.display = "none";
+    form.requestSubmit();
+  });
 
   /* ── Toggle ── */
   btn.addEventListener("click", () => {
