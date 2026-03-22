@@ -200,6 +200,10 @@
     overflow: hidden;
   }
 
+  #hero video {
+    transition: opacity 0.8s ease;
+  }
+
   /* hero background is now a video */
 
   #hero::before {
@@ -1272,6 +1276,10 @@
   <video id="heroVideo" autoplay muted loop playsinline poster="images/450034373c45.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;" preload="auto">
     <source src="videos/1.mp4" type="video/mp4">
   </video>
+  <video src="videos/2.mp4" muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;display:none;"></video>
+  <video src="videos/3.mp4" muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;display:none;"></video>
+  <video src="videos/4.mp4" muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;display:none;"></video>
+  <video src="videos/5.mp4" muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;display:none;"></video>
   <img id="heroFallback" src="images/450034373c45.jpg" alt="Chuby Dice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;display:none;" />
   <h1 class="hero-title">
     <span class="c1">C</span><span class="c2">HUBY</span> <span class="c3">D</span><span class="c4">ICE</span>
@@ -1632,6 +1640,24 @@
       scrambleTitle(title);
     });
   });
+})();
+</script>
+
+<!-- Hero video crossfade -->
+<script>
+(function () {
+  var INTERVAL = 6000;
+  var videos = document.querySelectorAll('#hero video');
+  if (videos.length < 2) return;
+  var current = 0;
+
+  setInterval(function () {
+    var prev = current;
+    current = (current + 1) % videos.length;
+
+    videos[prev].style.opacity = '0';
+    videos[current].style.opacity = '0.75';
+  }, INTERVAL);
 })();
 </script>
 
