@@ -1326,44 +1326,85 @@ footer::before {
     </div>
 
     <!-- Motherland -->
-    <div class="tile tile-poster reveal reveal-delay-3">
-      <img class="tile-bg" src="images/motherland-2026.jpeg" alt="Motherland" loading="lazy" decoding="async">
-      <div class="tile-overlay"></div>
-      <div class="tile-inner">
-        <div>
-          <h3 class="tile-title">MOTHERLAND</h3>
-          <p class="tile-meta">May 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
-          <p class="tile-desc">Thank your mum with Jamaican Dancehall.</p>
-          <div class="tile-actions">
-            <button class="btn-sm-primary" onclick="location.href='motherland.html'"><span>Book Now</span></button>
-          </div>
+    <div class="tile" style="position:relative;overflow:hidden;background:transparent;">
+      <img src="images/motherland-may-2026.jpg" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.75) 100%);z-index:1;pointer-events:none;"></div>
+      <div class="tile-inner" style="position:relative;z-index:2;">
+        <h3 class="tile-title">MOTHERLAND</h3>
+        <p class="tile-meta">May 2026 &nbsp;·&nbsp; Tuesdays 7:30–8:30pm &nbsp;·&nbsp; <strong>From $30</strong></p>
+        <p class="tile-desc">Thank your mum with Jamaican Dancehall</p>
+        <div class="tile-actions">
+          <button class="btn-sm-ghost" onclick="location.href='motherland.html'">More Info</button>
         </div>
       </div>
     </div>
 
     <!-- Dancehall Royalty -->
-    <div class="tile tile-poster reveal reveal-delay-4">
-      <img class="tile-bg" src="images/dancehall-royalty-2026.jpeg" alt="Dancehall Royalty" loading="lazy" decoding="async">
-      <div class="tile-overlay"></div>
-      <div class="tile-inner">
-        <div>
-          <h3 class="tile-title">DANCEHALL ROYALTY</h3>
-          <p class="tile-meta">June 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
-          <p class="tile-desc">Dancehall Royalty fi di Academy.</p>
-          <div class="tile-actions">
-            <button class="btn-sm-primary" onclick="location.href='dancehall-royalty.html'"><span>Book Now</span></button>
-          </div>
+    <div class="tile" style="position:relative;overflow:hidden;background:transparent;">
+      <img src="images/dancehall-royalty-june-2026.jpg" alt="Dancehall Royalty" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.75) 100%);z-index:1;pointer-events:none;"></div>
+      <div class="tile-inner" style="position:relative;z-index:2;">
+        <h3 class="tile-title">DANCEHALL ROYALTY</h3>
+        <p class="tile-meta">June 2026 &nbsp;·&nbsp; Tuesdays 7:30–8:30pm &nbsp;·&nbsp; <strong>From $30</strong></p>
+        <p class="tile-desc">Dancehall Royalty fi di Academy</p>
+        <div class="tile-actions">
+          <button class="btn-sm-ghost" onclick="location.href='dancehall-royalty.html'">More Info</button>
         </div>
       </div>
     </div>
 
   </div>
 
-  <div class="series-swipe-indicator" id="seriesSwipeIndicator" aria-hidden="true">
-    <span class="series-swipe-dot active"></span>
-    <span class="series-swipe-dot"></span>
-    <span class="series-swipe-dot"></span>
-    <span class="series-swipe-dot"></span>
+  <!-- Mobile: Flyer Carousel -->
+  <div class="carousel-wrap">
+    <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="Previous">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="carousel-track" id="carouselTrack">
+
+      <a class="carousel-slide" href="march-back-in-time.html">
+        <img src="images/a84b4d3eec82.png" alt="March Back in Time" loading="lazy"/>
+        <div class="slide-overlay"></div>
+        <span class="slide-badge slide-badge-ending">
+          <span class="slide-badge-dot"></span> Ends Mar 31
+        </span>
+        <div class="slide-info">
+          <h3>MARCH BACK IN TIME</h3>
+          <p>March 2026 · $125</p>
+        </div>
+      </a>
+
+      <a class="carousel-slide" href="praise-flow.html">
+        <img src="images/praise-flow.png" alt="Praise Flow" loading="lazy"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-info">
+          <h3>PRAISE FLOW</h3>
+          <p>April 2026 · Price TBA</p>
+        </div>
+      </a>
+
+      <a class="carousel-slide" href="motherland.html">
+        <img src="images/motherland-may-2026.jpg" alt="Motherland" loading="lazy"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-info">
+          <h3>MOTHERLAND</h3>
+          <p>May 2026 · Price TBA</p>
+        </div>
+      </a>
+
+      <a class="carousel-slide" href="dancehall-royalty.html">
+        <img src="images/dancehall-royalty-june-2026.jpg" alt="Dancehall Royalty" loading="lazy"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-info">
+          <h3>DANCEHALL ROYALTY</h3>
+          <p>June 2026 · Price TBA</p>
+        </div>
+      </a>
+
+    </div>
+    <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="Next">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
   </div>
 
   <div class="past-link reveal">
@@ -1391,24 +1432,34 @@ footer::before {
 
   </div>
 
-  <div class="past-link reveal">
-    <a href="past-series.html">
-      View Past Sessions
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </a>
+<!-- ACADEMY -->
+<section id="academy">
+  <div class="academy-tile" style="position:relative;overflow:hidden;">
+    <img src="images/academy-tile-bg.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.3;" loading="lazy">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
+    <span class="coming-soon-tag" style="position:relative;z-index:2;">Launching 2026</span>
+    <div style="position:relative;z-index:2;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;">
+      <h2 class="academy-title">CHUBY DICE<br/><span>DANCEHALL ACADEMY</span></h2>
+      <p class="academy-launch">Launching June 2026</p>
+      <p class="academy-desc">
+        A new era of dancehall education. Full programs, certifications, and community building
+        — all rooted in authentic Caribbean culture.
+      </p>
+      <button class="btn-primary" onclick="location.href='academy.html'">Learn More</button>
+    </div>
   </div>
 </section>
 
-<div class="section-sep"></div>
-
-<!-- ═══ ACADEMY ═══ -->
-<section id="academy">
-  <div class="academy-tile reveal">
-    <div class="academy-ghost">ACADEMY</div>
-    <div class="academy-inner">
-      <div class="academy-pill">
-        <span class="academy-pill-dot"></span>
-        Launching 2026
+<!-- PROFESSIONAL 1:1 COACHING -->
+<section id="coaching-section" style="background:var(--dark);padding:60px 80px;">
+  <div style="max-width:960px;margin:0 auto;">
+    <div class="tile tile-full tile-single" id="single-pass" style="position:relative;overflow:hidden;min-height:320px;border:1px solid rgba(224,64,251,0.35) !important;">
+      <img src="images/coaching-hero.jpg" alt="Professional 1:1 Coaching" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:0.9;" loading="lazy">
+      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.55);z-index:1;pointer-events:none;"></div>
+      <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 40px;min-height:320px;gap:12px;">
+        <h3 class="tile-title" style="font-size:2.2rem;margin:0;">PROFESSIONAL 1:1 COACHING</h3>
+        <p class="tile-desc" style="margin:0;max-width:520px;">Personalised Dancehall coaching and programs with Chuby Dice — tailored to your level and goals.</p>
+        <button class="btn-sm-ghost" onclick="location.href='coaching.html'" style="border-color:rgba(224,64,251,0.4);color:var(--pink);margin-top:8px;">More Info</button>
       </div>
       <h2 class="academy-title">
         <span class="t1">CHUBY DICE</span>
