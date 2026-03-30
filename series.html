@@ -251,120 +251,6 @@
     background: rgba(255,255,255,0.25);
   }
 
-  /* ─── CARD STACK VIEW (Mobile) ─── */
-  .card-stack-container {
-    display: none;
-    position: relative;
-    width: 100%;
-    height: 500px;
-    perspective: 1000px;
-    margin: 0 auto;
-  }
-  .card-stack {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  .stacked-card {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    cursor: grab;
-    user-select: none;
-    touch-action: none;
-    transform: translateY(0) rotateZ(0deg) scale(1);
-    transition: transform 0.1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    opacity: 1;
-  }
-  .stacked-card:nth-child(1) { z-index: 103; }
-  .stacked-card:nth-child(2) { z-index: 102; }
-  .stacked-card:nth-child(3) { z-index: 101; }
-  
-  .stacked-card.exiting { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-  .stacked-card.saved { background: linear-gradient(135deg, rgba(245,197,24,0.1), rgba(245,197,24,0.05)); }
-  
-  .stacked-card:nth-child(n+2) {
-    transform: translateY(12px) scale(0.93);
-    opacity: 0.65;
-    pointer-events: none;
-  }
-  .stacked-card:nth-child(n+3) {
-    transform: translateY(24px) scale(0.86);
-    opacity: 0.35;
-  }
-  
-  .stacked-card.dragging { transition: none; box-shadow: 0 20px 60px rgba(0,0,0,0.8); }
-
-  /* Swipe indicators */
-  .swipe-hints {
-    position: absolute;
-    bottom: 12px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 50;
-    pointer-events: none;
-  }
-  .hint {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 700;
-    opacity: 0.4;
-    transition: opacity 0.2s;
-  }
-  .hint-arrow {
-    font-size: 1.2rem;
-    display: inline-block;
-  }
-  .stacked-card.dragging-left ~ .swipe-hints .hint:last-child { opacity: 0.8; color: #ff6b6b; }
-  .stacked-card.dragging-right ~ .swipe-hints .hint:first-child { opacity: 0.8; color: var(--yellow); }
-
-  /* Saved/Dismiss indicators */
-  .saved-indicator {
-    position: absolute;
-    top: 50%;
-    left: 16px;
-    transform: translateY(-50%);
-    font-size: 2.5rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-    z-index: 10;
-    color: var(--yellow);
-    text-shadow: 0 0 20px rgba(245,197,24,0.5);
-  }
-  .stacked-card.show-save .saved-indicator { opacity: 1; }
-
-  .dismiss-indicator {
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    transform: translateY(-50%);
-    font-size: 2.5rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-    z-index: 10;
-    color: #ff6b6b;
-    text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
-  }
-  .stacked-card.show-dismiss .dismiss-indicator { opacity: 1; }
-
   /* ─── CARD BASE ─── */
   .card {
     background: var(--card-bg);
@@ -751,26 +637,6 @@
     .pricing-section { padding: 40px 16px 20px; }
   }
 
-  /* ─── CAROUSEL DOTS ─── */
-  .carousel-dots {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
-    padding: 20px 0 0;
-  }
-  .c-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    border: none; cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    padding: 0; flex-shrink: 0;
-  }
-  .c-dot.active {
-    background: var(--yellow);
-    transform: scale(1.4);
-  }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
@@ -848,9 +714,9 @@
 <div class="series-container">
   <!-- Tabs -->
   <div class="series-tabs">
-    <button class="series-tab active" onclick="filterSeries('all')">All</button>
-    <button class="series-tab" onclick="filterSeries('current')">Current</button>
-    <button class="series-tab" onclick="filterSeries('past')">Past</button>
+    <button class="series-tab active" onclick="filterSeries('all',this)">All</button>
+    <button class="series-tab" onclick="filterSeries('current',this)">Current</button>
+    <button class="series-tab" onclick="filterSeries('past',this)">Past</button>
   </div>
   <div class="series-grid" id="seriesCarousel">
 
@@ -1027,7 +893,6 @@
     </div>
 
   </div>
-  <div class="carousel-dots" id="seriesDots"></div>
 
   <!-- Past Sessions Link -->
   <div style="text-align:center;padding:48px 0 0;">
@@ -1286,175 +1151,8 @@
 </script>
 <script src="/chatbot.js"></script>
 
-<script>
-(function() {
-  if (window.innerWidth > 640) return;
-  
-  const cardStack = document.getElementById('cardStackSeries');
-  const seriesGrid = document.querySelector('.series-grid');
-  
-  if (!cardStack || !seriesGrid) return;
-  
-  // Get original cards (Lovers' Rock, March Back in Time, Full Collection only)
-  const originalCards = Array.from(seriesGrid.children).slice(0, 3);
-  let currentIndex = 0;
-  let savedCards = [];
-  
-  // Create stacked card copies
-  function initializeStack() {
-    originalCards.forEach((card, idx) => {
-      const stackedCard = document.createElement('div');
-      stackedCard.className = 'stacked-card';
-      stackedCard.innerHTML = card.innerHTML + `
-        <div class="saved-indicator">♥</div>
-        <div class="dismiss-indicator">✕</div>
-      `;
-      cardStack.appendChild(stackedCard);
-      
-      if (idx === 0) {
-        setupCardInteraction(stackedCard, idx);
-      }
-    });
-  }
-  
-  function setupCardInteraction(card, idx) {
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
-    const threshold = 80;
-    
-    function onPointerDown(e) {
-      isDragging = true;
-      startX = e.clientX || e.touches[0].clientX;
-      currentX = startX;
-      card.classList.add('dragging');
-    }
-    
-    function onPointerMove(e) {
-      if (!isDragging) return;
-      currentX = e.clientX || e.touches[0].clientX;
-      const diffX = currentX - startX;
-      
-      // Rotate and translate based on drag
-      const rotation = (diffX / window.innerWidth) * 25;
-      const scale = 1 - (Math.abs(diffX) / window.innerWidth) * 0.08;
-      
-      card.style.transform = `translateX(${diffX}px) rotateZ(${rotation}deg) scale(${scale})`;
-      
-      // Show save/dismiss indicators
-      if (diffX > threshold) {
-        card.classList.add('show-save');
-        card.classList.remove('show-dismiss');
-        card.classList.remove('dragging-left');
-        card.classList.add('dragging-right');
-      } else if (diffX < -threshold) {
-        card.classList.add('show-dismiss');
-        card.classList.remove('show-save');
-        card.classList.add('dragging-left');
-        card.classList.remove('dragging-right');
-      } else {
-        card.classList.remove('show-save', 'show-dismiss');
-        card.classList.remove('dragging-left', 'dragging-right');
-      }
-    }
-    
-    function onPointerUp() {
-      if (!isDragging) return;
-      isDragging = false;
-      card.classList.remove('dragging');
-      
-      const diffX = currentX - startX;
-      
-      if (diffX > threshold) {
-        // Swipe right - SAVE
-        saveCard(idx);
-        animateCardOut(card, 1);
-      } else if (diffX < -threshold) {
-        // Swipe left - DISMISS
-        dismissCard();
-        animateCardOut(card, -1);
-      } else {
-        // Reset
-        card.style.transform = '';
-        card.classList.remove('show-save', 'show-dismiss', 'dragging-left', 'dragging-right');
-      }
-    }
-    
-    card.addEventListener('mousedown', onPointerDown);
-    card.addEventListener('touchstart', onPointerDown, { passive: true });
-    
-    document.addEventListener('mousemove', onPointerMove);
-    document.addEventListener('touchmove', onPointerMove, { passive: true });
-    
-    document.addEventListener('mouseup', onPointerUp);
-    document.addEventListener('touchend', onPointerUp, { passive: true });
-  }
-  
-  function animateCardOut(card, direction) {
-    card.classList.add('exiting');
-    card.style.transform = `translateX(${direction * window.innerWidth}px) rotateZ(${direction * 45}deg)`;
-    card.style.opacity = '0';
-    
-    setTimeout(() => {
-      card.remove();
-      currentIndex++;
-      
-      if (currentIndex < originalCards.length) {
-        const nextCards = Array.from(cardStack.querySelectorAll('.stacked-card'));
-        if (nextCards.length > 0) {
-          setupCardInteraction(nextCards[0], currentIndex);
-          // Update z-indices and animate next cards into view
-          nextCards.forEach((c, i) => {
-            c.style.zIndex = (103 - i).toString();
-            if (i === 0) {
-              c.style.transform = 'translateY(0) scale(1)';
-            } else if (i === 1) {
-              c.style.transform = 'translateY(12px) scale(0.93)';
-            } else {
-              c.style.transform = 'translateY(24px) scale(0.86)';
-            }
-          });
-        }
-      } else {
-        // All cards done
-        const emptyState = document.createElement('div');
-        emptyState.style.cssText = `
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 100%;
-          flex-direction: column;
-          gap: 16px;
-          color: rgba(255,255,255,0.3);
-          text-align: center;
-          padding: 20px;
-        `;
-        emptyState.innerHTML = `
-          <div style="font-size: 2.5rem;">🎉</div>
-          <div style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.1em;">ALL SET!</div>
-          <p style="font-size: 0.85rem; max-width: 80%;">You've reviewed all series. Saved ${savedCards.length} to your list.</p>
-        `;
-        cardStack.appendChild(emptyState);
-      }
-    }, 500);
-  }
-  
-  function dismissCard() {
-    // Card just moves to next without saving
-  }
-  
-  function saveCard(idx) {
-    savedCards.push(originalCards[idx]);
-    const card = cardStack.querySelector('.stacked-card:first-child');
-    if (card) {
-      card.classList.add('saved');
-    }
-  }
-  
-  // Initialize
-  initializeStack();
-})();
-</script>
+<!-- Card stack removed — replaced by horizontal scroll carousel -->
+<!-- Keeping reference: old card-stack IIFE was here, used cardStackSeries element which no longer exists -->
 
 <!-- Countdown Timer for March Back in Time -->
 <script>
@@ -1490,20 +1188,18 @@
 </script>
 
 <script>
-function filterSeries(type) {
+function filterSeries(type, el) {
   var cards = document.querySelectorAll('.series-grid .card');
   var tabs = document.querySelectorAll('.series-tab');
   tabs.forEach(function(t) { t.classList.remove('active'); });
-  event.target.classList.add('active');
+  el.classList.add('active');
   cards.forEach(function(card) {
     var cardType = card.getAttribute('data-type');
-    if (type === 'all' || cardType === type) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
+    card.style.display = (type === 'all' || cardType === type) ? '' : 'none';
   });
-  document.getElementById('seriesCarousel').scrollLeft = 0;
+  requestAnimationFrame(function() {
+    document.getElementById('seriesCarousel').scrollLeft = 0;
+  });
 }
 </script>
 
