@@ -264,16 +264,25 @@
   .acc-item:hover .acc-header, .acc-item.open .acc-header { color: var(--white); }
   .acc-arrow {
     transition: transform 0.3s ease;
-    flex-shrink: 0; opacity: 0.4;
+    flex-shrink: 0;
+    opacity: 0.4;
   }
   .acc-item.open .acc-arrow { transform: rotate(180deg); opacity: 0.8; }
   .acc-body {
-    max-height: 0; overflow: hidden;
+    max-height: 0;
+    overflow: hidden;
     transition: max-height 0.35s ease;
     padding: 0 20px;
   }
-  .acc-item.open .acc-body { max-height: 500px; padding: 0 20px 18px; }
-  .acc-body p { font-size: 0.88rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
+  .acc-item.open .acc-body {
+    max-height: 500px;
+    padding: 0 20px 18px;
+  }
+  .acc-body p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+  }
 
   /* Right: booking card */
   .booking-card {
@@ -505,7 +514,7 @@
             <svg class="acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
           <div class="acc-body">
-            <p>Build your core Dancehall technique from the ground up. Covers bounce, groove patterns, isolations, footwork and body control — all rooted in authentic Jamaican movement practice and tailored to your current level.</p>
+            <p>Build your core Dancehall technique from the ground up. This focus covers bounce, groove patterns, isolations, footwork and body control — all rooted in authentic Jamaican movement practice and tailored to your current level.</p>
           </div>
         </div>
         <div class="acc-item">
@@ -532,7 +541,7 @@
             <svg class="acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
           <div class="acc-body">
-            <p>Sharpen your ability to hear and move with the music. Covers musical phrasing, timing, rhythmic accents and how to build choreographic sequences that connect movement to selection.</p>
+            <p>Sharpen your ability to hear and move with the music. This focus covers musical phrasing, timing, rhythmic accents and how to build choreographic sequences that connect movement to selection.</p>
           </div>
         </div>
         <div class="acc-item">
@@ -644,5 +653,6 @@
     });
   });
 </script>
+<script src="/chatbot.js"></script>
 </body>
 </html>
