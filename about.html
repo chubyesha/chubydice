@@ -24,6 +24,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=Barlow+Condensed:wght@600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=Barlow+Condensed:wght@600;700;900&display=swap" rel="stylesheet"/></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared-theme.css"/>
 <style>
   :root {
     --yellow: #F5C518;
@@ -72,27 +74,82 @@
     overflow: hidden;
   }
 
-  /* Photo mosaic grid — 3 cols × 2 rows */
+  /* Animated full-page photo swipe */
   .mosaic {
     position: absolute; inset: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    overflow: hidden;
     z-index: 0;
   }
-  .mosaic-cell {
-    background: #1a1a1a;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255,255,255,0.08);
+  .mosaic::before,
+  .mosaic::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 140px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .mosaic::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0) 100%);
+  }
+  .mosaic::after {
+    right: 0;
+    background: linear-gradient(270deg, rgba(10,10,10,0.96) 0%, rgba(10,10,10,0) 100%);
+  }
+  .mosaic-lane {
+    flex: 1 1 25%;
+    display: flex;
+    align-items: center;
     overflow: hidden;
+    min-height: 0;
+  }
+  .mosaic-track {
+    display: flex;
+    gap: 14px;
+    width: max-content;
+    height: 100%;
+    padding: 10px 14px;
+    animation: aboutSwipe 42s linear infinite;
+    will-change: transform;
+  }
+  .mosaic-card {
+    flex: 0 0 clamp(220px, 24vw, 360px);
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 18px 42px rgba(0,0,0,0.3);
+    transform: rotate(-1.5deg);
+    background: #111;
+  }
+  .mosaic-card:nth-child(2n) {
+    transform: rotate(1.5deg) translateY(10px);
+  }
+  .mosaic-card:nth-child(3n) {
+    transform: rotate(-1deg) translateY(-8px);
+  }
+  .mosaic-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @keyframes aboutSwipe {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   /* Dark overlay over the whole mosaic */
   .mosaic-overlay {
     position: absolute; inset: 0;
-    background: rgba(0,0,0,0.62);
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.84) 0%, rgba(0,0,0,0.68) 36%, rgba(0,0,0,0.48) 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.24) 0%, rgba(0,0,0,0.7) 100%);
     z-index: 1;
   }
 
@@ -235,6 +292,40 @@
     color: rgba(255,255,255,0.45);
   }
 
+  /* ─── BIO ACCORDION ─── */
+  .bio-accordion { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .bio-acc-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .bio-acc-item:hover, .bio-acc-item.open {
+    border-color: rgba(245,197,24,0.25);
+    background: rgba(245,197,24,0.02);
+  }
+  .bio-acc-header {
+    padding: 16px 20px;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--yellow);
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .bio-acc-arrow {
+    transition: transform 0.3s ease;
+    flex-shrink: 0; opacity: 0.4;
+  }
+  .bio-acc-item.open .bio-acc-arrow { transform: rotate(180deg); opacity: 0.8; }
+  .bio-acc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 20px;
+  }
+  .bio-acc-item.open .bio-acc-body { max-height: 600px; padding: 0 20px 20px; }
+  .bio-acc-body p { font-size: 1rem; line-height: 1.78; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+  .bio-acc-body p:last-child { margin-bottom: 0; }
+
   /* ─── FOOTER ─── */
   footer { background: var(--dark); border-top: 1px solid var(--border); padding: 60px 36px 36px; }
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; max-width: 1100px; margin: 0 auto 48px; }
@@ -255,49 +346,6 @@
   .footer-bottom-links a { font-size: 0.8rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
   .footer-bottom-links a:hover { color: rgba(255,255,255,0.5); }
 
-  /* ─── BIO ACCORDION ─── */
-  .bio-accordion { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-  .bio-acc-item {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .bio-acc-item:hover, .bio-acc-item.open {
-    border-color: rgba(245,197,24,0.25);
-    background: rgba(245,197,24,0.02);
-  }
-  .bio-acc-header {
-    padding: 16px 20px;
-    font-size: 0.78rem; font-weight: 700;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--yellow);
-    cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .bio-acc-arrow {
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-    opacity: 0.4;
-  }
-  .bio-acc-item.open .bio-acc-arrow { transform: rotate(180deg); opacity: 0.8; }
-  .bio-acc-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    padding: 0 20px;
-  }
-  .bio-acc-item.open .bio-acc-body {
-    max-height: 600px;
-    padding: 0 20px 20px;
-  }
-  .bio-acc-body p {
-    font-size: 1rem; line-height: 1.78;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 12px;
-  }
-  .bio-acc-body p:last-child { margin-bottom: 0; }
-
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -308,6 +356,7 @@
   @media (max-width: 900px) {
     .brings-grid { grid-template-columns: 1fr 1fr; }
     .hero-content { padding: 120px 32px 60px; }
+    .mosaic-card { flex-basis: clamp(180px, 34vw, 280px); }
   }
   @media (max-width: 640px) {
     section, .hero-content { padding-left: 16px !important; padding-right: 16px !important; }
@@ -317,7 +366,9 @@
     #menuBtnMobile { display: flex !important; }
     .menu-overlay { top: 56px; right: 16px; width: calc(100vw - 32px); backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(14,14,14,0.97); }
     .brings-grid { grid-template-columns: 1fr; }
-    .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); }
+    .mosaic-lane { flex-basis: 25%; }
+    .mosaic-track { gap: 10px; padding: 8px 10px; }
+    .mosaic-card { flex-basis: 180px; }
     .stats-strip { flex-direction: column; align-items: center; }
     .stat { border-right: none; border-bottom: 1px solid var(--border); width: 100%; }
     .stat:last-child { border-bottom: none; }
@@ -363,23 +414,66 @@
 <!-- ─── HERO ─── -->
 <section class="hero">
 
-  <!-- Photo mosaic (6 cells, add real photos later) -->
+  <!-- Animated photo swipe -->
   <div class="mosaic">
-    <div class="mosaic-cell">Add Photo</div>
-    <div class="mosaic-cell">Add Photo</div>
-    <div class="mosaic-cell">Add Photo</div>
-    <div class="mosaic-cell">Add Photo</div>
-    <div class="mosaic-cell">Add Photo</div>
-    <div class="mosaic-cell">Add Photo</div>
+    <div class="mosaic-lane">
+      <div class="mosaic-track" aria-hidden="true">
+        <div class="mosaic-card"><img src="images/about-6080-opt.jpg" alt="Chuby Dice at a dancehall event" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-6081-opt.jpg" alt="Chuby Dice with community members at an event" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5931.jpg" alt="Chuby Dice teaching in class" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5936.jpg" alt="Chuby Dice smiling with students" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-6080-opt.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-6081-opt.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5931.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5936.jpg" alt="" decoding="async"></div>
+      </div>
+    </div>
+    <div class="mosaic-lane">
+      <div class="mosaic-track" aria-hidden="true" style="animation-duration:36s;">
+        <div class="mosaic-card"><img src="images/about-5937.jpg" alt="Chuby Dice leading movement in workshop" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5938.jpg" alt="Chuby Dice in studio portrait" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5939.jpg" alt="Chuby Dice smiling in workshop space" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5940.jpg" alt="Chuby Dice dancing with class participants" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5937.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5938.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5939.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5940.jpg" alt="" decoding="async"></div>
+      </div>
+    </div>
+    <div class="mosaic-lane">
+      <div class="mosaic-track" aria-hidden="true" style="animation-duration:40s;">
+        <div class="mosaic-card"><img src="images/about-6081-opt.jpg" alt="Chuby Dice with community members at an event" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5936.jpg" alt="Chuby Dice smiling with students" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5938.jpg" alt="Chuby Dice in studio portrait" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5940.jpg" alt="Chuby Dice dancing with class participants" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-6081-opt.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5936.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5938.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5940.jpg" alt="" decoding="async"></div>
+      </div>
+    </div>
+    <div class="mosaic-lane">
+      <div class="mosaic-track" aria-hidden="true" style="animation-duration:34s;">
+        <div class="mosaic-card"><img src="images/about-6080-opt.jpg" alt="Chuby Dice at a dancehall event" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5931.jpg" alt="Chuby Dice teaching in class" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5937.jpg" alt="Chuby Dice leading movement in workshop" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5939.jpg" alt="Chuby Dice smiling in workshop space" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-6080-opt.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5931.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5937.jpg" alt="" decoding="async"></div>
+        <div class="mosaic-card"><img src="images/about-5939.jpg" alt="" decoding="async"></div>
+      </div>
+    </div>
   </div>
   <div class="mosaic-overlay"></div>
 
   <!-- Text content -->
   <div class="hero-content">
-    <p class="hero-eyebrow">Founder, Dancehall Academy</p>
+    <p class="hero-eyebrow">About</p>
     <h1 class="hero-title">Meet Chuby Dice</h1>
     <div class="hero-body">
-      <p><em>Veteran performer, cultural practitioner. Leading representative of Jamaican Dancehall in Australia.</em></p>
+      <p class="bold-line">Founder, Dancehall Academy</p>
+      <p class="bold-line">Veteran performer, cultural practitioner. Leading representative of Jamaican Dancehall in Australia.</p>
 
       <div class="bio-accordion">
         <div class="bio-acc-item open">
@@ -389,21 +483,19 @@
           </div>
           <div class="bio-acc-body">
             <p>Widely recognised as a veteran performer and a leading representative of authentic Jamaican Dancehall culture in Australia, Chuby (Desmond Malcolm) is a dancer, choreographer and educator from Spanish Town, Jamaica, now based in Naarm (Melbourne), Australia.</p>
-            <p>Raised in one of the historic centres of Dancehall culture, Chuby's Dancehall practice is grounded in the lived realities of Jamaican street life, shaped by sound system &amp; sound clash traditions, community exchange, and sub-altern resilience.</p>
+            <p>Raised in one of the historic centres of Dancehall culture, Chuby's Dancehall practice is grounded in the lived realities of Jamaican street life, shaped by sound system and sound clash traditions, community exchange, and sub-altern resilience.</p>
             <p>Chuby's early engagement with dance began at Cumberland High School, where he formed the group Hot Steppaz. He later joined the foundational Black Dice crew in 2007, eventually rebuilding and leading the group, which has since gained international recognition for its presence in Dancehall street parties and storytelling.</p>
           </div>
         </div>
-
         <div class="bio-acc-item">
           <div class="bio-acc-header">
             <span>Black Dice crew and street legacy</span>
             <svg class="bio-acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
           <div class="bio-acc-body">
-            <p>Chuby's style is influenced by foundational figures in Dancehall, including Gerald "Bogle" Levy. He is credited with developing a number of Dancehall party steps, including "Move a Foot", "Tek Piece a It", "Summer Kick", and "Air Flow". As a cultural pioneer &amp; creator, this practice is both rooted in tradition and continues to evolve street culture. Black Dice itself draws from classical Dancehall lineage, including mid-skool royalty Black Blingaz.</p>
+            <p>Chuby's style is influenced by foundational figures in Dancehall, including Gerald "Bogle" Levy. He is credited with developing a number of Dancehall party steps, including "Move a Foot", "Tek Piece a It", "Summer Kick", and "Air Flow". As a cultural pioneer and creator, this practice is both rooted in tradition and continues to evolve street culture. Black Dice itself draws from classical Dancehall lineage, including mid-skool royalty Black Blingaz.</p>
           </div>
         </div>
-
         <div class="bio-acc-item">
           <div class="bio-acc-header">
             <span>Global practice and performance</span>
@@ -411,10 +503,9 @@
           </div>
           <div class="bio-acc-body">
             <p>Chuby is a globally established performer and a cultural practitioner. Uniquely, Chuby has enabled direct access to many in the Australian dance community through his personal platform and brand.</p>
-            <p>Chuby's film and music video projects include Intent 2 and King of the Dancehall (directed by Nick Cannon), and has featured for artists such as Vybz Kartel, Busta Rhymes, Stylo G, Elephant Man and others.</p>
+            <p>Chuby's film and music video projects include Intent 2 and King of the Dancehall (directed by Nick Cannon), and he has featured for artists such as Vybz Kartel, Busta Rhymes, Stylo G, Elephant Man and others.</p>
           </div>
         </div>
-
         <div class="bio-acc-item">
           <div class="bio-acc-header">
             <span>Establishing Jamaican Dancehall in Australia</span>
@@ -425,21 +516,20 @@
             <p>As a cultural leader and one of a few full-time Dancehall dancers outside of Jamaica, Chuby has been instrumental in connecting Dancehall practitioners across Australia. Through initiatives linking dancers and communities across multiple cities, he has supported the development of a more cohesive national scene, while maintaining a clear emphasis on authenticity and direct connection to Jamaican roots.</p>
           </div>
         </div>
-
         <div class="bio-acc-item">
           <div class="bio-acc-header">
-            <span>Transmitting culture &amp; expertise</span>
+            <span>Transmitting culture and expertise</span>
             <svg class="bio-acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
           <div class="bio-acc-body">
-            <p>Chuby's work extends beyond performance into education and cultural transmission given his specialised expertise. Through long-standing engagements with institutions such as Fitzroy Community School, he has developed approaches that translate Dancehall from its street origins into structured learning environments, incorporating its historical, social, and political contexts. His teaching emphasises not only movement, but also cultural literacy, lineage, and respect for the origins of the form.</p>
+            <p>Chuby's work extends beyond performance into education and cultural transmission, given his specialised expertise.</p>
+            <p>Through long-standing engagements with institutions such as Fitzroy Community School, he has developed approaches that translate Dancehall from its street origins into structured learning environments, incorporating its historical, social, and political contexts. His teaching emphasises not only movement, but also cultural literacy, lineage, and respect for the origins of the form.</p>
             <p>He has also contributed to expanding the geographic and cultural reach of Dancehall in Australia, with residencies and workshops in regional and remote contexts. Notably, his work has included engagement in Central Australia, where Dancehall has been introduced in dialogue with local communities, reflecting a broader commitment to cultural exchange grounded in origins.</p>
           </div>
         </div>
-
         <div class="bio-acc-item">
           <div class="bio-acc-header">
-            <span>Practice and philosophy — Dancehall as empowerment</span>
+            <span>Practice and philosophy - Dancehall as empowerment</span>
             <svg class="bio-acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </div>
           <div class="bio-acc-body">
@@ -521,6 +611,5 @@
     });
   });
 </script>
-<script src="/chatbot.js"></script>
 </body>
 </html>
