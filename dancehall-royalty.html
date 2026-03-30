@@ -357,28 +357,28 @@
     <p>Choose your pass for Dancehall Royalty — every Tuesday, June 2026.</p>
 
     <div class="pricing-options" id="pricingOptions">
-      <div class="price-option selected" data-price="30" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
+      <div class="price-option selected" data-price="30" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">Single Class</span>
         </div>
         <span class="price-option-amount">A$30.00</span>
       </div>
-      <div class="price-option" data-price="100" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
+      <div class="price-option" data-price="100" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">4 Classes</span>
         </div>
         <span class="price-option-amount">A$100.00</span>
       </div>
-      <div class="price-option" data-price="125" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
+      <div class="price-option" data-price="125" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">5 Classes</span>
         </div>
         <span class="price-option-amount">A$125.00</span>
       </div>
-      <div class="price-option" data-price="230" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
+      <div class="price-option" data-price="230" onclick="selectPrice(this)">
         <span class="price-option-save">Save 23%</span>
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
@@ -386,7 +386,7 @@
         </div>
         <span class="price-option-amount">A$230.00</span>
       </div>
-      <div class="price-option" data-price="450" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
+      <div class="price-option" data-price="450" onclick="selectPrice(this)">
         <span class="price-option-save">Save 33%</span>
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
@@ -396,7 +396,7 @@
       </div>
     </div>
 
-    <button class="btn-book-now" id="bookBtn" onclick="bookNow()">Book Now — $30</button>
+    <button class="btn-book-now" id="bookBtn" onclick="alert('Stripe payment links for individual class passes will be available soon. Contact Chuby to book directly.')">Book Now — $30</button>
     <button class="btn-book-series" onclick="location.href='past-series.html'">View Past Sessions</button>
   </div>
 
@@ -436,26 +436,17 @@
   });
 </script>
 <script>
-var selectedStripeLink = 'https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201';
-
 function selectPrice(el) {
   document.querySelectorAll('.price-option').forEach(function(opt) {
     opt.classList.remove('selected');
   });
   el.classList.add('selected');
   var price = el.getAttribute('data-price');
-  var link = el.getAttribute('data-link');
-  if (link) selectedStripeLink = link;
   var btn = document.getElementById('bookBtn');
   if (btn) {
     btn.textContent = 'Book Now — ' + price;
     btn.setAttribute('data-link', link || '');
   }
-}
-
-function bookNow() {
-  if (!selectedStripeLink || selectedStripeLink.indexOf('https://buy.stripe.com/') !== 0) return;
-  window.open(selectedStripeLink, '_blank');
 }
 </script>
 
