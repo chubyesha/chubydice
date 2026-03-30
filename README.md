@@ -28,12 +28,10 @@ chubydice/
 ├── contact.html                # Contact / Instagram
 ├── in-ya-city.html             # Chuby Dice in Ya City
 ├── in-ya-city-adelaide.html    # In Ya City — Adelaide
-├── shared-theme.css            # Shared design system (purple/dark theme, typography, nav overrides)
 ├── chatbot.js                  # AI chatbot widget (Anthropic API via Netlify function)
-├── netlify.toml                # Netlify config (redirects, headers, cache rules)
 ├── netlify/functions/chat.js   # Serverless chat function (Anthropic Claude API)
 ├── images/                     # All site images and flyers
-├── videos/                     # Hero background videos
+├── videos/                     # Hero background videos (1-5.mp4)
 ├── documents/                  # Session recovery and resume instructions
 └── .gitignore                  # IDE, node_modules, .env, screenshots, .claude, etc.
 ```
@@ -41,33 +39,33 @@ chubydice/
 ## Tech Stack
 
 - **Static HTML** — No build tools, no framework. Each page is self-contained with inline `<style>` and `<script>`.
-- **Shared Theme** — `shared-theme.css` provides site-wide design tokens, typography (Outfit + DM Sans), nav styling, and overrides via CSS custom properties.
-- **Fonts** — Outfit (headings), DM Sans (body), Bebas Neue (legacy/fallback), Barlow (legacy/fallback).
-- **Design Tokens** — Purple-dominant palette (`--void`, `--deep`, `--surface`, `--purple-600`, `--gold`, `--pink`, `--cyan`).
+- **Fonts** — Bebas Neue (headings), Barlow / Barlow Condensed (body/UI).
+- **Design Tokens** — CSS custom properties: `--yellow (#F5C518)`, `--black (#0A0A0A)`, `--dark (#111111)`, `--pink (#E040FB)`.
 - **Netlify Functions** — Serverless chat endpoint at `/.netlify/functions/chat` using Anthropic Claude API.
 - **Stripe** — Payment links (`buy.stripe.com`) embedded in series sub-pages. Collection pricing on `series.html` has placeholder buttons pending Stripe setup.
 
 ## Pages Overview
 
 ### Home (`index.html`)
-- Hero video (`videos/hero-bg.mp4`) with poster fallback
+- Hero video (5 rotating videos with crossfade) with poster fallback
 - Series tiles grid (March Back in Time, Praise Flow, Motherland, Dancehall Royalty)
-- 1:1 Coaching tile, Academy section, Artist bio, Dancehall Vibes playlist, Social connect
-- Mobile: horizontal scroll with swipe dots
+- Mobile: flyer carousel with dots
+- Clash Inna Dancehall tile, Academy section, 1:1 Coaching tile
+- Artist bio, Dancehall Vibes playlist, Social connect (Instagram)
 
 ### Series (`series.html`)
 - Individual series cards with images and booking buttons
 - **Collection Pricing** section: 5 tiers ($30 single, $100/4, $125/5, $230/10, $450/20) — Stripe buttons pending
+- Mobile: swipeable card stack
 
 ### Coaching (`coaching.html`)
 - Hero with watermark background
-- Expandable accordion with 5 coaching focus areas (foundations, sub-genres, clash vs party, choreography, history)
+- Expandable accordion with 5 coaching focus areas
 - Booking card with Stripe link
 
 ### About (`about.html`)
-- Photo mosaic hero (auto-scrolling lanes of about photos)
+- Photo mosaic hero (6 cells placeholder)
 - Biography in 6 collapsible accordion sections (first open by default)
-- Sections: Spanish Town origins, Black Dice crew, Global performance, Australia, Cultural transmission, Empowerment philosophy
 
 ## Navigation
 
@@ -84,17 +82,6 @@ All 16 pages share a standardized dropdown menu:
 9. 2026 Events (Archive)
 10. Contact / Instagram
 
-## Series Images
-
-| Series | Image File |
-|--------|-----------|
-| March Back in Time | `images/a84b4d3eec82.png` |
-| Praise Flow (April) | `images/praise-flow-2026.png` |
-| Motherland (May) | `images/motherland-2026.jpeg` |
-| Dancehall Royalty (June) | `images/dancehall-royalty-2026.jpeg` |
-| Clash Inna Dancehall | `images/clash-inna-dancehall.png` |
-| Coaching hero | `images/5015f87ce59f.png` |
-
 ## Stripe Pricing (Series Collection)
 
 | Package | Price | Per Class | Stripe Status |
@@ -110,17 +97,12 @@ All 16 pages share a standardized dropdown menu:
 No build step required. Open any `.html` file directly or serve with any static server.
 
 ```bash
-# Simple local server
 npx serve .
-
-# Or Python
+# Or
 python3 -m http.server 8000
 ```
 
-For Netlify Functions (chatbot), use:
-```bash
-npx netlify dev
-```
+For Netlify Functions (chatbot): `npx netlify dev`
 
 ## Git Workflow
 
@@ -128,13 +110,6 @@ npx netlify dev
 - Feature branches: `feat/<description>`
 - Docs branches: `docs/<description>`
 - Chore branches: `chore/<description>`
-
-## Known Pre-existing Issues
-
-1. **OG image broken** — All pages reference `chuby-profile-CkJq2sVN.jpg` which doesn't exist. Should be updated.
-2. **CORS wildcard** — `netlify.toml` and chat function use `Access-Control-Allow-Origin: *`. Should restrict to actual domain.
-3. **Chat function** — No input validation or rate limiting on the Netlify chat function.
-4. **`shared-theme.css` !important** — Forces `body` font-family with `!important`, overriding page-specific fonts.
 
 ---
 

@@ -1,63 +1,58 @@
 # Session Recovery — Chuby Dice Website
 
 **Last Updated:** 2026-03-30
-**Branch:** `feat/release-2a-requirements` (from `docs/session-and-readme-update`)
-**Commits in this session:**
-- `fb0eb88` — feat: implement Release 2A product requirements (15 files, 320+/78-)
-- `c4a7d62` — chore: remove stale .tmp.jpg artifacts and gitignore them
+**Active Branch:** `feat/release-2a-product-requirements` (commit `90fdb08`)
+**Base:** `00b0168` (main, original codebase BEFORE pablobbk101 changes)
 
 ---
 
 ## What Was Done This Session
 
 ### Context
-Client provided a Product Requirement Document (PRD) titled "Release 2A — Web Content & Structure" via `screenshots/Info Architecture - RELEASE 2 08022026.docx`. The latest live site code was fetched from `/pablobbk101-cloud/chubydice` remote (commit `b5cc188`) which had a complete redesign with purple/dark theme, new `shared-theme.css`, new images, and restructured `index.html`.
+Client provided a Product Requirement Document (PRD) titled "Release 2A — Web Content & Structure" via `screenshots/Info Architecture - RELEASE 2 08022026.docx`. The PRD is a `.docx` file — parse with `python-docx` library.
 
-### 7 Product Requirements Implemented
+**Important:** The client rejected the `/pablobbk101-cloud/chubydice` changes (commit `b5cc188` on branch `feat/pablobbk101-cloud-chubydice-changes`). The Release 2A requirements must be applied to the **original** codebase at commit `00b0168`, NOT the redesigned purple-theme version.
+
+### 7 Product Requirements Implemented (on original codebase)
 
 #### R1: Stripe Collection Pricing on `series.html`
-- **What:** Added a "Collection Packages" pricing section below the series grid
-- **Details:** 5 pricing cards (Single $30, 4 Classes $100, 5 Classes $125, 10 Classes $230, 20 Classes $450 with "Best Value" badge)
-- **Status:** Buttons show "Coming Soon" with `data-stripe` attributes as placeholders. CSS added inline in `<style>` block. Responsive grid: 5 cols desktop, 3 cols tablet, 2 cols mobile.
-- **Pending:** Client needs to create Stripe payment links and provide URLs to replace placeholder buttons.
+- Added "Collection Packages" pricing section below the series grid
+- 5 pricing cards: Single $30, 4 Classes $100, 5 Classes $125, 10 Classes $230, 20 Classes $450 (with "Best Value" badge)
+- Buttons show "Coming Soon" with `data-stripe` attributes as placeholders
+- CSS added inline in `<style>` block. Responsive: 5 cols desktop, 3 cols tablet, 2 cols mobile
+- **Pending:** Client needs to create Stripe payment links
 
 #### R2: Navigation Standardization (All 16 Pages)
-- **What:** Standardized dropdown menu across every HTML page per PRD structure
-- **Script used:** Python batch script to find `menuOverlay` div and replace nav links in all 16 files
-- **Menu order:** Home, Chuby Dice Series, Clash Inna Dancehall, Professional 1:1 Coaching & Programs, Dancehall Academy, About Chuby Dice, Brand Ambassadorship, Chuby Dice in Ya City, 2026 Events (Archive), Contact / Instagram
-- **Key fix:** index.html was missing "Clash Inna Dancehall" link entirely. Many sub-pages had inconsistent ordering.
-- **Active class:** Each page correctly marks its own link with `class="active"`
+- Python batch script replaced all `menuOverlay` nav content across 16 HTML files
+- Menu order: Home, Chuby Dice Series, Clash Inna Dancehall, Professional 1:1 Coaching & Programs, Dancehall Academy, About Chuby Dice, Brand Ambassadorship, Chuby Dice in Ya City, 2026 Events (Archive), Contact / Instagram
+- Key fix: index.html was missing "Clash Inna Dancehall" entirely
+- Each page correctly marks its own link with `class="active"`
 
 #### R3: Hero Images for May & June Series
-- **What:** Replaced placeholder images with correct series flyers
-- **Changes:**
-  - Motherland (May): `photo-1.jpeg` → `motherland-2026.jpeg` (in index.html, series.html, motherland.html)
-  - Dancehall Royalty (June): `photo-2.jpeg` → `dancehall-royalty-2026.jpeg` (in index.html, series.html, dancehall-royalty.html)
+- Images `motherland.png` and `dancehall-royalty.png` already existed and are used in the original codebase
+- No new hero images were provided in the original codebase — these are the correct ones
+- On the rejected pablobbk101 branch, new images (`motherland-2026.jpeg`, `dancehall-royalty-2026.jpeg`) were added but those are NOT in this branch
 
 #### R4: Coaching Hero Image
-- **Status:** Verified correct. Uses `images/5015f87ce59f.png` on both coaching.html hero and index.html coaching tile. No change needed.
+- Verified correct: uses `images/5015f87ce59f.png` on coaching.html hero and index.html coaching tile
 
 #### R5: Hero Video on Home Page
-- **Status:** Already updated by remote to `videos/hero-bg.mp4` with `images/hero-poster.jpg` as poster. No change needed.
+- Original codebase has 5 rotating videos (`videos/1.mp4` through `videos/5.mp4`) with crossfade
+- PRD says "potential" change — no specific new asset provided. No change made.
 
 #### R6: Coaching Accordion (`coaching.html`)
-- **What:** Converted 5 static pill accordion items to functional expandable accordion
-- **CSS changes:** Replaced `cursor: default` with `cursor: pointer`, added flex layout for header, added `max-height` transition for body, removed `display: none` from `.acc-arrow` and `.acc-body`
-- **HTML changes:** Added SVG chevron arrows to each header, added descriptive `<div class="acc-body">` content for each of the 5 focus areas
-- **JS added:** Click handler with single-open behavior (clicking one closes others)
-- **Content:** Foundations & movement, Sub-genres & periods, Clash vs party, Choreography & musicality, History & contemporary practice
+- Converted 5 static pill accordion items to functional expandable accordion
+- CSS: `cursor: pointer`, flex header, `max-height` transition body, chevron arrows
+- HTML: SVG chevron arrows + descriptive `acc-body` content for each focus area
+- JS: Click handler with single-open behavior
+- Focus areas: Foundations & movement, Sub-genres & periods, Clash vs party, Choreography & musicality, History & contemporary practice
 
 #### R7: About Biography Accordion (`about.html`)
-- **What:** Converted flat wall-of-text biography into 6 collapsible accordion sections
-- **CSS added:** `.bio-accordion`, `.bio-acc-item`, `.bio-acc-header`, `.bio-acc-arrow`, `.bio-acc-body` styles
-- **HTML:** Restructured `hero-body` div from flat `<p>` tags with bold-line headings into proper accordion structure
-- **First section open by default:** "From Spanish Town, Jamaica" has `class="open"` on load
-- **JS added:** Same toggle pattern as coaching accordion with `.bio-acc-header` selectors
-- **All original text preserved exactly.**
-
-### Bonus: Cleanup
-- Removed stale `images/about-6080.jpg.tmp.jpg` and `images/about-6081.jpg.tmp.jpg` from git
-- Added `*.tmp.jpg` to `.gitignore`
+- Converted flat wall-of-text biography into 6 collapsible accordion sections
+- CSS: `.bio-accordion`, `.bio-acc-item`, `.bio-acc-header`, `.bio-acc-arrow`, `.bio-acc-body`
+- First section open by default: "From Spanish Town, Jamaica" has `class="open"`
+- JS: Same toggle pattern as coaching accordion
+- All original biography text preserved exactly
 
 ---
 
@@ -65,26 +60,25 @@ Client provided a Product Requirement Document (PRD) titled "Release 2A — Web 
 
 ### Security Review: APPROVED
 - 0 critical, 0 high issues from our changes
-- Pre-existing medium: chat function lacks input validation, CORS wildcard `*`
 
-### Code Review: Issues Found (All Pre-existing)
-- **CRITICAL (pre-existing):** Broken OG image reference (`chuby-profile-CkJq2sVN.jpg` doesn't exist)
-- **HIGH (pre-existing):** `--border` CSS variable conflict between shared-theme.css and page-local styles
-- **HIGH (pre-existing):** `shared-theme.css` forces body font-family with `!important`
-- **HIGH (pre-existing):** `.tmp.jpg` artifact files — **Fixed by us in `c4a7d62`**
+### Code Review: APPROVED with warnings
+- Fixed: `acc-body max-height` increased to 500px (was 300px)
+- Fixed: Removed `padding` from accordion transitions to avoid layout jank
+- Pre-existing: Duplicate `dancehall-royalty.png` at root (not from our changes)
+- Pre-existing: Brand Ambassadorship links to contact.html (placeholder — client needs dedicated page or confirmation)
 
 ---
 
-## Files Modified (Release 2A)
+## Files Modified
 
 | File | Changes |
 |------|---------|
-| `index.html` | Nav menu updated, hero images updated (Motherland, Dancehall Royalty) |
-| `series.html` | Nav menu, hero images, pricing section added (CSS + HTML) |
-| `coaching.html` | Nav menu, accordion CSS rewritten, HTML expanded with content + chevrons, JS added |
-| `about.html` | Nav menu, bio accordion CSS added, biography restructured to 6 accordion sections, JS added |
-| `motherland.html` | Nav menu, hero image updated |
-| `dancehall-royalty.html` | Nav menu, hero image updated |
+| `index.html` | Nav menu standardized (added Clash, Brand Ambassadorship, 2026 Events) |
+| `series.html` | Nav menu + pricing section (CSS + HTML for 5 price cards) |
+| `coaching.html` | Nav menu + accordion CSS rewritten + HTML expanded with content/chevrons + JS toggle |
+| `about.html` | Nav menu + bio accordion CSS + biography restructured to 6 sections + JS toggle |
+| `motherland.html` | Nav menu |
+| `dancehall-royalty.html` | Nav menu |
 | `praise-flow.html` | Nav menu |
 | `clash.html` | Nav menu |
 | `academy.html` | Nav menu |
@@ -95,29 +89,30 @@ Client provided a Product Requirement Document (PRD) titled "Release 2A — Web 
 | `march-back-in-time.html` | Nav menu |
 | `lovers-rock.html` | Nav menu |
 | `full-series.html` | Nav menu |
-| `.gitignore` | Added `*.tmp.jpg` |
 
 ---
 
-## What Was NOT Changed (Intentionally)
+## What Was NOT Changed
 
-- `shared-theme.css` — Pre-existing issues noted but not in scope
-- `netlify.toml` — CORS and cache headers are pre-existing concerns
-- `netlify/functions/chat.js` — Input validation not in scope for Release 2A
-- `chatbot.js` — No changes needed
-- OG image meta tags — Pre-existing broken reference, flagged for future fix
-- Videos — Already updated by remote
+- Hero images for May/June (using existing `motherland.png` / `dancehall-royalty.png`)
+- Hero video (keeping 5 rotating videos)
+- `chatbot.js` / `netlify/functions/chat.js`
+- No `shared-theme.css` (doesn't exist in original codebase)
+- No purple/dark theme changes
 
 ---
 
 ## Git Branch State
 
 ```
-main ← origin/main
-  └── feat/pablobbk101-cloud-chubydice-changes (b5cc188) ← latest live site code
-       └── feat/release-2a-requirements (c4a7d62) ← Release 2A implementation
-            └── docs/session-and-readme-update ← README + session docs (current)
+main (00b0168) ← original codebase
+  └── feat/release-2a-product-requirements (90fdb08) ← Release 2A on original codebase [ACTIVE]
+       └── docs/session-docs-original-base ← README + session docs [current]
 ```
+
+**REJECTED branches (do NOT use):**
+- `feat/pablobbk101-cloud-chubydice-changes` (b5cc188) — purple theme redesign, client rejected
+- `feat/release-2a-requirements` (c4a7d62) — Release 2A on pablobbk101 base, wrong base
 
 ---
 
