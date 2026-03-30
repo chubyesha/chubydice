@@ -17,7 +17,64 @@
 <link rel="preload" as="image" href="images/450034373c45.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=Barlow+Condensed:wght@600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,600&family=Barlow+Condensed:wght@600;700;900&display=swap" rel="stylesheet"/></noscript>
+<style>
+  :root {
+    --yellow: #F5C518;
+    --pink: #E040FB;
+    --white: #FFFFFF;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --card-bg: #1A1A1A;
+    --border: #2A2A2A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Mobile touch optimizations */
+  * { -webkit-tap-highlight-color: transparent; }
+  button, a, [onclick] { touch-action: manipulation; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 18px 36px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    text-decoration: none;
+    justify-self: start;
+  }
+  .nav-logo span { color: var(--yellow); }
+
+  .nav-center {
+    display: flex;
+    justify-content: center;
+  }
 
 <style>
 /* ═══════════════════════════════════════════════
