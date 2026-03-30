@@ -182,17 +182,73 @@
     opacity: 0; animation: fadeUp 0.7s ease 0.35s forwards;
   }
 
-  /* ─── SERIES GRID ─── */
+  /* ─── SERIES CAROUSEL ─── */
   .series-container {
     max-width: 1160px;
     margin: 60px auto 0;
     padding: 0 24px 100px;
   }
 
+  .series-tabs {
+    display: flex; justify-content: center; gap: 4px;
+    margin-bottom: 32px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 4px;
+    width: fit-content;
+    margin-left: auto; margin-right: auto;
+  }
+  .series-tab {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Barlow', sans-serif; font-weight: 700;
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    padding: 10px 24px; border-radius: 50px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .series-tab:hover { color: rgba(255,255,255,0.7); }
+  .series-tab.active {
+    background: var(--yellow); color: var(--black);
+  }
+
   .series-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 4px 2px 16px;
+    scrollbar-width: none;
+  }
+  .series-grid::-webkit-scrollbar { display: none; }
+  .series-grid .card {
+    flex: 0 0 min(44%, 340px);
+    scroll-snap-align: start;
+  }
+  .series-grid .card.past-session {
+    opacity: 0.85;
+  }
+  .series-grid .card.past-session:hover {
+    opacity: 1;
+  }
+
+  /* Past Session watermark badge */
+  .past-watermark {
+    position: absolute; top: 14px; right: 14px; z-index: 10;
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.06);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 50px;
+    padding: 6px 14px;
+    font-family: 'Barlow', sans-serif; font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .past-watermark-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.25);
   }
 
   /* ─── CARD STACK VIEW (Mobile) ─── */
@@ -722,10 +778,14 @@
     .card-full .card-img, .card-single .card-img { width: 100%; height: 220px; }
     .card-full .card-body, .card-single .card-body { padding: 24px; }
   }
+  @media (max-width: 900px) {
+    .series-grid .card { flex: 0 0 min(55%, 320px); }
+  }
   @media (max-width: 640px) {
     .series-container { padding: 0 16px 80px; }
-    .series-grid { display: none; }
-    .card-stack-container { display: flex; height: 450px; }
+    .series-grid .card { flex: 0 0 min(82%, 300px); }
+    .series-tabs { margin-bottom: 24px; }
+    .series-tab { padding: 8px 18px; font-size: 0.75rem; }
     nav { grid-template-columns: 1fr auto; padding: 14px 20px; backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(10,10,10,0.96); }
     .nav-center { display: none; }
     #navBookBtn { display: none; }
@@ -784,26 +844,18 @@
   </p>
 </div>
 
-<!-- SERIES GRID -->
+<!-- SERIES CAROUSEL -->
 <div class="series-container">
-  <!-- Card Stack (Mobile) -->
-  <div class="card-stack-container">
-    <div class="card-stack" id="cardStackSeries"></div>
-    <div class="swipe-hints">
-      <div class="hint">
-        <span class="hint-arrow">→</span>
-        Save
-      </div>
-      <div class="hint">
-        <span class="hint-arrow">←</span>
-        Next
-      </div>
-    </div>
+  <!-- Tabs -->
+  <div class="series-tabs">
+    <button class="series-tab active" onclick="filterSeries('all')">All</button>
+    <button class="series-tab" onclick="filterSeries('current')">Current</button>
+    <button class="series-tab" onclick="filterSeries('past')">Past</button>
   </div>
-  <div class="series-grid">
+  <div class="series-grid" id="seriesCarousel">
 
     <!-- MARCH BACK IN TIME (ending soon) -->
-    <div class="card">
+    <div class="card" data-type="current">
       <div class="card-img" style="position:relative;overflow:hidden;">
         <img src="images/a84b4d3eec82.png" alt="March Back in Time" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" loading="lazy">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
@@ -829,7 +881,7 @@
     </div>
 
     <!-- PRAISE FLOW -->
-    <div class="card">
+    <div class="card" data-type="current">
       <div class="card-img" style="position:relative;overflow:hidden;">
         <img src="images/praise-flow.png" alt="Praise Flow" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
@@ -854,7 +906,7 @@
     </div>
 
     <!-- MOTHERLAND -->
-    <div class="card">
+    <div class="card" data-type="current">
       <div class="card-img" style="position:relative;overflow:hidden;">
         <img src="images/motherland-may-2026.jpg" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
@@ -879,7 +931,7 @@
     </div>
 
     <!-- DANCEHALL ROYALTY -->
-    <div class="card">
+    <div class="card" data-type="current">
       <div class="card-img" style="position:relative;overflow:hidden;">
         <img src="images/dancehall-royalty-june-2026.jpg" alt="Dancehall Royalty" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
@@ -899,6 +951,77 @@
         <div class="card-actions">
           <button class="btn-book" onclick="location.href='dancehall-royalty.html'">Book Now</button>
           <button class="btn-more" onclick="location.href='dancehall-royalty.html'">More Info</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PAST SESSIONS ═══ -->
+
+    <!-- LOVERS' ROCK (Past) -->
+    <div class="card past-session" data-type="past">
+      <div class="card-img" style="position:relative;overflow:hidden;">
+        <img src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.55;" loading="lazy" decoding="async">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
+        <span class="past-watermark"><span class="past-watermark-dot"></span> Past Session</span>
+        <div class="card-img-title" style="position:relative;z-index:2;">
+          <h3>LOVERS' ROCK</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span>4 weeks</span>
+          <span class="card-meta-dot"></span>
+          <span>February 2026</span>
+        </div>
+        <p class="card-desc">Raw Dancehall lyrics and movement, flow-led storytelling, and February energy... mek yuh ready fi love.</p>
+        <div class="card-actions">
+          <button class="btn-more" onclick="location.href='lovers-rock.html'">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARCH BACK IN TIME (Past) -->
+    <div class="card past-session" data-type="past">
+      <div class="card-img" style="position:relative;overflow:hidden;">
+        <img src="images/a84b4d3eec82.png" alt="March Back in Time" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.55;" loading="lazy" decoding="async">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
+        <span class="past-watermark"><span class="past-watermark-dot"></span> Past Session</span>
+        <div class="card-img-title" style="position:relative;z-index:2;">
+          <h3>MARCH BACK IN TIME</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span>5 weeks</span>
+          <span class="card-meta-dot"></span>
+          <span>March 2026</span>
+        </div>
+        <p class="card-desc">100% Black Dice moves &amp; history — from Grung Lizard to Free Kick.</p>
+        <div class="card-actions">
+          <button class="btn-more" onclick="location.href='march-back-in-time.html'">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL COLLECTION (Past) -->
+    <div class="card past-session" data-type="past">
+      <div class="card-img" style="position:relative;overflow:hidden;">
+        <img src="images/e03deced0cad.png" alt="Full Collection" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:0;opacity:0.55;" loading="lazy" decoding="async">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
+        <span class="past-watermark"><span class="past-watermark-dot"></span> Past Session</span>
+        <div class="card-img-title" style="position:relative;z-index:2;">
+          <h3>FULL COLLECTION — Q1 2026</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span>9 weeks</span>
+          <span class="card-meta-dot"></span>
+          <span>Feb – Mar 2026</span>
+        </div>
+        <p class="card-desc">The full Q1 2026 Chuby Dice Series — Lovers' Rock + March Back in Time combined.</p>
+        <div class="card-actions">
+          <button class="btn-more" onclick="location.href='full-series.html'">View Details</button>
         </div>
       </div>
     </div>
@@ -1364,6 +1487,24 @@
   update();
   setInterval(update, 60000);
 })();
+</script>
+
+<script>
+function filterSeries(type) {
+  var cards = document.querySelectorAll('.series-grid .card');
+  var tabs = document.querySelectorAll('.series-tab');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  event.target.classList.add('active');
+  cards.forEach(function(card) {
+    var cardType = card.getAttribute('data-type');
+    if (type === 'all' || cardType === type) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  document.getElementById('seriesCarousel').scrollLeft = 0;
+}
 </script>
 
 <!-- BBK PRODUCTIONS CREDIT -->
