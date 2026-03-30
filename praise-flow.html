@@ -430,28 +430,28 @@
     <p>Choose your pass for Praise Flow — every Tuesday, April 2026.</p>
 
     <div class="pricing-options" id="pricingOptions">
-      <div class="price-option selected" data-price="30" data-label="Single Class" onclick="selectPrice(this)">
+      <div class="price-option selected" data-price="30" data-label="Single Class" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">Single Class</span>
         </div>
         <span class="price-option-amount">$30</span>
       </div>
-      <div class="price-option" data-price="100" data-label="4 Classes" onclick="selectPrice(this)">
+      <div class="price-option" data-price="100" data-label="4 Classes" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">4 Classes</span>
         </div>
         <span class="price-option-amount">$100</span>
       </div>
-      <div class="price-option" data-price="125" data-label="5 Classes" onclick="selectPrice(this)">
+      <div class="price-option" data-price="125" data-label="5 Classes" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">5 Classes</span>
         </div>
         <span class="price-option-amount">$125</span>
       </div>
-      <div class="price-option" data-price="230" data-label="10 Classes" onclick="selectPrice(this)">
+      <div class="price-option" data-price="230" data-label="10 Classes" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
         <span class="price-option-save">Save 23%</span>
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
@@ -459,7 +459,7 @@
         </div>
         <span class="price-option-amount">$230</span>
       </div>
-      <div class="price-option" data-price="400" data-label="20 Classes" onclick="selectPrice(this)">
+      <div class="price-option" data-price="400" data-label="20 Classes" data-link="https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201" onclick="selectPrice(this)">
         <span class="price-option-save">Save 33%</span>
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
@@ -469,7 +469,7 @@
       </div>
     </div>
 
-    <button class="btn-book-now" id="bookBtn" onclick="alert('Stripe link coming soon')">Book Now — $30</button>
+    <button class="btn-book-now" id="bookBtn" onclick="bookNow()">Book Now — $30</button>
     <button class="btn-book-series" onclick="location.href='past-series.html'">View Past Sessions</button>
   </div>
 
@@ -510,17 +510,22 @@
 </script>
 <script src="/chatbot.js"></script>
 <script>
+var selectedStripeLink = 'https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201';
+
 function selectPrice(el) {
   document.querySelectorAll('.price-option').forEach(function(opt) {
     opt.classList.remove('selected');
   });
   el.classList.add('selected');
   var price = el.getAttribute('data-price');
-  var label = el.getAttribute('data-label');
+  var link = el.getAttribute('data-link');
+  if (link) selectedStripeLink = link;
   var btn = document.getElementById('bookBtn');
-  if (btn) {
-    btn.textContent = 'Book Now — $' + price;
-  }
+  if (btn) btn.textContent = 'Book Now — $' + price;
+}
+
+function bookNow() {
+  window.open(selectedStripeLink, '_blank');
 }
 </script>
 
