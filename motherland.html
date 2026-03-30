@@ -448,6 +448,7 @@ function selectPrice(el) {
 }
 
 function bookNow() {
+  if (!selectedStripeLink || selectedStripeLink.indexOf('https://buy.stripe.com/') !== 0) return;
   window.open(selectedStripeLink, '_blank');
 }
 </script>
