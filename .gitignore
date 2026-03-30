@@ -8,8 +8,8 @@ screenshots/
 *.swo
 *~
 
-# Session recovery documents
-documents/
+# Session recovery documents (tracked intentionally)
+# documents/
 
 # Node (for netlify functions development)
 node_modules/
