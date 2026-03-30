@@ -24,6 +24,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@600;700;900&display=swap" rel="stylesheet"/></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared-theme.css"/>
 <style>
   :root {
     --yellow: #F5C518;
@@ -220,6 +222,7 @@
   }
   .card:nth-child(1) { animation-delay: 0.15s; }
   .card:nth-child(2) { animation-delay: 0.25s; }
+  .card:nth-child(3) { animation-delay: 0.35s; }
   .card:hover {
     transform: translateY(-5px);
     border-color: rgba(255,255,255,0.12);
@@ -305,14 +308,14 @@
     align-items: center;
     gap: 10px;
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.65);
   }
-  .card-meta-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+  .card-meta-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.3); }
 
   .card-desc {
     font-size: 0.9rem;
     line-height: 1.65;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.7);
     flex: 1;
   }
 
@@ -381,13 +384,11 @@
 <div class="menu-overlay" id="menuOverlay">
   <a href="index.html">Home</a>
   <a href="series.html">Chuby Dice Series</a>
-  <a href="clash.html">Clash Inna Dancehall</a>
   <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
   <a href="academy.html">Dancehall Academy — Launching 2026</a>
   <a href="about.html">About Chuby Dice</a>
-  <a href="contact.html">Brand Ambassadorship</a>
   <a href="in-ya-city.html">Chuby Dice in Ya City</a>
-  <a href="past-series.html" class="active">2026 Events (Archive)</a>
+  <a href="past-series.html" class="active">Past Sessions</a>
   <a href="contact.html">Contact / Instagram</a>
   <div class="menu-divider"></div>
   <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
@@ -418,7 +419,7 @@
     <!-- LOVERS' ROCK -->
     <a class="card" href="lovers-rock.html">
       <div class="card-img">
-        <img src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" loading="lazy"/>
+        <img src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" loading="lazy" decoding="async">
         <span class="completed-badge"><span class="completed-dot"></span> Completed</span>
         <div class="card-img-title">
           <h3>LOVERS' ROCK</h3>
@@ -441,7 +442,7 @@
     <!-- MARCH BACK IN TIME -->
     <a class="card" href="march-back-in-time.html">
       <div class="card-img">
-        <img src="images/a84b4d3eec82.png" alt="March Back in Time" loading="lazy"/>
+        <img src="images/a84b4d3eec82.png" alt="March Back in Time" loading="lazy" decoding="async">
         <span class="completed-badge"><span class="completed-dot"></span> Completed</span>
         <div class="card-img-title">
           <h3>MARCH BACK IN TIME</h3>
@@ -454,6 +455,29 @@
           <span>March 2026</span>
         </div>
         <p class="card-desc">100% Black Dice moves &amp; history, diving deep into the evolution of Black Dice from Central Village, Spain Town — from Grung Lizard to Free Kick.</p>
+        <div class="card-cta">
+          View Details
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- FULL COLLECTION (Q1 2026) -->
+    <a class="card" href="full-series.html" style="grid-column:1/-1;">
+      <div class="card-img">
+        <img src="images/e03deced0cad.png" alt="Full Collection" loading="lazy" style="object-position:center center;" decoding="async">
+        <span class="completed-badge"><span class="completed-dot"></span> Completed</span>
+        <div class="card-img-title">
+          <h3>CHUBY DICE SERIES — FULL COLLECTION</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span>9 weeks</span>
+          <span class="card-meta-dot"></span>
+          <span>Feb – Mar 2026</span>
+        </div>
+        <p class="card-desc">The full Q1 2026 Chuby Dice Series — Lovers' Rock + March Back in Time combined into a 9-week course.</p>
         <div class="card-cta">
           View Details
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -485,7 +509,6 @@
     }
   });
 </script>
-<script src="/chatbot.js"></script>
 
 <!-- BBK PRODUCTIONS CREDIT -->
 <footer style="background:#111111;border-top:1px solid #2A2A2A;padding:20px;text-align:center;">

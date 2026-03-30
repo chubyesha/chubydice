@@ -24,6 +24,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@600;700;900&display=swap" rel="stylesheet"/></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared-theme.css"/>
 <style>
   :root {
     --yellow: #F5C518;
@@ -189,15 +191,15 @@
     padding: 0 24px 100px;
   }
 
-  .series-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
+.series-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
 
-  /* ─── CARD STACK VIEW (Mobile) ─── */
-  .card-stack-container {
-    display: none;
+/* Old mobile stack kept off */
+.card-stack-container {
+  display: none;
     position: relative;
     width: 100%;
     height: 500px;
@@ -495,182 +497,29 @@
   .card:nth-child(3) { animation-delay: 0.3s; }
   .card:nth-child(4) { animation-delay: 0.4s; }
 
-  /* ─── ENDS BADGE (countdown) ─── */
-  .ends-badge {
-    position: absolute;
-    top: 14px; right: 14px;
-    z-index: 10;
-    display: inline-flex; align-items: center; gap: 7px;
-    background: rgba(255,70,70,0.12);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,70,70,0.25);
-    border-radius: 50px;
-    padding: 6px 14px;
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.65rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: #ff6b6b;
-  }
-  .ends-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #ff6b6b;
-    animation: pulse-dot 1.5s ease-in-out infinite;
-  }
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
-
-  /* ─── COMING SOON PRICE ─── */
-  .coming-soon-price {
-    color: rgba(255,255,255,0.25);
-    font-weight: 600;
-    font-style: italic;
-  }
-
-  /* ─── PRICING SECTION ─── */
-  .pricing-section {
-    max-width: 1160px;
-    margin: 0 auto;
-    padding: 60px 24px 20px;
-  }
-  .pricing-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .pricing-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.78rem; font-weight: 700;
-    letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--yellow); margin-bottom: 10px;
-  }
-  .pricing-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    letter-spacing: 0.04em; line-height: 1.1;
-  }
-  .pricing-title span {
-    background: linear-gradient(90deg, #F5C518 0%, #FF8C00 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .pricing-sub {
-    max-width: 520px; margin: 12px auto 0;
-    font-size: 0.92rem; line-height: 1.6;
-    color: rgba(255,255,255,0.45);
-  }
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-  }
-  .price-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 28px 20px;
-    text-align: center;
-    transition: border-color 0.2s, transform 0.2s, background 0.2s;
-    position: relative;
-  }
-  .price-card:hover {
-    border-color: rgba(245,197,24,0.35);
-    transform: translateY(-3px);
-    background: rgba(245,197,24,0.02);
-  }
-  .price-card.best-value {
-    border-color: rgba(245,197,24,0.4);
-    background: linear-gradient(135deg, rgba(245,197,24,0.06) 0%, rgba(255,140,0,0.03) 100%);
-  }
-  .price-card-best-tag {
-    position: absolute;
-    top: -11px; left: 50%; transform: translateX(-50%);
-    background: var(--yellow); color: var(--black);
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.6rem; font-weight: 900;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 4px 12px; border-radius: 50px;
-    white-space: nowrap;
-  }
-  .price-card-classes {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem; letter-spacing: 0.03em;
-    color: var(--white); line-height: 1;
-  }
-  .price-card-label {
-    font-size: 0.78rem; font-weight: 600;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 0.06em; text-transform: uppercase;
-    margin-top: 2px; margin-bottom: 14px;
-  }
-  .price-card-amount {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem; letter-spacing: 0.02em;
-    background: linear-gradient(90deg, #F5C518 0%, #FF8C00 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    margin-bottom: 4px;
-  }
-  .price-card-per {
-    font-size: 0.72rem; color: rgba(255,255,255,0.3);
-    margin-bottom: 18px;
-  }
-  .price-card-btn {
-    display: block; width: 100%;
-    background: var(--yellow); color: var(--black);
-    border: none;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 800; font-size: 0.78rem;
-    padding: 11px; border-radius: 8px;
-    cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em;
-    transition: transform 0.15s, box-shadow 0.15s;
-  }
-  .price-card-btn:hover {
-    transform: scale(1.03);
-    box-shadow: 0 4px 16px rgba(245,197,24,0.3);
-  }
-  .price-card-btn.pending {
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.5);
-    cursor: default;
-  }
-  .price-card-btn.pending:hover {
-    transform: none; box-shadow: none;
-  }
-  .pricing-note {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.25);
-  }
-
-  @media (max-width: 900px) {
-    .pricing-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  @media (max-width: 640px) {
-    .pricing-grid { grid-template-columns: repeat(2, 1fr); }
-    .pricing-section { padding: 40px 16px 20px; }
-  }
-
   /* ─── CAROUSEL DOTS ─── */
-  .carousel-dots {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
-    padding: 20px 0 0;
-  }
-  .c-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    border: none; cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    padding: 0; flex-shrink: 0;
-  }
-  .c-dot.active {
-    background: var(--yellow);
-    transform: scale(1.4);
-  }
+.carousel-dots {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 0 0;
+}
+.c-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: width 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+.c-dot.active {
+  width: 22px;
+  background: linear-gradient(90deg, #F5C518, #FF8C00);
+  border-color: rgba(245,197,24,0.24);
+}
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
@@ -680,8 +529,23 @@
   }
   @media (max-width: 640px) {
     .series-container { padding: 0 16px 80px; }
-    .series-grid { display: none; }
-    .card-stack-container { display: flex; height: 450px; }
+    .series-grid {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      padding: 0 2px 8px;
+      margin: 0 -2px;
+      scrollbar-width: none;
+    }
+    .series-grid::-webkit-scrollbar { display: none; }
+    .series-grid .card {
+      flex: 0 0 min(84vw, 360px);
+      scroll-snap-align: start;
+    }
+    .card-stack-container { display: none !important; }
+    .carousel-dots { display: flex; }
     nav { grid-template-columns: 1fr auto; padding: 14px 20px; backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(10,10,10,0.96); }
     .nav-center { display: none; }
     #navBookBtn { display: none; }
@@ -718,13 +582,10 @@
 <div class="menu-overlay" id="menuOverlay">
   <a href="index.html">Home</a>
   <a href="series.html" class="active">Chuby Dice Series</a>
-  <a href="clash.html">Clash Inna Dancehall</a>
-  <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
-  <a href="academy.html">Dancehall Academy — Launching 2026</a>
-  <a href="about.html">About Chuby Dice</a>
-  <a href="contact.html">Brand Ambassadorship</a>
   <a href="in-ya-city.html">Chuby Dice in Ya City</a>
-  <a href="past-series.html">2026 Events (Archive)</a>
+  <a href="coaching.html">1:1 Coaching &amp; Programs</a>
+  <a href="about.html">About Chuby Dice</a>
+  <a href="academy.html">Chuby Dice Dancehall Academy</a>
   <a href="contact.html">Contact / Instagram</a>
   <div class="menu-divider"></div>
   <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
@@ -736,34 +597,19 @@
   <p class="page-hero-desc">
     Learn from the Lead of Black Dice Crew from Spanish Town, Jamaica,
     as he brings his unique grounded flow &amp; creative vision through
-    focused Dancehall modules in 2026
+    focused Dancehall modules in Q1 2026
   </p>
 </div>
 
 <!-- SERIES GRID -->
 <div class="series-container">
-  <!-- Card Stack (Mobile) -->
-  <div class="card-stack-container">
-    <div class="card-stack" id="cardStackSeries"></div>
-    <div class="swipe-hints">
-      <div class="hint">
-        <span class="hint-arrow">→</span>
-        Save
-      </div>
-      <div class="hint">
-        <span class="hint-arrow">←</span>
-        Next
-      </div>
-    </div>
-  </div>
   <div class="series-grid">
 
-    <!-- MARCH BACK IN TIME (ending soon) -->
+    <!-- MARCH BACK IN TIME -->
     <div class="card">
       <div class="card-img" style="position:relative;overflow:hidden;">
-        <img src="images/a84b4d3eec82.png" alt="March Back in Time" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" loading="lazy">
+        <img src="images/a84b4d3eec82.png" alt="March Back in Time" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" loading="lazy" decoding="async">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
-        <span class="ends-badge" id="countdownBadge"></span>
         <div class="card-img-title" style="position:relative;z-index:2;">
           <h3>MARCH BACK IN TIME</h3>
         </div>
@@ -772,13 +618,11 @@
         <div class="card-meta">
           <span>5 weeks</span>
           <span class="card-meta-dot"></span>
-          <span>March 2026</span>
-          <span class="card-meta-dot"></span>
           <strong>$125</strong>
         </div>
         <p class="card-desc">100% Black Dice moves &amp; history, diving deep into the evolution of Black Dice from Central Village, Spain Town — from Grung Lizard to Free Kick.</p>
         <div class="card-actions">
-          <button class="btn-book" onclick="window.open('https://buy.stripe.com/cNi9AT1JN3xgeRY34P4F201','_blank')">Book Now</button>
+          <button class="btn-book" onclick="location.href='march-back-in-time.html'">Book Now</button>
           <button class="btn-more" onclick="location.href='march-back-in-time.html'">More</button>
         </div>
       </div>
@@ -787,7 +631,7 @@
     <!-- PRAISE FLOW -->
     <div class="card">
       <div class="card-img" style="position:relative;overflow:hidden;">
-        <img src="images/praise-flow.png" alt="Praise Flow" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
+        <img src="images/praise-flow-2026.png" alt="Praise Flow" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;transform:scale(0.9);z-index:0;opacity:0.96;" loading="lazy" decoding="async">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
         <div class="card-img-title" style="position:relative;z-index:2;">
           <h3>PRAISE FLOW</h3>
@@ -797,13 +641,11 @@
         <div class="card-meta">
           <span>April 2026</span>
           <span class="card-meta-dot"></span>
-          <span>Tuesdays · 7:30–8:30pm</span>
-          <span class="card-meta-dot"></span>
           <strong>From $30</strong>
         </div>
-        <p class="card-desc">"Let's enter this hall, under one accord, to praise the Lord, no matter the faith" — Chuby Dice</p>
+        <p class="card-desc">"Under one accord, to praise the Lord, no matter the faith."</p>
         <div class="card-actions">
-          <button class="btn-more" onclick="location.href='praise-flow.html'">More Info</button>
+          <button class="btn-book" onclick="location.href='praise-flow.html'">Book Now</button>
         </div>
       </div>
     </div>
@@ -811,7 +653,7 @@
     <!-- MOTHERLAND -->
     <div class="card">
       <div class="card-img" style="position:relative;overflow:hidden;">
-        <img src="images/motherland.png" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
+        <img src="images/photo-1.jpeg" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.92;" loading="lazy" decoding="async">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
         <div class="card-img-title" style="position:relative;z-index:2;">
           <h3>MOTHERLAND</h3>
@@ -821,13 +663,11 @@
         <div class="card-meta">
           <span>May 2026</span>
           <span class="card-meta-dot"></span>
-          <span>Tuesdays · 7:30–8:30pm</span>
-          <span class="card-meta-dot"></span>
           <strong>From $30</strong>
         </div>
-        <p class="card-desc">Thank your mum with Jamaican Dancehall</p>
+        <p class="card-desc">Thank your mum with Jamaican Dancehall.</p>
         <div class="card-actions">
-          <button class="btn-more" onclick="location.href='motherland.html'">More Info</button>
+          <button class="btn-book" onclick="location.href='motherland.html'">Book Now</button>
         </div>
       </div>
     </div>
@@ -835,7 +675,7 @@
     <!-- DANCEHALL ROYALTY -->
     <div class="card">
       <div class="card-img" style="position:relative;overflow:hidden;">
-        <img src="images/dancehall-royalty.png" alt="Dancehall Royalty" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
+        <img src="images/photo-2.jpeg" alt="Dancehall Royalty" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.92;" loading="lazy" decoding="async">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
         <div class="card-img-title" style="position:relative;z-index:2;">
           <h3>DANCEHALL ROYALTY</h3>
@@ -845,86 +685,17 @@
         <div class="card-meta">
           <span>June 2026</span>
           <span class="card-meta-dot"></span>
-          <span>Tuesdays · 7:30–8:30pm</span>
-          <span class="card-meta-dot"></span>
           <strong>From $30</strong>
         </div>
-        <p class="card-desc">Dancehall Royalty fi di Academy</p>
+        <p class="card-desc">Dancehall Royalty fi di Academy.</p>
         <div class="card-actions">
-          <button class="btn-more" onclick="location.href='dancehall-royalty.html'">More Info</button>
+          <button class="btn-book" onclick="location.href='dancehall-royalty.html'">Book Now</button>
         </div>
       </div>
     </div>
 
   </div>
   <div class="carousel-dots" id="seriesDots"></div>
-
-  <!-- Past Sessions Link -->
-  <div style="text-align:center;padding:48px 0 0;">
-    <a href="past-series.html" style="display:inline-flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s,gap 0.2s;" onmouseover="this.style.color='#F5C518';this.style.gap='14px'" onmouseout="this.style.color='rgba(255,255,255,0.3)';this.style.gap='10px'">
-      Looking for a past session? View Past Sessions
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-  </div>
-</div>
-
-<!-- ─── COLLECTION PRICING ─── -->
-<div class="pricing-section">
-  <div class="pricing-header">
-    <p class="pricing-label">Collection Packages</p>
-    <h2 class="pricing-title">CHUBY DICE SERIES <span>CLASS PASSES</span></h2>
-    <p class="pricing-sub">Multi-class passes for the Chuby Dice Series. Use across any current or upcoming series.</p>
-  </div>
-
-  <div class="pricing-grid">
-    <!-- Single Class -->
-    <div class="price-card">
-      <div class="price-card-classes">1</div>
-      <div class="price-card-label">Class</div>
-      <div class="price-card-amount">$30</div>
-      <div class="price-card-per">$30 / class</div>
-      <button class="price-card-btn pending" data-stripe="single-30">Coming Soon</button>
-    </div>
-
-    <!-- 4 Classes -->
-    <div class="price-card">
-      <div class="price-card-classes">4</div>
-      <div class="price-card-label">Classes</div>
-      <div class="price-card-amount">$100</div>
-      <div class="price-card-per">$25 / class</div>
-      <button class="price-card-btn pending" data-stripe="4class-100">Coming Soon</button>
-    </div>
-
-    <!-- 5 Classes -->
-    <div class="price-card">
-      <div class="price-card-classes">5</div>
-      <div class="price-card-label">Classes</div>
-      <div class="price-card-amount">$125</div>
-      <div class="price-card-per">$25 / class</div>
-      <button class="price-card-btn pending" data-stripe="5class-125">Coming Soon</button>
-    </div>
-
-    <!-- 10 Classes -->
-    <div class="price-card">
-      <div class="price-card-classes">10</div>
-      <div class="price-card-label">Classes</div>
-      <div class="price-card-amount">$230</div>
-      <div class="price-card-per">$23 / class</div>
-      <button class="price-card-btn pending" data-stripe="10class-230">Coming Soon</button>
-    </div>
-
-    <!-- 20 Classes — Best Value -->
-    <div class="price-card best-value">
-      <span class="price-card-best-tag">Best Value</span>
-      <div class="price-card-classes">20</div>
-      <div class="price-card-label">Classes</div>
-      <div class="price-card-amount">$450</div>
-      <div class="price-card-per">$22.50 / class</div>
-      <button class="price-card-btn pending" data-stripe="20class-450">Coming Soon</button>
-    </div>
-  </div>
-
-  <p class="pricing-note">Stripe payment links will be activated once set up. Contact Chuby to book directly in the meantime.</p>
 </div>
 
 <script>
@@ -1039,208 +810,29 @@
   });
 })();
 </script>
-<script src="/chatbot.js"></script>
 
 <script>
 (function() {
-  if (window.innerWidth > 640) return;
-  
-  const cardStack = document.getElementById('cardStackSeries');
-  const seriesGrid = document.querySelector('.series-grid');
-  
-  if (!cardStack || !seriesGrid) return;
-  
-  // Get original cards (Lovers' Rock, March Back in Time, Full Collection only)
-  const originalCards = Array.from(seriesGrid.children).slice(0, 3);
-  let currentIndex = 0;
-  let savedCards = [];
-  
-  // Create stacked card copies
-  function initializeStack() {
-    originalCards.forEach((card, idx) => {
-      const stackedCard = document.createElement('div');
-      stackedCard.className = 'stacked-card';
-      stackedCard.innerHTML = card.innerHTML + `
-        <div class="saved-indicator">♥</div>
-        <div class="dismiss-indicator">✕</div>
-      `;
-      cardStack.appendChild(stackedCard);
-      
-      if (idx === 0) {
-        setupCardInteraction(stackedCard, idx);
-      }
-    });
-  }
-  
-  function setupCardInteraction(card, idx) {
-    let startX = 0;
-    let currentX = 0;
-    let isDragging = false;
-    const threshold = 80;
-    
-    function onPointerDown(e) {
-      isDragging = true;
-      startX = e.clientX || e.touches[0].clientX;
-      currentX = startX;
-      card.classList.add('dragging');
-    }
-    
-    function onPointerMove(e) {
-      if (!isDragging) return;
-      currentX = e.clientX || e.touches[0].clientX;
-      const diffX = currentX - startX;
-      
-      // Rotate and translate based on drag
-      const rotation = (diffX / window.innerWidth) * 25;
-      const scale = 1 - (Math.abs(diffX) / window.innerWidth) * 0.08;
-      
-      card.style.transform = `translateX(${diffX}px) rotateZ(${rotation}deg) scale(${scale})`;
-      
-      // Show save/dismiss indicators
-      if (diffX > threshold) {
-        card.classList.add('show-save');
-        card.classList.remove('show-dismiss');
-        card.classList.remove('dragging-left');
-        card.classList.add('dragging-right');
-      } else if (diffX < -threshold) {
-        card.classList.add('show-dismiss');
-        card.classList.remove('show-save');
-        card.classList.add('dragging-left');
-        card.classList.remove('dragging-right');
-      } else {
-        card.classList.remove('show-save', 'show-dismiss');
-        card.classList.remove('dragging-left', 'dragging-right');
-      }
-    }
-    
-    function onPointerUp() {
-      if (!isDragging) return;
-      isDragging = false;
-      card.classList.remove('dragging');
-      
-      const diffX = currentX - startX;
-      
-      if (diffX > threshold) {
-        // Swipe right - SAVE
-        saveCard(idx);
-        animateCardOut(card, 1);
-      } else if (diffX < -threshold) {
-        // Swipe left - DISMISS
-        dismissCard();
-        animateCardOut(card, -1);
-      } else {
-        // Reset
-        card.style.transform = '';
-        card.classList.remove('show-save', 'show-dismiss', 'dragging-left', 'dragging-right');
-      }
-    }
-    
-    card.addEventListener('mousedown', onPointerDown);
-    card.addEventListener('touchstart', onPointerDown, { passive: true });
-    
-    document.addEventListener('mousemove', onPointerMove);
-    document.addEventListener('touchmove', onPointerMove, { passive: true });
-    
-    document.addEventListener('mouseup', onPointerUp);
-    document.addEventListener('touchend', onPointerUp, { passive: true });
-  }
-  
-  function animateCardOut(card, direction) {
-    card.classList.add('exiting');
-    card.style.transform = `translateX(${direction * window.innerWidth}px) rotateZ(${direction * 45}deg)`;
-    card.style.opacity = '0';
-    
-    setTimeout(() => {
-      card.remove();
-      currentIndex++;
-      
-      if (currentIndex < originalCards.length) {
-        const nextCards = Array.from(cardStack.querySelectorAll('.stacked-card'));
-        if (nextCards.length > 0) {
-          setupCardInteraction(nextCards[0], currentIndex);
-          // Update z-indices and animate next cards into view
-          nextCards.forEach((c, i) => {
-            c.style.zIndex = (103 - i).toString();
-            if (i === 0) {
-              c.style.transform = 'translateY(0) scale(1)';
-            } else if (i === 1) {
-              c.style.transform = 'translateY(12px) scale(0.93)';
-            } else {
-              c.style.transform = 'translateY(24px) scale(0.86)';
-            }
-          });
-        }
-      } else {
-        // All cards done
-        const emptyState = document.createElement('div');
-        emptyState.style.cssText = `
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 100%;
-          flex-direction: column;
-          gap: 16px;
-          color: rgba(255,255,255,0.3);
-          text-align: center;
-          padding: 20px;
-        `;
-        emptyState.innerHTML = `
-          <div style="font-size: 2.5rem;">🎉</div>
-          <div style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.1em;">ALL SET!</div>
-          <p style="font-size: 0.85rem; max-width: 80%;">You've reviewed all series. Saved ${savedCards.length} to your list.</p>
-        `;
-        cardStack.appendChild(emptyState);
-      }
-    }, 500);
-  }
-  
-  function dismissCard() {
-    // Card just moves to next without saving
-  }
-  
-  function saveCard(idx) {
-    savedCards.push(originalCards[idx]);
-    const card = cardStack.querySelector('.stacked-card:first-child');
-    if (card) {
-      card.classList.add('saved');
-    }
-  }
-  
-  // Initialize
-  initializeStack();
-})();
-</script>
+  const grid = document.querySelector('.series-grid');
+  const dots = document.getElementById('seriesDots');
+  if (!grid || !dots) return;
+  const cards = Array.from(grid.querySelectorAll('.card'));
+  dots.innerHTML = cards.map((_, i) => '<button class="c-dot' + (i === 0 ? ' active' : '') + '" aria-label="Series card ' + (i + 1) + '"></button>').join('');
+  const dotEls = Array.from(dots.querySelectorAll('.c-dot'));
 
-<!-- Countdown Timer for March Back in Time -->
-<script>
-(function() {
-  var badge = document.getElementById('countdownBadge');
-  if (!badge) return;
-  var endDate = new Date('2026-03-31T23:59:59+11:00').getTime(); // AEDT
-
-  function update() {
-    var now = new Date().getTime();
-    var diff = endDate - now;
-
-    if (diff <= 0) {
-      badge.innerHTML = '<span class="ends-dot"></span> Ended';
-      return;
-    }
-
-    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-    if (days > 1) {
-      badge.innerHTML = '<span class="ends-dot"></span> Ends in ' + days + ' days';
-    } else if (days === 1) {
-      badge.innerHTML = '<span class="ends-dot"></span> Ends tomorrow';
-    } else {
-      badge.innerHTML = '<span class="ends-dot"></span> Ends in ' + hours + 'h';
-    }
+  function updateDots() {
+    if (window.innerWidth > 640) return;
+    const firstCardWidth = cards[0]?.getBoundingClientRect().width || 1;
+    const styles = window.getComputedStyle(grid);
+    const gap = parseFloat(styles.columnGap || styles.gap || '16') || 16;
+    const step = firstCardWidth + gap;
+    const index = Math.max(0, Math.min(dotEls.length - 1, Math.round(grid.scrollLeft / step)));
+    dotEls.forEach((dot, i) => dot.classList.toggle('active', i === index));
   }
 
-  update();
-  setInterval(update, 60000);
+  grid.addEventListener('scroll', updateDots, { passive: true });
+  window.addEventListener('resize', updateDots);
+  updateDots();
 })();
 </script>
 
