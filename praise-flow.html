@@ -24,6 +24,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared-theme.css"/>
 <style>
   :root {
     --yellow: #F5C518;
@@ -380,7 +382,7 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <img src="images/praise-flow.png" alt="Praise Flow" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;" />
+  <img src="images/praise-flow-2026.png" alt="Praise Flow" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;transform:scale(0.9);z-index:0;opacity:0.86;" decoding="async">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="hero-title">PRAISE FLOW</h1>
@@ -435,21 +437,21 @@
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">Single Class</span>
         </div>
-        <span class="price-option-amount">$30</span>
+        <span class="price-option-amount">A$30.00</span>
       </div>
       <div class="price-option" data-price="100" data-label="4 Classes" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">4 Classes</span>
         </div>
-        <span class="price-option-amount">$100</span>
+        <span class="price-option-amount">A$100.00</span>
       </div>
       <div class="price-option" data-price="125" data-label="5 Classes" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">5 Classes</span>
         </div>
-        <span class="price-option-amount">$125</span>
+        <span class="price-option-amount">A$125.00</span>
       </div>
       <div class="price-option" data-price="230" data-label="10 Classes" onclick="selectPrice(this)">
         <span class="price-option-save">Save 23%</span>
@@ -457,7 +459,7 @@
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">10 Classes</span>
         </div>
-        <span class="price-option-amount">$230</span>
+        <span class="price-option-amount">A$230.00</span>
       </div>
       <div class="price-option" data-price="450" data-label="20 Classes" onclick="selectPrice(this)">
         <span class="price-option-save">Save 33%</span>
@@ -508,7 +510,6 @@
     }
   });
 </script>
-<script src="/chatbot.js"></script>
 <script>
 function selectPrice(el) {
   document.querySelectorAll('.price-option').forEach(function(opt) {
