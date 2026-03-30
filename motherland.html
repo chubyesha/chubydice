@@ -24,6 +24,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared-theme.css"/>
 <style>
   :root {
     --yellow: #F5C518;
@@ -290,13 +292,11 @@
 <div class="menu-overlay" id="menuOverlay">
   <a href="index.html">Home</a>
   <a href="series.html" class="active">Chuby Dice Series</a>
-  <a href="clash.html">Clash Inna Dancehall</a>
   <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
   <a href="academy.html">Dancehall Academy — Launching 2026</a>
   <a href="about.html">About Chuby Dice</a>
-  <a href="contact.html">Brand Ambassadorship</a>
   <a href="in-ya-city.html">Chuby Dice in Ya City</a>
-  <a href="past-series.html">2026 Events (Archive)</a>
+  <a href="past-series.html">Past Sessions</a>
   <a href="contact.html">Contact / Instagram</a>
   <div class="menu-divider"></div>
   <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
@@ -304,7 +304,7 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <img src="images/motherland.png" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;" />
+  <img src="images/photo-1.jpeg" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.92;" decoding="async">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="hero-title">MOTHERLAND</h1>
@@ -353,46 +353,46 @@
     <p>Choose your pass for Motherland — every Tuesday, May 2026.</p>
 
     <div class="pricing-options" id="pricingOptions">
-      <div class="price-option selected" data-price="30" onclick="selectPrice(this)">
+      <div class="price-option selected" data-price="30" data-display-price="A$30.00" data-link="https://buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">Single Class</span>
         </div>
-        <span class="price-option-amount">$30</span>
+        <span class="price-option-amount">A$30.00</span>
       </div>
-      <div class="price-option" data-price="100" onclick="selectPrice(this)">
+      <div class="price-option" data-price="100" data-display-price="A$100.00" data-link="https://buy.stripe.com/6oUbJ16033xgeRYfRB4F20c" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">4 Classes</span>
         </div>
-        <span class="price-option-amount">$100</span>
+        <span class="price-option-amount">A$100.00</span>
       </div>
-      <div class="price-option" data-price="125" onclick="selectPrice(this)">
+      <div class="price-option" data-price="125" data-display-price="A$125.00" data-link="https://buy.stripe.com/5kQ8wPbkn4Bk25cbBl4F20d" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">5 Classes</span>
         </div>
-        <span class="price-option-amount">$125</span>
+        <span class="price-option-amount">A$125.00</span>
       </div>
-      <div class="price-option" data-price="230" onclick="selectPrice(this)">
+      <div class="price-option" data-price="230" data-display-price="A$230.00" data-link="https://buy.stripe.com/eVqdR97473xg25ccFp4F20e" onclick="selectPrice(this)">
         <span class="price-option-save">Save 23%</span>
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">10 Classes</span>
         </div>
-        <span class="price-option-amount">$230</span>
+        <span class="price-option-amount">A$230.00</span>
       </div>
-      <div class="price-option" data-price="400" onclick="selectPrice(this)">
+      <div class="price-option" data-price="450" data-display-price="A$450.00" data-link="https://buy.stripe.com/9B6fZhagj0l4fW28p94F20f" onclick="selectPrice(this)">
         <span class="price-option-save">Save 33%</span>
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">20 Classes</span>
         </div>
-        <span class="price-option-amount">$400</span>
+        <span class="price-option-amount">A$450.00</span>
       </div>
     </div>
 
-    <button class="btn-book-now" id="bookBtn" onclick="alert('Stripe link coming soon')">Book Now — $30</button>
+    <button class="btn-book-now" id="bookBtn" onclick="openSelectedPrice()">Book Now — A$30.00</button>
     <button class="btn-book-series" onclick="location.href='past-series.html'">View Past Sessions</button>
   </div>
 
@@ -431,17 +431,27 @@
     }
   });
 </script>
-<script src="/chatbot.js"></script>
 <script>
+function openSelectedPrice() {
+  var btn = document.getElementById('bookBtn');
+  var link = btn && btn.getAttribute('data-link');
+  if (link) window.open(link, '_blank');
+}
+
 function selectPrice(el) {
   document.querySelectorAll('.price-option').forEach(function(opt) {
     opt.classList.remove('selected');
   });
   el.classList.add('selected');
-  var price = el.getAttribute('data-price');
+  var price = el.getAttribute('data-display-price') || ('A$' + el.getAttribute('data-price') + '.00');
+  var link = el.getAttribute('data-link');
   var btn = document.getElementById('bookBtn');
-  if (btn) btn.textContent = 'Book Now — $' + price;
+  if (btn) {
+    btn.textContent = 'Book Now — ' + price;
+    btn.setAttribute('data-link', link || '');
+  }
 }
+selectPrice(document.querySelector('.price-option.selected'));
 </script>
 
 <!-- BBK PRODUCTIONS CREDIT -->
