@@ -1448,10 +1448,12 @@
   .menu-group-items {
     max-height: 0; overflow: hidden;
     transition: max-height 0.3s ease;
+    display: flex; flex-direction: column;
     padding-left: 14px;
   }
   .menu-group.open .menu-group-items { max-height: 200px; }
   .menu-group-items a {
+    display: block;
     font-size: 0.82rem !important;
     color: rgba(255,255,255,0.55) !important;
     padding: 8px 14px !important;
