@@ -527,7 +527,17 @@
 </footer>
 
 <script>
-  function toggleMenu() {
+  function toggleSubMenu(btn) {
+    var group = btn.parentElement;
+    group.classList.toggle('open');
+  }
+
+  function toggleSubMenu(btn) {
+    var group = btn.parentElement;
+    group.classList.toggle('open');
+  }
+
+function toggleMenu() {
     const overlay = document.getElementById('menuOverlay');
     const btn = document.getElementById('menuBtn');
     const btnM = document.getElementById('menuBtnMobile');

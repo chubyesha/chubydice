@@ -369,9 +369,10 @@
     margin-bottom: 60px;
   }
 
-  .series-grid {
+  /* Portrait card carousel (matches series.html) */
+  .series-card-carousel {
     display: flex;
-    gap: 16px;
+    gap: 18px;
     max-width: 960px;
     margin: 0 auto;
     overflow-x: auto;
@@ -380,15 +381,82 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     cursor: grab;
-    padding: 4px 2px 16px;
+    padding: 4px 4px 16px;
   }
-  .series-grid::-webkit-scrollbar { display: none; }
-  .series-grid.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+  .series-card-carousel::-webkit-scrollbar { display: none; }
+  .series-card-carousel.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
 
-  .series-grid .tile {
-    flex: 0 0 min(44%, 340px);
+  .s-card {
+    flex: 0 0 min(42%, 300px);
     scroll-snap-align: start;
-    min-height: 280px;
+    background: var(--card-bg, #1A1A1A);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .s-card:hover { transform: translateY(-5px); border-color: rgba(245,197,24,0.25); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+  .s-card-past { opacity: 0.8; }
+  .s-card-past:hover { opacity: 1; }
+
+  .s-card-img {
+    position: relative;
+    height: 260px;
+    background: #1a1a1a;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .s-card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; z-index: 0; }
+  .s-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.3) 50%, transparent 100%); z-index: 1; }
+  .s-card-img-title { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 20px 20px 14px; }
+  .s-card-img-title h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; line-height: 1; color: var(--white); text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+
+  .s-card-body { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .s-card-meta { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+  .s-card-meta strong { color: var(--yellow); }
+  .s-card-desc { font-size: 0.85rem; line-height: 1.6; color: rgba(255,255,255,0.55); flex: 1; }
+  .s-card-actions { display: flex; gap: 10px; margin-top: 4px; }
+
+  .s-btn-book {
+    background: var(--yellow); color: var(--black); border: none;
+    font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 0.78rem;
+    padding: 10px 20px; border-radius: 50px; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    transition: transform 0.2s;
+  }
+  .s-btn-book:hover { transform: scale(1.04); }
+
+  .s-btn-ghost {
+    background: transparent; color: var(--white); border: 1px solid var(--border);
+    font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.78rem;
+    padding: 10px 20px; border-radius: 50px; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    transition: border-color 0.2s;
+  }
+  .s-btn-ghost:hover { border-color: rgba(255,255,255,0.4); }
+
+  .s-past-badge {
+    position: absolute; top: 12px; right: 12px; z-index: 10;
+    background: rgba(255,255,255,0.06);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 50px;
+    padding: 5px 12px;
+    font-family: 'Barlow', sans-serif; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .s-countdown-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 10;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(245,197,24,0.12);
+    border: 1px solid rgba(245,197,24,0.25); border-radius: 50px;
+    padding: 5px 12px;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--yellow);
   }
 
   .tile {
@@ -1023,8 +1091,8 @@
     .artist-container { grid-template-columns: 1fr; gap: 40px; }
     #series { padding-left: 0; padding-right: 0; }
     #series .series-header { padding: 0 16px; }
-    .series-grid .tile { flex: 0 0 min(82%, 300px); }
-    .series-grid-desktop { display: flex !important; }
+    .s-card { flex: 0 0 min(78%, 280px); }
+    .s-card-img { height: 220px; }
     .carousel-wrap {
       display: block;
       position: relative;
@@ -1478,125 +1546,87 @@
     <h2 class="section-title">CHUBY DICE <span>SERIES</span></h2>
   </div>
 
-  <!-- Desktop: Tile Grid -->
-  <div class="series-grid series-grid-desktop">
+  <!-- Series Carousel (portrait cards, same as series.html) -->
+  <div class="series-card-carousel" id="homeSeriesCarousel">
 
-    <!-- March Back in Time -->
-    <div class="tile" style="position:relative;overflow:hidden;">
-      <img src="images/a84b4d3eec82.png" alt="March Back in Time" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" loading="lazy">
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.75) 100%);z-index:1;pointer-events:none;"></div>
-      <span style="position:absolute;top:14px;right:14px;z-index:10;display:inline-flex;align-items:center;gap:6px;background:rgba(255,70,70,0.12);border:1px solid rgba(255,70,70,0.25);border-radius:50px;padding:5px 12px;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#ff6b6b;">
-        <span style="width:5px;height:5px;border-radius:50%;background:#ff6b6b;animation:pulse-dot 1.5s ease-in-out infinite;"></span>
-        Ends Mar 31
-      </span>
-      <div class="tile-inner" style="position:relative;z-index:2;">
-        <h3 class="tile-title">MARCH BACK IN TIME</h3>
-        <p class="tile-meta">5 weeks &nbsp;·&nbsp; March 2026 &nbsp;·&nbsp; <strong>$125</strong></p>
-        <p class="tile-desc">100% Black Dice moves &amp; history, diving deep into the evolution of Black Dice from Central Village, Spain Town — from Grung Lizard to Free Kick.</p>
-        <div class="tile-actions">
-          <button class="btn-sm-yellow" onclick="location.href='series.html'">Book Now</button>
-          <button class="btn-sm-ghost" onclick="location.href='march-back-in-time.html'">More</button>
+    <!-- Praise Flow (Current) -->
+    <div class="s-card" data-type="current" data-start="2026-04-07T19:30:00+10:00">
+      <div class="s-card-img">
+        <img src="images/praise-flow.png" alt="Praise Flow" loading="lazy">
+        <div class="s-card-img-title"><h3>PRAISE FLOW</h3></div>
+      </div>
+      <div class="s-card-body">
+        <p class="s-card-meta">April 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
+        <p class="s-card-desc">"Under one accord, to praise the Lord, no matter the faith."</p>
+        <div class="s-card-actions">
+          <button class="s-btn-book" onclick="location.href='praise-flow.html'">Book Now</button>
         </div>
       </div>
     </div>
 
-    <!-- Praise Flow -->
-    <div class="tile" data-start="2026-04-07T19:30:00+10:00" style="position:relative;overflow:hidden;background:transparent;">
-      <img src="images/praise-flow.png" alt="Praise Flow" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.75) 100%);z-index:1;pointer-events:none;"></div>
-      <div class="tile-inner" style="position:relative;z-index:2;">
-        <h3 class="tile-title">PRAISE FLOW</h3>
-        <p class="tile-meta">April 2026 &nbsp;·&nbsp; Tuesdays 7:30–8:30pm &nbsp;·&nbsp; <strong>From $30</strong></p>
-        <p class="tile-desc">"Let's enter this hall, under one accord, to praise the Lord, no matter the faith" — Chuby Dice</p>
-        <div class="tile-actions">
-          <button class="btn-sm-ghost" onclick="location.href='praise-flow.html'">More Info</button>
+    <!-- Motherland (Current) -->
+    <div class="s-card" data-type="current" data-start="2026-05-05T19:30:00+10:00">
+      <div class="s-card-img">
+        <img src="images/motherland-may-2026.jpg" alt="Motherland" loading="lazy">
+        <div class="s-card-img-title"><h3>MOTHERLAND</h3></div>
+      </div>
+      <div class="s-card-body">
+        <p class="s-card-meta">May 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
+        <p class="s-card-desc">Thank your mum with Jamaican Dancehall.</p>
+        <div class="s-card-actions">
+          <button class="s-btn-book" onclick="location.href='motherland.html'">Book Now</button>
         </div>
       </div>
     </div>
 
-    <!-- Motherland -->
-    <div class="tile" data-start="2026-05-05T19:30:00+10:00" style="position:relative;overflow:hidden;background:transparent;">
-      <img src="images/motherland-may-2026.jpg" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.75) 100%);z-index:1;pointer-events:none;"></div>
-      <div class="tile-inner" style="position:relative;z-index:2;">
-        <h3 class="tile-title">MOTHERLAND</h3>
-        <p class="tile-meta">May 2026 &nbsp;·&nbsp; Tuesdays 7:30–8:30pm &nbsp;·&nbsp; <strong>From $30</strong></p>
-        <p class="tile-desc">Thank your mum with Jamaican Dancehall</p>
-        <div class="tile-actions">
-          <button class="btn-sm-ghost" onclick="location.href='motherland.html'">More Info</button>
+    <!-- Dancehall Royalty (Current) -->
+    <div class="s-card" data-type="current" data-start="2026-06-02T19:30:00+10:00">
+      <div class="s-card-img">
+        <img src="images/dancehall-royalty-june-2026.jpg" alt="Dancehall Royalty" loading="lazy">
+        <div class="s-card-img-title"><h3>DANCEHALL ROYALTY</h3></div>
+      </div>
+      <div class="s-card-body">
+        <p class="s-card-meta">June 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
+        <p class="s-card-desc">Dancehall Royalty fi di Academy.</p>
+        <div class="s-card-actions">
+          <button class="s-btn-book" onclick="location.href='dancehall-royalty.html'">Book Now</button>
         </div>
       </div>
     </div>
 
-    <!-- Dancehall Royalty -->
-    <div class="tile" data-start="2026-06-02T19:30:00+10:00" style="position:relative;overflow:hidden;background:transparent;">
-      <img src="images/dancehall-royalty-june-2026.jpg" alt="Dancehall Royalty" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.75) 100%);z-index:1;pointer-events:none;"></div>
-      <div class="tile-inner" style="position:relative;z-index:2;">
-        <h3 class="tile-title">DANCEHALL ROYALTY</h3>
-        <p class="tile-meta">June 2026 &nbsp;·&nbsp; Tuesdays 7:30–8:30pm &nbsp;·&nbsp; <strong>From $30</strong></p>
-        <p class="tile-desc">Dancehall Royalty fi di Academy</p>
-        <div class="tile-actions">
-          <button class="btn-sm-ghost" onclick="location.href='dancehall-royalty.html'">More Info</button>
+    <!-- Lovers' Rock (Past) -->
+    <div class="s-card s-card-past" data-type="past">
+      <div class="s-card-img">
+        <img src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" loading="lazy" style="opacity:0.55;">
+        <span class="s-past-badge">Past Session</span>
+        <div class="s-card-img-title"><h3>LOVERS' ROCK</h3></div>
+      </div>
+      <div class="s-card-body">
+        <p class="s-card-meta">4 weeks · February 2026</p>
+        <p class="s-card-desc">Raw Dancehall lyrics and movement — mek yuh ready fi love.</p>
+        <div class="s-card-actions">
+          <button class="s-btn-ghost" onclick="location.href='lovers-rock.html'">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- March Back in Time (Past) -->
+    <div class="s-card s-card-past" data-type="past">
+      <div class="s-card-img">
+        <img src="images/a84b4d3eec82.png" alt="March Back in Time" loading="lazy" style="opacity:0.55;">
+        <span class="s-past-badge">Past Session</span>
+        <div class="s-card-img-title"><h3>MARCH BACK IN TIME</h3></div>
+      </div>
+      <div class="s-card-body">
+        <p class="s-card-meta">5 weeks · March 2026</p>
+        <p class="s-card-desc">100% Black Dice moves &amp; history — from Grung Lizard to Free Kick.</p>
+        <div class="s-card-actions">
+          <button class="s-btn-ghost" onclick="location.href='march-back-in-time.html'">View Details</button>
         </div>
       </div>
     </div>
 
   </div>
-
-  <!-- Mobile: Flyer Carousel -->
-  <div class="carousel-wrap">
-    <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="Previous">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-    <div class="carousel-track" id="carouselTrack">
-
-      <a class="carousel-slide" href="march-back-in-time.html">
-        <img src="images/a84b4d3eec82.png" alt="March Back in Time" loading="lazy"/>
-        <div class="slide-overlay"></div>
-        <span class="slide-badge slide-badge-ending">
-          <span class="slide-badge-dot"></span> Ends Mar 31
-        </span>
-        <div class="slide-info">
-          <h3>MARCH BACK IN TIME</h3>
-          <p>March 2026 · $125</p>
-        </div>
-      </a>
-
-      <a class="carousel-slide" href="praise-flow.html">
-        <img src="images/praise-flow.png" alt="Praise Flow" loading="lazy"/>
-        <div class="slide-overlay"></div>
-        <div class="slide-info">
-          <h3>PRAISE FLOW</h3>
-          <p>April 2026 · Price TBA</p>
-        </div>
-      </a>
-
-      <a class="carousel-slide" href="motherland.html">
-        <img src="images/motherland-may-2026.jpg" alt="Motherland" loading="lazy"/>
-        <div class="slide-overlay"></div>
-        <div class="slide-info">
-          <h3>MOTHERLAND</h3>
-          <p>May 2026 · Price TBA</p>
-        </div>
-      </a>
-
-      <a class="carousel-slide" href="dancehall-royalty.html">
-        <img src="images/dancehall-royalty-june-2026.jpg" alt="Dancehall Royalty" loading="lazy"/>
-        <div class="slide-overlay"></div>
-        <div class="slide-info">
-          <h3>DANCEHALL ROYALTY</h3>
-          <p>June 2026 · Price TBA</p>
-        </div>
-      </a>
-
-    </div>
-    <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="Next">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-
-  <div class="carousel-dots" id="carouselDots"></div>
 
   <div style="text-align:center;padding:28px 0 0;">
     <a href="series.html" style="display:inline-flex;align-items:center;gap:8px;font-family:'Barlow',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#F5C518'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">
@@ -1757,6 +1787,11 @@
 </footer>
 
 <script>
+  function toggleSubMenu(btn) {
+    var group = btn.parentElement;
+    group.classList.toggle('open');
+  }
+
   function toggleMenu() {
     const overlay = document.getElementById('menuOverlay');
     const btn = document.getElementById('menuBtn');
@@ -2037,9 +2072,9 @@
   });
 })();
 
-// Drag-to-scroll for series carousel on home page
+// Drag-to-scroll for home series carousel
 (function() {
-  var carousel = document.querySelector('.series-grid-desktop');
+  var carousel = document.getElementById('homeSeriesCarousel');
   if (!carousel) return;
   var isDown = false, startX, scrollLeft;
   carousel.addEventListener('mousedown', function(e) {
@@ -2055,19 +2090,21 @@
   });
 })();
 
-// Countdown badges for series tiles
+// Countdown badges for series cards
 (function() {
-  var tiles = document.querySelectorAll('.series-grid .tile[data-start]');
-  tiles.forEach(function(tile) {
-    var startDate = new Date(tile.getAttribute('data-start'));
+  var cards = document.querySelectorAll('.s-card[data-start]');
+  cards.forEach(function(card) {
+    var startDate = new Date(card.getAttribute('data-start'));
     var now = new Date();
     var diff = startDate - now;
     if (diff <= 0) return;
     var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    var imgDiv = card.querySelector('.s-card-img');
+    if (!imgDiv) return;
     var badge = document.createElement('span');
-    badge.style.cssText = 'position:absolute;top:14px;right:14px;z-index:10;display:inline-flex;align-items:center;gap:6px;background:rgba(245,197,24,0.12);border:1px solid rgba(245,197,24,0.25);border-radius:50px;padding:5px 12px;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--yellow);';
-    badge.innerHTML = '<span style="width:5px;height:5px;border-radius:50%;background:var(--yellow);"></span> Starts in ' + days + (days === 1 ? ' day' : ' days');
-    tile.appendChild(badge);
+    badge.className = 's-countdown-badge';
+    badge.textContent = 'Starts in ' + days + (days === 1 ? ' day' : ' days');
+    imgDiv.appendChild(badge);
   });
 })();
 </script>
