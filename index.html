@@ -369,10 +369,10 @@
     margin-bottom: 60px;
   }
 
-  /* Portrait card carousel (matches series.html) */
+  /* Full-image card carousel */
   .series-card-carousel {
     display: flex;
-    gap: 18px;
+    gap: 16px;
     max-width: 960px;
     margin: 0 auto;
     overflow-x: auto;
@@ -387,14 +387,13 @@
   .series-card-carousel.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
 
   .s-card {
-    flex: 0 0 min(42%, 300px);
+    flex: 0 0 min(44%, 340px);
     scroll-snap-align: start;
-    background: var(--card-bg, #1A1A1A);
-    border: 1px solid var(--border);
+    position: relative;
+    min-height: 420px;
     border-radius: 16px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    border: 1px solid var(--border);
     transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
     cursor: pointer;
   }
@@ -402,58 +401,56 @@
   .s-card-past { opacity: 0.8; }
   .s-card-past:hover { opacity: 1; }
 
-  .s-card-img {
-    position: relative;
-    height: 260px;
-    background: #1a1a1a;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-  .s-card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; z-index: 0; }
-  .s-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.3) 50%, transparent 100%); z-index: 1; }
-  .s-card-img-title { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 20px 20px 14px; }
-  .s-card-img-title h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; line-height: 1; color: var(--white); text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+  /* Full background image */
+  .s-card-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; z-index: 0; }
+  .s-card-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.75) 100%); z-index: 1; pointer-events: none; }
 
-  .s-card-body { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
-  .s-card-meta { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+  /* Content over image */
+  .s-card-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    height: 100%; padding: 24px;
+  }
+  .s-card-content h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em; line-height: 1; color: var(--white); text-shadow: 0 2px 12px rgba(0,0,0,0.5); margin-bottom: 6px; }
+  .s-card-meta { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
   .s-card-meta strong { color: var(--yellow); }
-  .s-card-desc { font-size: 0.85rem; line-height: 1.6; color: rgba(255,255,255,0.55); flex: 1; }
-  .s-card-actions { display: flex; gap: 10px; margin-top: 4px; }
+  .s-card-desc { font-size: 0.82rem; line-height: 1.55; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+  .s-card-actions { display: flex; gap: 10px; }
 
   .s-btn-book {
     background: var(--yellow); color: var(--black); border: none;
-    font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 0.78rem;
-    padding: 10px 20px; border-radius: 50px; cursor: pointer;
+    font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 0.75rem;
+    padding: 9px 18px; border-radius: 50px; cursor: pointer;
     text-transform: uppercase; letter-spacing: 0.06em;
     transition: transform 0.2s;
   }
   .s-btn-book:hover { transform: scale(1.04); }
 
   .s-btn-ghost {
-    background: transparent; color: var(--white); border: 1px solid var(--border);
-    font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.78rem;
-    padding: 10px 20px; border-radius: 50px; cursor: pointer;
+    background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25);
+    font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.75rem;
+    padding: 9px 18px; border-radius: 50px; cursor: pointer;
     text-transform: uppercase; letter-spacing: 0.06em;
     transition: border-color 0.2s;
   }
-  .s-btn-ghost:hover { border-color: rgba(255,255,255,0.4); }
+  .s-btn-ghost:hover { border-color: rgba(255,255,255,0.5); }
 
   .s-past-badge {
-    position: absolute; top: 12px; right: 12px; z-index: 10;
-    background: rgba(255,255,255,0.06);
+    position: absolute; top: 14px; right: 14px; z-index: 10;
+    background: rgba(255,255,255,0.08);
     -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.08); border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 50px;
     padding: 5px 12px;
     font-family: 'Barlow', sans-serif; font-size: 0.6rem; font-weight: 700;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.5);
   }
 
   .s-countdown-badge {
-    position: absolute; top: 12px; left: 12px; z-index: 10;
+    position: absolute; top: 14px; left: 14px; z-index: 10;
     display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(245,197,24,0.12);
-    border: 1px solid rgba(245,197,24,0.25); border-radius: 50px;
+    background: rgba(245,197,24,0.15);
+    border: 1px solid rgba(245,197,24,0.3); border-radius: 50px;
     padding: 5px 12px;
     font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--yellow);
@@ -1091,8 +1088,7 @@
     .artist-container { grid-template-columns: 1fr; gap: 40px; }
     #series { padding-left: 0; padding-right: 0; }
     #series .series-header { padding: 0 16px; }
-    .s-card { flex: 0 0 min(78%, 280px); }
-    .s-card-img { height: 220px; }
+    .s-card { flex: 0 0 min(80%, 300px); min-height: 360px; }
     .carousel-wrap {
       display: block;
       position: relative;
@@ -1546,62 +1542,61 @@
     <h2 class="section-title">CHUBY DICE <span>SERIES</span></h2>
   </div>
 
-  <!-- Series Carousel (portrait cards, same as series.html) -->
+  <!-- Series Carousel (full-image background cards) -->
   <div class="series-card-carousel" id="homeSeriesCarousel">
 
     <!-- Praise Flow (Current) -->
     <div class="s-card" data-type="current" data-start="2026-04-07T19:30:00+10:00">
-      <div class="s-card-img">
-        <img src="images/praise-flow.png" alt="Praise Flow" loading="lazy">
-        <div class="s-card-img-title"><h3>PRAISE FLOW</h3></div>
-      </div>
-      <div class="s-card-body">
+      <img class="s-card-bg" src="images/praise-flow.png" alt="Praise Flow" loading="lazy">
+      <div class="s-card-overlay"></div>
+      <div class="s-card-content">
+        <h3>PRAISE FLOW</h3>
         <p class="s-card-meta">April 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
         <p class="s-card-desc">"Under one accord, to praise the Lord, no matter the faith."</p>
         <div class="s-card-actions">
           <button class="s-btn-book" onclick="location.href='praise-flow.html'">Book Now</button>
+          <button class="s-btn-ghost" onclick="location.href='praise-flow.html'">More Info</button>
         </div>
       </div>
     </div>
 
     <!-- Motherland (Current) -->
     <div class="s-card" data-type="current" data-start="2026-05-05T19:30:00+10:00">
-      <div class="s-card-img">
-        <img src="images/motherland-may-2026.jpg" alt="Motherland" loading="lazy">
-        <div class="s-card-img-title"><h3>MOTHERLAND</h3></div>
-      </div>
-      <div class="s-card-body">
+      <img class="s-card-bg" src="images/motherland-may-2026.jpg" alt="Motherland" loading="lazy">
+      <div class="s-card-overlay"></div>
+      <div class="s-card-content">
+        <h3>MOTHERLAND</h3>
         <p class="s-card-meta">May 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
         <p class="s-card-desc">Thank your mum with Jamaican Dancehall.</p>
         <div class="s-card-actions">
           <button class="s-btn-book" onclick="location.href='motherland.html'">Book Now</button>
+          <button class="s-btn-ghost" onclick="location.href='motherland.html'">More Info</button>
         </div>
       </div>
     </div>
 
     <!-- Dancehall Royalty (Current) -->
     <div class="s-card" data-type="current" data-start="2026-06-02T19:30:00+10:00">
-      <div class="s-card-img">
-        <img src="images/dancehall-royalty-june-2026.jpg" alt="Dancehall Royalty" loading="lazy">
-        <div class="s-card-img-title"><h3>DANCEHALL ROYALTY</h3></div>
-      </div>
-      <div class="s-card-body">
+      <img class="s-card-bg" src="images/dancehall-royalty-june-2026.jpg" alt="Dancehall Royalty" loading="lazy">
+      <div class="s-card-overlay"></div>
+      <div class="s-card-content">
+        <h3>DANCEHALL ROYALTY</h3>
         <p class="s-card-meta">June 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
         <p class="s-card-desc">Dancehall Royalty fi di Academy.</p>
         <div class="s-card-actions">
           <button class="s-btn-book" onclick="location.href='dancehall-royalty.html'">Book Now</button>
+          <button class="s-btn-ghost" onclick="location.href='dancehall-royalty.html'">More Info</button>
         </div>
       </div>
     </div>
 
     <!-- Lovers' Rock (Past) -->
     <div class="s-card s-card-past" data-type="past">
-      <div class="s-card-img">
-        <img src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" loading="lazy" style="opacity:0.55;">
-        <span class="s-past-badge">Past Session</span>
-        <div class="s-card-img-title"><h3>LOVERS' ROCK</h3></div>
-      </div>
-      <div class="s-card-body">
+      <img class="s-card-bg" src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" loading="lazy" style="opacity:0.5;">
+      <div class="s-card-overlay"></div>
+      <span class="s-past-badge">Past Session</span>
+      <div class="s-card-content">
+        <h3>LOVERS' ROCK</h3>
         <p class="s-card-meta">4 weeks · February 2026</p>
         <p class="s-card-desc">Raw Dancehall lyrics and movement — mek yuh ready fi love.</p>
         <div class="s-card-actions">
@@ -1612,12 +1607,11 @@
 
     <!-- March Back in Time (Past) -->
     <div class="s-card s-card-past" data-type="past">
-      <div class="s-card-img">
-        <img src="images/a84b4d3eec82.png" alt="March Back in Time" loading="lazy" style="opacity:0.55;">
-        <span class="s-past-badge">Past Session</span>
-        <div class="s-card-img-title"><h3>MARCH BACK IN TIME</h3></div>
-      </div>
-      <div class="s-card-body">
+      <img class="s-card-bg" src="images/a84b4d3eec82.png" alt="March Back in Time" loading="lazy" style="opacity:0.5;">
+      <div class="s-card-overlay"></div>
+      <span class="s-past-badge">Past Session</span>
+      <div class="s-card-content">
+        <h3>MARCH BACK IN TIME</h3>
         <p class="s-card-meta">5 weeks · March 2026</p>
         <p class="s-card-desc">100% Black Dice moves &amp; history — from Grung Lizard to Free Kick.</p>
         <div class="s-card-actions">
@@ -2099,12 +2093,10 @@
     var diff = startDate - now;
     if (diff <= 0) return;
     var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-    var imgDiv = card.querySelector('.s-card-img');
-    if (!imgDiv) return;
     var badge = document.createElement('span');
     badge.className = 's-countdown-badge';
     badge.textContent = 'Starts in ' + days + (days === 1 ? ' day' : ' days');
-    imgDiv.appendChild(badge);
+    card.appendChild(badge);
   });
 })();
 </script>
