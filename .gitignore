@@ -39,3 +39,4 @@ yarn-error.log*
 Thumbs.db
 Desktop.ini
 *.tmp.jpg
+.venv*
