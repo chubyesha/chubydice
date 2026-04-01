@@ -1,121 +1,111 @@
 # Session Recovery — Chuby Dice Website
 
-**Last Updated:** 2026-03-30
-**Active Branch:** `feat/release-2a-product-requirements` (commit `90fdb08`)
-**Base:** `00b0168` (main, original codebase BEFORE pablobbk101 changes)
+**Last Updated:** 2026-04-01
+**V1 Path:** `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_1`
+**V2 Path:** `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_2`
 
 ---
 
-## What Was Done This Session
+## Session Summary
 
-### Context
-Client provided a Product Requirement Document (PRD) titled "Release 2A — Web Content & Structure" via `screenshots/Info Architecture - RELEASE 2 08022026.docx`. The PRD is a `.docx` file — parse with `python-docx` library.
-
-**Important:** The client rejected the `/pablobbk101-cloud/chubydice` changes (commit `b5cc188` on branch `feat/pablobbk101-cloud-chubydice-changes`). The Release 2A requirements must be applied to the **original** codebase at commit `00b0168`, NOT the redesigned purple-theme version.
-
-### 7 Product Requirements Implemented (on original codebase)
-
-#### R1: Stripe Collection Pricing on `series.html`
-- Added "Collection Packages" pricing section below the series grid
-- 5 pricing cards: Single $30, 4 Classes $100, 5 Classes $125, 10 Classes $230, 20 Classes $450 (with "Best Value" badge)
-- Buttons show "Coming Soon" with `data-stripe` attributes as placeholders
-- CSS added inline in `<style>` block. Responsive: 5 cols desktop, 3 cols tablet, 2 cols mobile
-- **Pending:** Client needs to create Stripe payment links
-
-#### R2: Navigation Standardization (All 16 Pages)
-- Python batch script replaced all `menuOverlay` nav content across 16 HTML files
-- Menu order: Home, Chuby Dice Series, Clash Inna Dancehall, Professional 1:1 Coaching & Programs, Dancehall Academy, About Chuby Dice, Brand Ambassadorship, Chuby Dice in Ya City, 2026 Events (Archive), Contact / Instagram
-- Key fix: index.html was missing "Clash Inna Dancehall" entirely
-- Each page correctly marks its own link with `class="active"`
-
-#### R3: Hero Images for May & June Series
-- Images `motherland.png` and `dancehall-royalty.png` already existed and are used in the original codebase
-- No new hero images were provided in the original codebase — these are the correct ones
-- On the rejected pablobbk101 branch, new images (`motherland-2026.jpeg`, `dancehall-royalty-2026.jpeg`) were added but those are NOT in this branch
-
-#### R4: Coaching Hero Image
-- Verified correct: uses `images/5015f87ce59f.png` on coaching.html hero and index.html coaching tile
-
-#### R5: Hero Video on Home Page
-- Original codebase has 5 rotating videos (`videos/1.mp4` through `videos/5.mp4`) with crossfade
-- PRD says "potential" change — no specific new asset provided. No change made.
-
-#### R6: Coaching Accordion (`coaching.html`)
-- Converted 5 static pill accordion items to functional expandable accordion
-- CSS: `cursor: pointer`, flex header, `max-height` transition body, chevron arrows
-- HTML: SVG chevron arrows + descriptive `acc-body` content for each focus area
-- JS: Click handler with single-open behavior
-- Focus areas: Foundations & movement, Sub-genres & periods, Clash vs party, Choreography & musicality, History & contemporary practice
-
-#### R7: About Biography Accordion (`about.html`)
-- Converted flat wall-of-text biography into 6 collapsible accordion sections
-- CSS: `.bio-accordion`, `.bio-acc-item`, `.bio-acc-header`, `.bio-acc-arrow`, `.bio-acc-body`
-- First section open by default: "From Spanish Town, Jamaica" has `class="open"`
-- JS: Same toggle pattern as coaching accordion
-- All original biography text preserved exactly
+This session implemented the client's Release 2A product requirements and subsequent "final changes" across both Version 1 (original Barlow/Bebas theme) and Version 2 (Outfit/DM Sans purple theme). Client rejected the pablobbk101-cloud redesign — all work was done on the original V1 codebase.
 
 ---
 
-## Code Review & Security Review Results
+## V1 Commits (chubydice_version_1 → git@github.com:chubyesha/chubydice.git)
 
-### Security Review: APPROVED
-- 0 critical, 0 high issues from our changes
+### Release 2A Implementation
+- `90fdb08` — Nav standardization (16 pages), pricing section, coaching accordion, about accordion
+- `e86f09c` — Wire live Stripe payment links (5 tiers) to all series pages
+- `ef1d6cd` → `14325f4` — Series.html carousel with current + past tabs, drag-to-scroll
+- `33f9748` — Center dropdown menu below MENU button
+- Various image updates: coaching-hero.jpg, motherland-may-2026.jpg, dancehall-royalty-june-2026.jpg, academy-tile-bg.jpg, academy-hero.jpg
 
-### Code Review: APPROVED with warnings
-- Fixed: `acc-body max-height` increased to 500px (was 300px)
-- Fixed: Removed `padding` from accordion transitions to avoid layout jank
-- Pre-existing: Duplicate `dancehall-royalty.png` at root (not from our changes)
-- Pre-existing: Brand Ambassadorship links to contact.html (placeholder — client needs dedicated page or confirmation)
+### Client Final Changes (feat/client-final-changes-v1)
+- `12e2b22` — Home page: carousel, collection pack button, countdown badges, academy text, playlist text, title sizes
+- `514f259` — Academy hero position (flames), one-line title, coaching hero 60vh
+- `36da83c` — Dis an Dat grouped submenu on all 16 pages
 
----
+### Carousel & Image Fixes
+- `d09f7df` → `a1cf163` — Home carousel: portrait cards → full-image background cards with visible countdown badges
+- `4234e18` — Dis an Dat vertical stack alignment
+- `493714d` + `09cb862` — Adelaide In Ya City image on both in-ya-city-adelaide.html and in-ya-city.html
+- `13d06c6` — Fix menu dropdown broken JS on 4 pages (truncated script blocks)
 
-## Files Modified
-
-| File | Changes |
-|------|---------|
-| `index.html` | Nav menu standardized (added Clash, Brand Ambassadorship, 2026 Events) |
-| `series.html` | Nav menu + pricing section (CSS + HTML for 5 price cards) |
-| `coaching.html` | Nav menu + accordion CSS rewritten + HTML expanded with content/chevrons + JS toggle |
-| `about.html` | Nav menu + bio accordion CSS + biography restructured to 6 sections + JS toggle |
-| `motherland.html` | Nav menu |
-| `dancehall-royalty.html` | Nav menu |
-| `praise-flow.html` | Nav menu |
-| `clash.html` | Nav menu |
-| `academy.html` | Nav menu |
-| `contact.html` | Nav menu |
-| `in-ya-city.html` | Nav menu |
-| `in-ya-city-adelaide.html` | Nav menu |
-| `past-series.html` | Nav menu |
-| `march-back-in-time.html` | Nav menu |
-| `lovers-rock.html` | Nav menu |
-| `full-series.html` | Nav menu |
+### Stripe Links (Live)
+- Single $30: `buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b`
+- 4 Classes $100: `buy.stripe.com/6oUbJ16033xgeRYfRB4F20c`
+- 5 Classes $125: `buy.stripe.com/5kQ8wPbkn4Bk25cbBl4F20d`
+- 10 Classes $230: `buy.stripe.com/eVqdR97473xg25ccFp4F20e`
+- 20 Classes $450: `buy.stripe.com/9B6fZhagj0l4fW28p94F20f`
+- Coaching $120: `buy.stripe.com/3cIbJ17470l4cJQ34P4F209`
+- Archived: lovers-rock, in-ya-city-adelaide, full-series (show "Session Ended")
 
 ---
 
-## What Was NOT Changed
+## V2 Commits (chubydice_version_2 → git@github.com:chubyesha/chubydice_v2.git)
 
-- Hero images for May/June (using existing `motherland.png` / `dancehall-royalty.png`)
-- Hero video (keeping 5 rotating videos)
-- `chatbot.js` / `netlify/functions/chat.js`
-- No `shared-theme.css` (doesn't exist in original codebase)
-- No purple/dark theme changes
-
----
-
-## Git Branch State
-
-```
-main (00b0168) ← original codebase
-  └── feat/release-2a-product-requirements (90fdb08) ← Release 2A on original codebase [ACTIVE]
-       └── docs/session-docs-original-base ← README + session docs [current]
-```
-
-**REJECTED branches (do NOT use):**
-- `feat/pablobbk101-cloud-chubydice-changes` (b5cc188) — purple theme redesign, client rejected
-- `feat/release-2a-requirements` (c4a7d62) — Release 2A on pablobbk101 base, wrong base
+- `847c8b1` — Academy + coaching images from client assets
+- `372810b` — Hero eyebrow text, remove glitch, smaller title, consistent headings, carousel
+- `54543bf` — Dis an Dat nav on all 16 pages, academy/coaching fixes
+- `c548423` — Playlist text: CDDA PLAYLIST
+- `0e4df5b` — Dis an Dat dropdown fix (toggleSubMenu JS + vertical stack)
+- `aa2f5e3` — Carousel swiping on home + series page
+- `e23e088` — Portrait cards, full-image backgrounds, coaching centered, countdown badges
+- `a37fd36` — Coaching card centered
+- `80fbee3` + `a82584b` — Adelaide image on in-ya-city-adelaide.html + in-ya-city.html
+- `02ec7ab` — Fix menu dropdown broken JS on 4 pages
 
 ---
 
-## Remotes
+## All Client Requirements — Final Status
 
-- `origin` → `git@github.com:chubyesha/chubydice.git`
+### V1 (13/13 DONE)
+| # | Requirement | Status |
+|---|------------|--------|
+| 1 | Home page carousel (full-image cards, swipe) | DONE |
+| 2 | Series Collection Pack button (home + series) | DONE |
+| 3 | Countdown badges (Starts in X days) | DONE |
+| 4 | In Ya City Adelaide carousel/image | DONE |
+| 5 | Academy image flames in frame | DONE |
+| 6 | Academy: "DANCEHALL ACADEMY" + "Out of many, one" | DONE |
+| 7 | Academy sub-page title one line | DONE |
+| 8 | Meet Chuby Dice one line | DONE |
+| 9 | Dis an Dat submenu (all 16 pages) | DONE |
+| 10 | Clash/Coaching titles bigger + matching | DONE |
+| 11 | CDDA Playlist | DONE |
+| 12 | Coaching hero shorter (60vh) + subtitle removed | DONE |
+| 13 | Adelaide In Ya City image | DONE |
+
+### V2 (11/11 DONE)
+| # | Requirement | Status |
+|---|------------|--------|
+| 1 | Eyebrow: "Home of Chuby Dice Series & Australia's Dancehall Academy" | DONE |
+| 2 | Remove glitch animation | DONE |
+| 3 | Chuby Dice font smaller & one line | DONE |
+| 4 | Consistent heading sizes (clamp 2.2-3.8rem) | DONE |
+| 5 | Carousel for home + series page | DONE |
+| 6 | All titles/tiles match V1 | DONE |
+| 7 | Dis an Dat submenu | DONE |
+| 8 | Adelaide image | DONE |
+| 9 | Coaching card centered | DONE |
+| 10 | Countdown badges | DONE |
+| 11 | Portrait cards with full-image backgrounds | DONE |
+
+---
+
+## Images Added This Session
+- `images/coaching-hero.jpg` (324KB) — 1:1 Coaching flyer
+- `images/motherland-may-2026.jpg` (162KB) — May series flyer
+- `images/dancehall-royalty-june-2026.jpg` (223KB) — June series flyer
+- `images/academy-tile-bg.jpg` (514KB) — Jamaican flag texture
+- `images/academy-hero.jpg` (362KB) — Fire breather performance
+- `images/adelaide-in-ya-city.jpg` (204KB) — Adelaide workshop flyer
+
+---
+
+## Known Pre-existing Issues (Not In Scope)
+1. Broken OG image meta tags (`chuby-profile-CkJq2sVN.jpg` doesn't exist)
+2. CORS wildcard on Netlify chat function
+3. Chat function: no input validation or rate limiting
+4. V2 `shared-theme.css` uses `!important` on body font-family
