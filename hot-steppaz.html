@@ -544,3 +544,68 @@
 </section>
 
 
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">CHUBY <span>DICE</span></div>
+      <p class="footer-tagline">"Dancehall belongs to everybody — but it must stay connected to where it comes from."</p>
+      <p class="footer-address"><strong>HD Entertainment</strong> · Enter Via, Mount St, Prahran VIC 3181, Australia</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/chuby_dice" target="_blank" class="social-icon" style="text-decoration:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.272 2.69.072 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="series.html">Classes</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="about.html">About Chuby</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Chuby Dice Dance Academy. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:20px auto 0;padding-top:16px;border-top:1px solid var(--border);text-align:center;">
+    <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
+  </div>
+</footer>
+
+<script>
+  function toggleSubMenu(btn) {
+    var group = btn.parentElement;
+    group.classList.toggle('open');
+  }
+
+  function toggleMenu() {
+    const overlay = document.getElementById('menuOverlay');
+    const btn = document.getElementById('menuBtn');
+    const btnMobile = document.getElementById('menuBtnMobile');
+    overlay.classList.toggle('open');
+    btn.classList.toggle('open');
+    btnMobile.classList.toggle('open');
+  }
+
+  document.addEventListener('click', function(e) {
+    const overlay = document.getElementById('menuOverlay');
+    const btn = document.getElementById('menuBtn');
+    const btnMobile = document.getElementById('menuBtnMobile');
+    if (overlay && overlay.classList.contains('open') &&
+        !overlay.contains(e.target) &&
+        !btn.contains(e.target) &&
+        (!btnMobile || !btnMobile.contains(e.target))) {
+      overlay.classList.remove('open');
+      btn.classList.remove('open');
+      if (btnMobile) btnMobile.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
