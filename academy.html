@@ -213,6 +213,48 @@
     .corner { display: none; }
   }
 
+
+  /* ─── ENHANCED MOBILE UX ─── */
+  @media (max-width: 640px) {
+    /* Tap-friendly touch targets (WCAG 2.5.5 min 44px) */
+    .menu-overlay a { padding: 12px 14px; min-height: 44px; display: flex; align-items: center; }
+    .menu-group-toggle { padding: 12px 14px; min-height: 44px; }
+    .menu-group-items a { padding: 10px 14px !important; min-height: 44px; display: flex !important; align-items: center; }
+    .menu-book { padding: 14px; min-height: 44px; font-size: 0.9rem; }
+    .book-btn { padding: 12px 24px; min-height: 44px; font-size: 0.85rem; }
+    .nav-logo { font-size: 1.4rem; }
+    /* Footer mobile */
+    footer { padding: 40px 16px 24px; }
+    .footer-top { flex-direction: column; gap: 28px; }
+    .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+    .footer-bottom-links { justify-content: center; }
+    .social-icon { width: 44px; height: 44px; }
+  }
+  @media (max-width: 480px) {
+    nav { padding: 12px 14px; }
+    .nav-logo { font-size: 1.2rem; }
+    .menu-overlay { width: calc(100vw - 20px); padding: 10px; }
+    .menu-overlay a { font-size: 0.82rem; padding: 11px 12px; }
+    .menu-group-toggle { font-size: 0.82rem; padding: 11px 12px; }
+    footer { padding: 32px 12px 20px; }
+    .footer-logo { font-size: 1.6rem; }
+    .footer-tagline { font-size: 0.8rem; }
+    .footer-links a { font-size: 0.82rem; }
+    .footer-bottom p { font-size: 0.7rem; }
+  }
+  @media (max-width: 360px) {
+    nav { padding: 10px 10px; }
+    .nav-logo { font-size: 1.1rem; }
+    .menu-overlay { width: calc(100vw - 12px); }
+  }
+
+
+  /* ─── ACADEMY MOBILE SPECIFICS ─── */
+  @media (max-width: 480px) {
+    .hero { min-height: 50vh; }
+    section { padding: 40px 12px; }
+  }
+
   /* Dis an Dat submenu */
   .menu-group { padding: 0; }
   .menu-group-toggle {

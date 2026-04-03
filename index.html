@@ -1431,6 +1431,83 @@
     .big-tile-decoration { display: none; }
   }
 
+
+  /* ─── ENHANCED MOBILE UX ─── */
+  @media (max-width: 640px) {
+    /* Tap-friendly touch targets (WCAG 2.5.5 min 44px) */
+    .menu-overlay a { padding: 12px 14px; min-height: 44px; display: flex; align-items: center; }
+    .menu-group-toggle { padding: 12px 14px; min-height: 44px; }
+    .menu-group-items a { padding: 10px 14px !important; min-height: 44px; display: flex !important; align-items: center; }
+    .menu-book { padding: 14px; min-height: 44px; font-size: 0.9rem; }
+    .book-btn { padding: 12px 24px; min-height: 44px; font-size: 0.85rem; }
+    .nav-logo { font-size: 1.4rem; }
+    /* Footer mobile */
+    footer { padding: 40px 16px 24px; }
+    .footer-top { flex-direction: column; gap: 28px; }
+    .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+    .footer-bottom-links { justify-content: center; }
+    .social-icon { width: 44px; height: 44px; }
+  }
+  @media (max-width: 480px) {
+    nav { padding: 12px 14px; }
+    .nav-logo { font-size: 1.2rem; }
+    .menu-overlay { width: calc(100vw - 20px); padding: 10px; }
+    .menu-overlay a { font-size: 0.82rem; padding: 11px 12px; }
+    .menu-group-toggle { font-size: 0.82rem; padding: 11px 12px; }
+    footer { padding: 32px 12px 20px; }
+    .footer-logo { font-size: 1.6rem; }
+    .footer-tagline { font-size: 0.8rem; }
+    .footer-links a { font-size: 0.82rem; }
+    .footer-bottom p { font-size: 0.7rem; }
+  }
+  @media (max-width: 360px) {
+    nav { padding: 10px 10px; }
+    .nav-logo { font-size: 1.1rem; }
+    .menu-overlay { width: calc(100vw - 12px); }
+  }
+
+
+  /* ─── INDEX MOBILE SPECIFICS ─── */
+  @media (max-width: 480px) {
+    #hero { padding: 100px 12px 48px; }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; }
+    .hero-sub { font-size: 0.95rem; margin-top: 14px; }
+    .hero-actions button { font-size: 0.85rem; padding: 14px 24px; }
+    .s-card { flex: 0 0 min(85%, 280px); min-height: 340px; }
+    .s-card-content h3 { font-size: 1.5rem; }
+    .s-card-desc { font-size: 0.78rem; }
+    .s-btn-book, .s-btn-ghost { padding: 10px 16px; font-size: 0.7rem; min-height: 40px; }
+    .tile-clash .tile-inner,
+    .tile-single .tile-inner { flex-direction: column; align-items: flex-start; padding: 24px 14px; }
+    .tile-full-right, .tile-featured-right { width: 100%; }
+    .tile-full-right .btn-sm-yellow,
+    .tile-full-right .btn-sm-ghost,
+    .tile-featured-right .btn-sm-yellow,
+    .tile-featured-right .btn-sm-ghost { flex: 1; text-align: center; justify-content: center; min-height: 44px; }
+    .btn-sm-yellow, .btn-sm-ghost { padding: 10px 16px; font-size: 0.75rem; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+    .section-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+    .artist-name { font-size: clamp(2.5rem, 8vw, 4rem); }
+    .artist-bio { font-size: 0.95rem; }
+    .connect-title { font-size: clamp(2.5rem, 9vw, 4rem); }
+    .connect-sub { font-size: 0.88rem; }
+    .insta-card { padding: 24px 20px; }
+    .btn-insta { padding: 12px 24px; font-size: 0.82rem; min-height: 44px; }
+    .btn-dark-rounded { padding: 12px 20px; font-size: 0.82rem; min-height: 44px; }
+    .playlist-placeholder { height: 220px; }
+    .btn-primary { padding: 14px 24px; font-size: 0.9rem; min-height: 44px; }
+    .btn-outline { padding: 12px 24px; font-size: 0.9rem; min-height: 44px; }
+    .tile-title { font-size: 1.4rem; }
+    .tile-desc { font-size: 0.8rem; }
+    .series-grid .tile { width: 85vw; height: 380px; }
+  }
+  @media (max-width: 360px) {
+    #hero { padding: 90px 10px 40px; }
+    .hero-actions button { max-width: 280px; }
+    .s-card { min-height: 300px; }
+    .tile-clash .tile-inner,
+    .tile-single .tile-inner { padding: 20px 12px; }
+  }
+
   /* Dis an Dat submenu */
   .menu-group { padding: 0; }
   .menu-group-toggle {
