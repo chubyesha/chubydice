@@ -48,20 +48,20 @@
   .nav-logo span { color: var(--yellow); }
   .nav-center { display: flex; justify-content: center; }
   .nav-right { display: flex; align-items: center; justify-content: flex-end; }
-  .menu-btn { background: none; border: none; color: var(--white); font-family: 'Bebas Neue', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.1em; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; }
+  .menu-btn { background: none; border: none; color: var(--white); font-family: 'Bebas Neue', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.1em; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; }
   .menu-btn svg { transition: transform 0.3s; }
   .menu-btn.open svg { transform: rotate(180deg); }
-  .book-btn { background: var(--yellow); color: var(--black); border: none; font-family: 'Bebas Neue', sans-serif; font-weight: 800; font-size: 0.9rem; padding: 10px 22px; border-radius: 50px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: transform 0.2s, box-shadow 0.2s; }
+  .book-btn { background: var(--yellow); color: var(--black); border: none; font-family: 'Bebas Neue', sans-serif; font-weight: 800; font-size: 1.1rem; padding: 10px 22px; border-radius: 50px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: transform 0.2s, box-shadow 0.2s; }
   .book-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,197,24,0.4); }
 
   /* ─── DROPDOWN ─── */
   .menu-overlay { position: fixed; top: 64px; left: 50%; width: 300px; background: rgba(14,14,14,0.82); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; z-index: 999; display: flex; flex-direction: column; padding: 12px; transform: translateX(-50%) translateY(-10px) scale(0.97); opacity: 0; pointer-events: none; transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease; box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
   .menu-overlay.open { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; pointer-events: all; }
-  .menu-overlay a { font-family: 'Bebas Neue', sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; padding: 10px 14px; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  .menu-overlay a { font-family: 'Bebas Neue', sans-serif; font-weight: 600; font-size: 1.08rem; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; padding: 10px 14px; border-radius: 8px; transition: background 0.15s, color 0.15s; }
   .menu-overlay a:hover { background: rgba(255,255,255,0.06); color: var(--yellow); }
   .menu-overlay a.active { color: var(--yellow); }
   .menu-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 8px 0; }
-  .menu-book { background: var(--yellow); color: var(--black); border: none; font-family: 'Bebas Neue', sans-serif; font-weight: 800; font-size: 0.85rem; padding: 12px; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; width: 100%; transition: transform 0.15s; }
+  .menu-book { background: var(--yellow); color: var(--black); border: none; font-family: 'Bebas Neue', sans-serif; font-weight: 800; font-size: 1.2rem; padding: 12px; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; width: 100%; transition: transform 0.15s; }
   .menu-book:hover { transform: scale(1.02); }
 
   /* ─── HERO ─── */
@@ -103,7 +103,7 @@
   }
 
   .hero-desc {
-    font-size: 1.05rem; line-height: 1.7;
+    font-size: 1.2rem; line-height: 1.7;
     color: rgba(255,255,255,0.55);
     max-width: 540px;
     opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
@@ -122,7 +122,7 @@
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 50px; padding: 8px 16px;
-    font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.7);
+    font-size: 1.2rem; font-weight: 600; color: rgba(255,255,255,0.7);
   }
   .info-pill svg { color: rgba(255,255,255,0.4); }
   .info-pill.price { color: var(--yellow); border-color: rgba(245,197,24,0.2); background: rgba(245,197,24,0.05); }
@@ -150,7 +150,7 @@
   .section-heading span { color: var(--yellow); }
 
   .body-text {
-    font-size: 0.97rem; line-height: 1.8;
+    font-size: 1.18rem; line-height: 1.8;
     color: rgba(255,255,255,0.6);
     margin-bottom: 20px;
   }
@@ -161,7 +161,7 @@
   }
   .learn-list li {
     display: flex; align-items: flex-start; gap: 10px;
-    font-size: 0.95rem; line-height: 1.6;
+    font-size: 1.15rem; line-height: 1.6;
     color: rgba(255,255,255,0.65);
     padding: 10px 0;
     border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -191,7 +191,7 @@
   .booking-card-title span { color: var(--yellow); }
 
   .booking-card p {
-    font-size: 0.9rem; line-height: 1.7;
+    font-size: 1.1rem; line-height: 1.7;
     color: rgba(255,255,255,0.45);
     margin-bottom: 28px;
   }
@@ -201,7 +201,7 @@
     background: var(--yellow); color: var(--black);
     border: none; border-radius: 8px;
     font-family: 'Bebas Neue', sans-serif; font-weight: 900;
-    font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase;
     padding: 16px; cursor: pointer; text-align: center;
     margin-bottom: 12px;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -213,7 +213,7 @@
     background: transparent; color: var(--yellow);
     border: 1px solid rgba(245,197,24,0.3); border-radius: 8px;
     font-family: 'Bebas Neue', sans-serif; font-weight: 900;
-    font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase;
     padding: 16px; cursor: pointer; text-align: center;
     margin-bottom: 20px;
     transition: background 0.2s, border-color 0.2s;
@@ -222,7 +222,7 @@
 
   .price-note {
     text-align: center;
-    font-size: 0.85rem; font-weight: 700;
+    font-size: 1.2rem; font-weight: 700;
     color: rgba(255,255,255,0.3);
   }
   .price-note strong { color: var(--yellow); }
@@ -248,7 +248,7 @@
     margin-bottom: 8px;
   }
   .location-address {
-    font-size: 0.95rem; font-weight: 600;
+    font-size: 1.15rem; font-weight: 600;
     color: rgba(255,255,255,0.5);
     line-height: 1.8;
   }
@@ -258,19 +258,19 @@
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; max-width: 1100px; margin: 0 auto 48px; }
   .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.05em; }
   .footer-logo span { color: var(--yellow); }
-  .footer-tagline { font-size: 0.9rem; color: rgba(255,255,255,0.3); font-style: italic; margin: 8px 0 16px; max-width: 280px; line-height: 1.5; }
-  .footer-address { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
-  .footer-address strong { color: var(--yellow); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .footer-tagline { font-size: 1.1rem; color: rgba(255,255,255,0.3); font-style: italic; margin: 8px 0 16px; max-width: 280px; line-height: 1.5; }
+  .footer-address { font-size: 0.98rem; color: rgba(255,255,255,0.25); }
+  .footer-address strong { color: var(--yellow); font-size: 1.08rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .footer-socials { display: flex; gap: 12px; margin-top: 20px; }
   .social-icon { width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.2s; color: rgba(255,255,255,0.4); text-decoration: none; }
   .social-icon:hover { border-color: var(--yellow); color: var(--yellow); }
-  .footer-links h4 { font-family: 'Bebas Neue', sans-serif; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
-  .footer-links a { display: block; font-size: 0.9rem; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-links h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+  .footer-links a { display: block; font-size: 1.1rem; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
   .footer-links a:hover { color: var(--yellow); }
   .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-  .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.2); }
+  .footer-bottom p { font-size: 0.98rem; color: rgba(255,255,255,0.2); }
   .footer-bottom-links { display: flex; gap: 20px; }
-  .footer-bottom-links a { font-size: 0.8rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
+  .footer-bottom-links a { font-size: 0.98rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
   .footer-bottom-links a:hover { color: rgba(255,255,255,0.5); }
 
   @keyframes fadeUp {
@@ -302,8 +302,8 @@
     .menu-overlay a { padding: 12px 14px; min-height: 44px; display: flex; align-items: center; }
     .menu-group-toggle { padding: 12px 14px; min-height: 44px; }
     .menu-group-items a { padding: 10px 14px !important; min-height: 44px; display: flex !important; align-items: center; }
-    .menu-book { padding: 14px; min-height: 44px; font-size: 0.9rem; }
-    .book-btn { padding: 12px 24px; min-height: 44px; font-size: 0.85rem; }
+    .menu-book { padding: 14px; min-height: 44px; font-size: 1.1rem; }
+    .book-btn { padding: 12px 24px; min-height: 44px; font-size: 1.2rem; }
     .nav-logo { font-size: 1.4rem; }
     /* Footer mobile */
     footer { padding: 40px 16px 24px; }
@@ -316,13 +316,13 @@
     nav { padding: 12px 14px; }
     .nav-logo { font-size: 1.2rem; }
     .menu-overlay { width: calc(100vw - 20px); padding: 10px; }
-    .menu-overlay a { font-size: 0.82rem; padding: 11px 12px; }
-    .menu-group-toggle { font-size: 0.82rem; padding: 11px 12px; }
+    .menu-overlay a { font-size: 1.15rem; padding: 11px 12px; }
+    .menu-group-toggle { font-size: 1.15rem; padding: 11px 12px; }
     footer { padding: 32px 12px 20px; }
     .footer-logo { font-size: 1.6rem; }
-    .footer-tagline { font-size: 0.8rem; }
-    .footer-links a { font-size: 0.82rem; }
-    .footer-bottom p { font-size: 0.7rem; }
+    .footer-tagline { font-size: 0.98rem; }
+    .footer-links a { font-size: 1.15rem; }
+    .footer-bottom p { font-size: 1.08rem; }
   }
   @media (max-width: 360px) {
     nav { padding: 10px 10px; }
@@ -341,7 +341,7 @@
   .menu-group { padding: 0; }
   .menu-group-toggle {
     width: 100%; background: none; border: none; cursor: pointer;
-    font-family: 'Bebas Neue', sans-serif; font-weight: 600; font-size: 0.88rem;
+    font-family: 'Bebas Neue', sans-serif; font-weight: 600; font-size: 1.08rem;
     letter-spacing: 0.04em; text-transform: uppercase;
     color: rgba(255,255,255,0.75); text-align: left;
     padding: 10px 14px; border-radius: 8px;
@@ -360,7 +360,7 @@
   .menu-group.open .menu-group-items { max-height: 200px; }
   .menu-group-items a {
     display: block;
-    font-size: 0.82rem !important;
+    font-size: 1.15rem !important;
     color: rgba(255,255,255,0.55) !important;
     padding: 8px 14px !important;
   }
@@ -475,11 +475,11 @@
 <!-- ACKNOWLEDGMENT OF COUNTRY -->
 <section style="padding:60px 24px;text-align:center;border-top:1px solid var(--border);">
   <div style="max-width:720px;margin:0 auto;">
-    <p style="font-family:'Bebas Neue',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;">Acknowledgment</p>
+    <p style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;">Acknowledgment</p>
     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.2rem,2.5vw,1.6rem);letter-spacing:0.04em;margin-bottom:20px;">ACKNOWLEDGMENT OF COUNTRY</h2>
     <div style="width:40px;height:2px;background:var(--yellow);margin:0 auto 24px;border-radius:2px;"></div>
-    <p style="color:rgba(255,255,255,0.6);font-size:0.92rem;line-height:1.9;margin-bottom:16px;">Chuby Dice acknowledges the Traditional Custodians of the land on which we operate, and pays respect to Elders past, present and emerging.</p>
-    <p style="color:rgba(255,255,255,0.3);font-size:0.82rem;line-height:1.7;font-style:italic;">Placeholder — Esha to provide final acknowledgment text and image.</p>
+    <p style="color:rgba(255,255,255,0.6);font-size:1.12rem;line-height:1.9;margin-bottom:16px;">Chuby Dice acknowledges the Traditional Custodians of the land on which we operate, and pays respect to Elders past, present and emerging.</p>
+    <p style="color:rgba(255,255,255,0.3);font-size:1.15rem;line-height:1.7;font-style:italic;">Placeholder — Esha to provide final acknowledgment text and image.</p>
   </div>
 </section>
 
@@ -515,7 +515,7 @@
     </div>
   </div>
   <div style="max-width:1100px;margin:20px auto 0;padding-top:16px;border-top:1px solid var(--border);text-align:center;">
-    <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
+    <p style="font-size:1.12rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
   </div>
 </footer>
 
