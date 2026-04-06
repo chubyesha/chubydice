@@ -442,9 +442,13 @@
   .btn-shell-stripe::after { content: 'COMING SOON'; position: absolute; top: -10px; right: -8px; font-size: 0.5rem; letter-spacing: 0.1em; background: #FF4444; color: white; padding: 2px 8px; border-radius: 50px; font-weight: 800; }
   .shell-note { margin-top: 16px; font-size: 0.78rem; color: rgba(255,255,255,0.25); }
   /* Acknowledgment */
-  .acknowledgment { padding: 48px 40px; text-align: center; border-top: 1px solid var(--border); }
-  .acknowledgment-icon { width: 48px; height: 48px; margin: 0 auto 20px; background: linear-gradient(180deg, #000 33%, #CC0000 33% 66%, #F9A825 66%); border-radius: 50%; }
-  .acknowledgment p { font-size: 0.88rem; line-height: 1.75; color: rgba(255,255,255,0.35); font-style: italic; max-width: 680px; margin: 0 auto; }
+  .acknowledgment { padding: 60px 24px; text-align: center; border-top: 1px solid var(--border); }
+  .acknowledgment-inner { max-width: 720px; margin: 0 auto; }
+  .acknowledgment-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 16px; }
+  .acknowledgment-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem); letter-spacing: 0.04em; margin-bottom: 20px; }
+  .acknowledgment-line { width: 40px; height: 2px; background: var(--yellow); margin: 0 auto 24px; border-radius: 2px; }
+  .acknowledgment-text { color: rgba(255,255,255,0.6); font-size: 0.92rem; line-height: 1.9; margin-bottom: 16px; }
+  .acknowledgment-note { color: rgba(255,255,255,0.3); font-size: 0.82rem; line-height: 1.7; font-style: italic; }
   /* Home button */
   .btn-home { display: inline-flex; align-items: center; gap: 8px; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; padding: 10px 20px; border: 1px solid var(--border); border-radius: 50px; transition: color 0.2s, border-color 0.2s; margin-top: 12px; }
   .btn-home:hover { color: var(--yellow); border-color: rgba(245,197,24,0.3); }
@@ -538,9 +542,14 @@
 </main>
 
 <!-- ACKNOWLEDGMENT OF COUNTRY -->
-<section class="acknowledgment">
-  <div class="acknowledgment-icon"></div>
-  <p>Acknowledgment of Country — content to be provided by Esha.</p>
+<section style="padding:60px 24px;text-align:center;border-top:1px solid var(--border);">
+  <div style="max-width:720px;margin:0 auto;">
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;">Acknowledgment</p>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.2rem,2.5vw,1.6rem);letter-spacing:0.04em;margin-bottom:20px;">ACKNOWLEDGMENT OF COUNTRY</h2>
+    <div style="width:40px;height:2px;background:var(--yellow);margin:0 auto 24px;border-radius:2px;"></div>
+    <p style="color:rgba(255,255,255,0.6);font-size:0.92rem;line-height:1.9;margin-bottom:16px;">Chuby Dice acknowledges the Traditional Custodians of the land on which we operate, and pays respect to Elders past, present and emerging.</p>
+    <p style="color:rgba(255,255,255,0.3);font-size:0.82rem;line-height:1.7;font-style:italic;">Placeholder — Esha to provide final acknowledgment text and image.</p>
+  </div>
 </section>
 
 
