@@ -597,28 +597,28 @@
     <p>Choose your pass for Spain Town Badness — August 2026.</p>
 
     <div class="pricing-options" id="pricingOptions">
-      <div class="price-option selected" data-price="30" onclick="selectPrice(this)">
+      <div class="price-option selected" data-price="30" data-link="https://buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">Single Class</span>
         </div>
         <span class="price-option-amount">$30</span>
       </div>
-      <div class="price-option" data-price="100" onclick="selectPrice(this)">
+      <div class="price-option" data-price="100" data-link="https://buy.stripe.com/6oUbJ16033xgeRYfRB4F20c" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">4 Classes</span>
         </div>
         <span class="price-option-amount">$100</span>
       </div>
-      <div class="price-option" data-price="125" onclick="selectPrice(this)">
+      <div class="price-option" data-price="125" data-link="https://buy.stripe.com/5kQ8wPbkn4Bk25cbBl4F20d" onclick="selectPrice(this)">
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
           <span class="price-option-label">5 Classes</span>
         </div>
         <span class="price-option-amount">$125</span>
       </div>
-      <div class="price-option" data-price="230" onclick="selectPrice(this)">
+      <div class="price-option" data-price="230" data-link="https://buy.stripe.com/eVqdR97473xg25ccFp4F20e" onclick="selectPrice(this)">
         <span class="price-option-save">Save 23%</span>
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
@@ -626,7 +626,7 @@
         </div>
         <span class="price-option-amount">$230</span>
       </div>
-      <div class="price-option" data-price="450" onclick="selectPrice(this)">
+      <div class="price-option" data-price="450" data-link="https://buy.stripe.com/9B6fZhagj0l4fW28p94F20f" onclick="selectPrice(this)">
         <span class="price-option-save">Save 33%</span>
         <div class="price-option-left">
           <div class="price-radio"><div class="price-radio-dot"></div></div>
@@ -636,7 +636,7 @@
       </div>
     </div>
 
-    <button class="btn-coming-soon">Stripe Links Coming Soon</button>
+    <button class="btn-book-now" id="bookBtn" onclick="bookNow()">Book Now — $30</button>
     <button class="btn-book-series" onclick="location.href='series.html'">Back to Chuby Dice Series</button>
     <p class="price-note">From <strong>$30</strong> per session</p>
   </div>
@@ -682,11 +682,34 @@
   });
 </script>
 <script>
+var STRIPE_LINKS = {
+  '30': 'https://buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b',
+  '100': 'https://buy.stripe.com/6oUbJ16033xgeRYfRB4F20c',
+  '125': 'https://buy.stripe.com/5kQ8wPbkn4Bk25cbBl4F20d',
+  '230': 'https://buy.stripe.com/eVqdR97473xg25ccFp4F20e',
+  '450': 'https://buy.stripe.com/9B6fZhagj0l4fW28p94F20f'
+};
+var selectedPrice = '30';
+
 function selectPrice(el) {
   document.querySelectorAll('.price-option').forEach(function(opt) {
     opt.classList.remove('selected');
   });
   el.classList.add('selected');
+  var price = el.getAttribute('data-price');
+  if (STRIPE_LINKS[price]) selectedPrice = price;
+  var btn = document.getElementById('bookBtn');
+  if (btn) btn.textContent = 'Book Now — $' + price;
+}
+
+function bookNow() {
+  var link = STRIPE_LINKS[selectedPrice];
+  if (!link) return;
+  try {
+    var url = new URL(link);
+    if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com') return;
+    window.open(link, '_blank', 'noopener,noreferrer');
+  } catch (e) { return; }
 }
 </script>
 
