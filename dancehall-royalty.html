@@ -223,7 +223,7 @@
     border-top: 1px solid var(--border);
     padding: 60px 80px;
     text-align: center;
-    background: var(--black);
+    background: transparent;
   }
   .location-label {
     display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -428,7 +428,7 @@
     border-radius: 50%;
     filter: blur(90px);
     pointer-events: none;
-    z-index: -1;
+    z-index: 1;
     will-change: transform;
   }
   .orb-1 {
@@ -725,7 +725,7 @@ function bookNow() {
 </section>
 
 
-<footer style="background:#111111;border-top:1px solid #2A2A2A;padding:20px;text-align:center;">
+<footer style="border-top:1px solid #2A2A2A;padding:20px;text-align:center;">
   <p style="font-size:1.12rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
 </footer>
 </body>
