@@ -1,155 +1,141 @@
-# Session Recovery — Chuby Dice Website
+# Session Recovery: Stripe Payment Security Review
 
-**Last Updated:** 2026-04-01
-**V1 Path:** `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_1`
-**V2 Path:** `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_2`
+**Session Date:** 2026-04-06
+**Current Branch:** fix/font-size-readability
+**Task:** Security review of Stripe Payment Link implementation
 
----
+## Work Completed
 
-## Session Summary
+### Security Review Conducted
+- Analyzed `street-vybz.html` git changes
+- Reviewed `bookNow()` function and `selectPrice()` function
+- Examined data-link attribute handling in all 6 shell pages
+- Identified vulnerabilities in payment link validation
 
-This session implemented the client's Release 2A product requirements and subsequent "final changes" across both Version 1 (original Barlow/Bebas theme) and Version 2 (Outfit/DM Sans purple theme). Client rejected the pablobbk101-cloud redesign — all work was done on the original V1 codebase.
+### Findings Summary
 
----
+**Risk Level:** MEDIUM (currently safe for development, NOT READY for production real money)
 
-## V1 Commits (chubydice_version_1 → git@github.com:chubyesha/chubydice.git)
+**Issues Found:**
+- 2 HIGH severity issues (DOM-based XSS, weak URL validation)
+- 3 MEDIUM severity issues (client-side mutation, no rate limiting, no confirmation)
+- 2 LOW severity issues (no CSP headers, window.open security)
 
-### Release 2A Implementation
-- `90fdb08` — Nav standardization (16 pages), pricing section, coaching accordion, about accordion
-- `e86f09c` — Wire live Stripe payment links (5 tiers) to all series pages
-- `ef1d6cd` → `14325f4` — Series.html carousel with current + past tabs, drag-to-scroll
-- `33f9748` — Center dropdown menu below MENU button
-- Various image updates: coaching-hero.jpg, motherland-may-2026.jpg, dancehall-royalty-june-2026.jpg, academy-tile-bg.jpg, academy-hero.jpg
+### Key Vulnerabilities
 
-### Client Final Changes (feat/client-final-changes-v1)
-- `12e2b22` — Home page: carousel, collection pack button, countdown badges, academy text, playlist text, title sizes
-- `514f259` — Academy hero position (flames), one-line title, coaching hero 60vh
-- `36da83c` — Dis an Dat grouped submenu on all 16 pages
+1. **DOM Manipulation XSS Risk (HIGH)**
+   - `data-link` attributes can be modified via browser console
+   - Payment can be redirected to attacker site
+   - Example: `document.querySelector('[data-price="30"]').setAttribute('data-link', 'https://attacker.com')`
 
-### Carousel & Image Fixes
-- `d09f7df` → `a1cf163` — Home carousel: portrait cards → full-image background cards with visible countdown badges
-- `4234e18` — Dis an Dat vertical stack alignment
-- `493714d` + `09cb862` — Adelaide In Ya City image on both in-ya-city-adelaide.html and in-ya-city.html
-- `13d06c6` — Fix menu dropdown broken JS on 4 pages (truncated script blocks)
+2. **Weak URL Validation (HIGH)**
+   - Uses `indexOf('https://buy.stripe.com/')` which can be bypassed
+   - Vulnerable to: case sensitivity, subdomain spoofing, URL encoding tricks
+   - Should use `new URL()` API instead
 
-### Stripe Links (Live)
-- Single $30: `buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b`
-- 4 Classes $100: `buy.stripe.com/6oUbJ16033xgeRYfRB4F20c`
-- 5 Classes $125: `buy.stripe.com/5kQ8wPbkn4Bk25cbBl4F20d`
-- 10 Classes $230: `buy.stripe.com/eVqdR97473xg25ccFp4F20e`
-- 20 Classes $450: `buy.stripe.com/9B6fZhagj0l4fW28p94F20f`
-- Coaching $120: `buy.stripe.com/3cIbJ17470l4cJQ34P4F209`
-- Archived: lovers-rock, in-ya-city-adelaide, full-series (show "Session Ended")
+3. **Client-Side URL Storage (MEDIUM)**
+   - Global `selectedStripeLink` variable is mutable
+   - Any script can change it before `bookNow()` is called
+   - Should use immutable whitelist instead
 
----
+4. **No Rate Limiting (MEDIUM)**
+   - Users can click button unlimited times
+   - Could cause accidental duplicate orders
+   - Need 2-3 second cooldown
 
-## V2 Commits (chubydice_version_2 → git@github.com:chubyesha/chubydice_v2.git)
+5. **No User Confirmation (MEDIUM)**
+   - No confirmation modal before opening Stripe
+   - Easy to accidentally click
+   - UX issue + fraud prevention
 
-- `847c8b1` — Academy + coaching images from client assets
-- `372810b` — Hero eyebrow text, remove glitch, smaller title, consistent headings, carousel
-- `54543bf` — Dis an Dat nav on all 16 pages, academy/coaching fixes
-- `c548423` — Playlist text: CDDA PLAYLIST
-- `0e4df5b` — Dis an Dat dropdown fix (toggleSubMenu JS + vertical stack)
-- `aa2f5e3` — Carousel swiping on home + series page
-- `e23e088` — Portrait cards, full-image backgrounds, coaching centered, countdown badges
-- `a37fd36` — Coaching card centered
-- `80fbee3` + `a82584b` — Adelaide image on in-ya-city-adelaide.html + in-ya-city.html
-- `02ec7ab` — Fix menu dropdown broken JS on 4 pages
+## Affected Files (6 shell pages)
 
----
+1. street-vybz.html
+2. born-agen.html
+3. dancehall-royalty.html
+4. hot-steppaz.html
+5. motherland.html
+6. praise-flow.html
 
-## All Client Requirements — Final Status
+All files have identical `bookNow()` and `selectPrice()` implementations that need fixing.
 
-### V1 (13/13 DONE)
-| # | Requirement | Status |
-|---|------------|--------|
-| 1 | Home page carousel (full-image cards, swipe) | DONE |
-| 2 | Series Collection Pack button (home + series) | DONE |
-| 3 | Countdown badges (Starts in X days) | DONE |
-| 4 | In Ya City Adelaide carousel/image | DONE |
-| 5 | Academy image flames in frame | DONE |
-| 6 | Academy: "DANCEHALL ACADEMY" + "Out of many, one" | DONE |
-| 7 | Academy sub-page title one line | DONE |
-| 8 | Meet Chuby Dice one line | DONE |
-| 9 | Dis an Dat submenu (all 16 pages) | DONE |
-| 10 | Clash/Coaching titles bigger + matching | DONE |
-| 11 | CDDA Playlist | DONE |
-| 12 | Coaching hero shorter (60vh) + subtitle removed | DONE |
-| 13 | Adelaide In Ya City image | DONE |
+## Detailed Report
 
-### V2 (11/11 DONE)
-| # | Requirement | Status |
-|---|------------|--------|
-| 1 | Eyebrow: "Home of Chuby Dice Series & Australia's Dancehall Academy" | DONE |
-| 2 | Remove glitch animation | DONE |
-| 3 | Chuby Dice font smaller & one line | DONE |
-| 4 | Consistent heading sizes (clamp 2.2-3.8rem) | DONE |
-| 5 | Carousel for home + series page | DONE |
-| 6 | All titles/tiles match V1 | DONE |
-| 7 | Dis an Dat submenu | DONE |
-| 8 | Adelaide image | DONE |
-| 9 | Coaching card centered | DONE |
-| 10 | Countdown badges | DONE |
-| 11 | Portrait cards with full-image backgrounds | DONE |
+Full security review written to:
+`documents/SECURITY_REVIEW_STRIPE_PAYMENT.md`
 
----
+This document contains:
+- Executive summary with risk levels
+- Detailed vulnerability analysis
+- Proof of concept attacks
+- Code remediation examples
+- Testing recommendations
+- Step-by-step fixes
 
-## Images Added This Session
-- `images/coaching-hero.jpg` (324KB) — 1:1 Coaching flyer
-- `images/motherland-may-2026.jpg` (162KB) — May series flyer
-- `images/dancehall-royalty-june-2026.jpg` (223KB) — June series flyer
-- `images/academy-tile-bg.jpg` (514KB) — Jamaican flag texture
-- `images/academy-hero.jpg` (362KB) — Fire breather performance
-- `images/adelaide-in-ya-city.jpg` (204KB) — Adelaide workshop flyer
+## Implementation Status
 
----
+Review completed but NOT YET FIXED. Fixes require:
 
-## Mobile UX Optimization (2026-04-03)
+### HIGH Priority (Must Fix)
+```javascript
+// 1. Use URL API for validation instead of indexOf
+const url = new URL(selectedStripeLink);
+if (url.protocol !== 'https:') return;
+if (url.hostname !== 'buy.stripe.com') return;
 
-### V1 (fix/mobile-optimization branch, commit e5523d3)
-- All 16 pages: Enhanced mobile CSS with WCAG 2.5.5 tap targets (min 44px)
-- Breakpoints added: 480px (small phones), 360px (smallest devices)
-- Common: nav sizing, menu overlay width, footer stacking, social icons
-- Page-specific: index (hero, tiles, carousel, artist), series (pricing 1-col), coaching (accordion, banner), about (mosaic, bio), sub-pages (pricing cards, hero)
+// 2. Use immutable whitelist instead of data-link attributes
+const STRIPE_LINKS = Object.freeze({
+  '30': 'https://buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b',
+  '100': 'https://buy.stripe.com/6oUbJ16033xgeRYfRB4F20c',
+  // ... etc
+});
+```
 
-### V2 (fix/mobile-optimization branch, commit 0c28c8d)
-- shared-theme.css: Global mobile responsive rules (768px, 480px, 360px)
-- All 16 pages: Page-specific mobile CSS blocks
-- index.html: Animated orb sizes reduced at 640px to prevent overflow
+### MEDIUM Priority (Should Fix)
+```javascript
+// 3. Add rate limiting
+let lastPaymentTime = 0;
+const COOLDOWN = 2000;
 
----
+// 4. Add confirmation modal
+confirm('Proceed to pay $' + price);
+```
 
-## Release 2B — chubydice_version_2b (2026-04-03)
+### LOW Priority (Nice to Have)
+```html
+<!-- 5. Add CSP headers -->
+<!-- 6. Use rel="noopener noreferrer" in window.open -->
+```
 
-**Path:** `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_2b`
-**Branch:** `feat/release-2b` (commit `bf42aa2`)
-**PRD:** `screenshots/Info Architecture - RELEASE 2 B.docx`
+## Next Steps
 
-### Architecture
-- 5 external CSS: shared-theme.css (tokens), components.css (nav/footer/buttons/cards), carousel.css, hero.css, utilities.css (animations/breakpoints)
-- 3 external JS: nav.js (menu/submenu), carousel.js (drag-swipe/dots/countdown), reveal.js (IntersectionObserver)
-- CSS custom properties for design tokens (purple/gold theme from V2)
-- Responsive breakpoints: 1024px, 768px, 480px, 360px + prefers-reduced-motion
+1. **Review the full security report** in `SECURITY_REVIEW_STRIPE_PAYMENT.md`
+2. **Implement HIGH priority fixes** before processing any real money
+3. **Test with security testing checklist** in the report
+4. **Create git branch** for payment security fixes
+5. **Apply fixes to all 6 shell pages** consistently
+6. **Run end-to-end payment tests** after fixes
 
-### Pages (15 total)
-- **index.html** — Hero, series carousel (4 new), clash section (2 events), coaching CTA, academy tile, artist, playlist, connect, acknowledgment of country, footer
-- **series.html** — All series cards carousel + 5-tier pricing grid
-- **street-vybz.html, spain-town-badness.html, hot-steppaz.html, born-agen.html** — Shell detail pages with placeholder image/text/Stripe
-- **clash.html** — 2-column grid (Litefeet May, Krump July)
-- **litefeet-v-dancehall.html, krump-v-dancehall.html** — Shell detail pages with Stripe placeholders
-- **coaching.html** — 3 coaching cards ($120/$440/$800) with Stripe placeholders
-- **academy.html, about.html, in-ya-city.html, contact.html, past-series.html** — Carry-forward pages
+## Current State
 
-### Placeholder Strategy
-- `Shell` = `.placeholder-image` (gradient bg with series name)
-- `Image` = placeholder awaiting client assets
-- `Write-up` = `.placeholder-text` (dashed border, italic)
-- `Stripe links` = `.btn-stripe-placeholder` (disabled with "Coming Soon" badge)
+- Branch: `fix/font-size-readability` (not yet changed, just reviewed)
+- No files modified yet
+- Security review document written to `documents/SECURITY_REVIEW_STRIPE_PAYMENT.md`
+- Ready for implementation phase
 
----
+## Key Decisions Made
 
-## Known Pre-existing Issues (Not In Scope)
-1. Broken OG image meta tags (`chuby-profile-CkJq2sVN.jpg` doesn't exist)
-2. CORS wildcard on Netlify chat function
-3. Chat function: no input validation or rate limiting
-4. V2 `shared-theme.css` uses `!important` on body font-family
+1. **Review ONLY approach** - Identified issues without making changes per user instructions
+2. **Multi-file impact** - All 6 shell pages have same issue
+3. **Production blocker** - HIGH issues must be fixed before real money
+4. **Whitelist approach recommended** - More secure than DOM attribute reading
+
+## Files Modified
+
+- ✅ `documents/SECURITY_REVIEW_STRIPE_PAYMENT.md` (NEW - security review)
+- ❌ `street-vybz.html` (NOT MODIFIED - review only)
+- ❌ `born-agen.html` (NOT MODIFIED - review only)
+- ❌ `dancehall-royalty.html` (NOT MODIFIED - review only)
+- ❌ `hot-steppaz.html` (NOT MODIFIED - review only)
+- ❌ `motherland.html` (NOT MODIFIED - review only)
+- ❌ `praise-flow.html` (NOT MODIFIED - review only)
