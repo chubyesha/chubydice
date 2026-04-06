@@ -1198,7 +1198,8 @@
     .tile-single .tile-inner { padding: 36px 16px; }
     #clash-single { padding: 0 16px 48px !important; }
     #clash-single .series-grid { max-width: 100% !important; }
-    #clash-section { padding: 0 16px 48px !important; }
+    #clash-section { padding: 32px 16px 48px !important; }
+    #clash-section [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
     #coaching-section { padding: 48px 16px !important; }
     #hero { padding: 120px 16px 60px; }
     .hero-actions { flex-direction: column; align-items: center; gap: 12px; }
@@ -1624,77 +1625,62 @@
   <!-- Series Carousel (full-image background cards) -->
   <div class="series-card-carousel" id="homeSeriesCarousel">
 
-    <!-- Praise Flow (Current) -->
-    <div class="s-card" data-type="current" data-start="2026-04-07T19:30:00+10:00">
-      <img class="s-card-bg" src="images/praise-flow.png" alt="Praise Flow" loading="lazy">
+    <!-- STREET VYBZ (July) — SHELL -->
+    <div class="s-card" data-type="current" data-start="2026-07-01T19:30:00+10:00">
+      <div class="s-card-bg" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,rgba(245,197,24,0.12) 0%,rgba(17,17,17,0.95) 40%,rgba(128,0,255,0.08) 100%);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.1em;color:rgba(255,255,255,0.06);">STREET VYBZ</div>
       <div class="s-card-overlay"></div>
       <div class="s-card-content">
-        <h3>PRAISE FLOW</h3>
-        <p class="s-card-meta">April 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
-        <p class="s-card-desc">"Under one accord, to praise the Lord, no matter the faith."</p>
+        <h3>STREET VYBZ</h3>
+        <p class="s-card-meta">July 2026 · <strong>From $30</strong></p>
+        <p class="s-card-desc">Shell — image &amp; write-up to be provided by Esha</p>
         <div class="s-card-actions">
-          <button class="s-btn-book" onclick="location.href='praise-flow.html'">Book Now</button>
-          <button class="s-btn-ghost" onclick="location.href='praise-flow.html'">More Info</button>
+          <button class="s-btn-book" onclick="location.href='street-vybz.html'">View Series</button>
+          <button class="s-btn-ghost" onclick="location.href='series.html#pricing'">Pricing</button>
         </div>
       </div>
     </div>
 
-    <!-- Motherland (Current) -->
-    <div class="s-card" data-type="current" data-start="2026-05-05T19:30:00+10:00">
-      <img class="s-card-bg" src="images/motherland-may-2026.jpg" alt="Motherland" loading="lazy">
+    <!-- SPAIN TOWN BADNESS (August) — SHELL -->
+    <div class="s-card" data-type="current" data-start="2026-08-01T19:30:00+10:00">
+      <div class="s-card-bg" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,rgba(255,100,0,0.12) 0%,rgba(17,17,17,0.95) 40%,rgba(245,197,24,0.08) 100%);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.1em;color:rgba(255,255,255,0.06);">SPAIN TOWN BADNESS</div>
       <div class="s-card-overlay"></div>
       <div class="s-card-content">
-        <h3>MOTHERLAND</h3>
-        <p class="s-card-meta">May 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
-        <p class="s-card-desc">Thank your mum with Jamaican Dancehall.</p>
+        <h3>SPAIN TOWN BADNESS</h3>
+        <p class="s-card-meta">August 2026 · <strong>From $30</strong></p>
+        <p class="s-card-desc">Shell — image &amp; write-up to be provided by Esha</p>
         <div class="s-card-actions">
-          <button class="s-btn-book" onclick="location.href='motherland.html'">Book Now</button>
-          <button class="s-btn-ghost" onclick="location.href='motherland.html'">More Info</button>
+          <button class="s-btn-book" onclick="location.href='spain-town-badness.html'">View Series</button>
+          <button class="s-btn-ghost" onclick="location.href='series.html#pricing'">Pricing</button>
         </div>
       </div>
     </div>
 
-    <!-- Dancehall Royalty (Current) -->
-    <div class="s-card" data-type="current" data-start="2026-06-02T19:30:00+10:00">
-      <img class="s-card-bg" src="images/dancehall-royalty-june-2026.jpg" alt="Dancehall Royalty" loading="lazy">
+    <!-- HOT STEPPAZ (September) — SHELL -->
+    <div class="s-card" data-type="current" data-start="2026-09-01T19:30:00+10:00">
+      <div class="s-card-bg" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,rgba(224,64,251,0.12) 0%,rgba(17,17,17,0.95) 40%,rgba(245,197,24,0.08) 100%);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.1em;color:rgba(255,255,255,0.06);">HOT STEPPAZ</div>
       <div class="s-card-overlay"></div>
       <div class="s-card-content">
-        <h3>DANCEHALL ROYALTY</h3>
-        <p class="s-card-meta">June 2026 · Tuesdays 7:30–8:30pm · <strong>From $30</strong></p>
-        <p class="s-card-desc">Dancehall Royalty fi di Academy.</p>
+        <h3>HOT STEPPAZ</h3>
+        <p class="s-card-meta">September 2026 · <strong>From $30</strong></p>
+        <p class="s-card-desc">Shell — image &amp; write-up to be provided by Esha</p>
         <div class="s-card-actions">
-          <button class="s-btn-book" onclick="location.href='dancehall-royalty.html'">Book Now</button>
-          <button class="s-btn-ghost" onclick="location.href='dancehall-royalty.html'">More Info</button>
+          <button class="s-btn-book" onclick="location.href='hot-steppaz.html'">View Series</button>
+          <button class="s-btn-ghost" onclick="location.href='series.html#pricing'">Pricing</button>
         </div>
       </div>
     </div>
 
-    <!-- Lovers' Rock (Past) -->
-    <div class="s-card s-card-past" data-type="past">
-      <img class="s-card-bg" src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" loading="lazy" style="opacity:0.5;">
+    <!-- BORN AGEN (October) — SHELL -->
+    <div class="s-card" data-type="current" data-start="2026-10-01T19:30:00+10:00">
+      <div class="s-card-bg" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,rgba(0,200,255,0.12) 0%,rgba(17,17,17,0.95) 40%,rgba(245,197,24,0.08) 100%);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.1em;color:rgba(255,255,255,0.06);">BORN AGEN</div>
       <div class="s-card-overlay"></div>
-      <span class="s-past-badge">Past Session</span>
       <div class="s-card-content">
-        <h3>LOVERS' ROCK</h3>
-        <p class="s-card-meta">4 weeks · February 2026</p>
-        <p class="s-card-desc">Raw Dancehall lyrics and movement — mek yuh ready fi love.</p>
+        <h3>BORN AGEN</h3>
+        <p class="s-card-meta">October 2026 · <strong>From $30</strong></p>
+        <p class="s-card-desc">Shell — image &amp; write-up to be provided by Esha</p>
         <div class="s-card-actions">
-          <button class="s-btn-ghost" onclick="location.href='lovers-rock.html'">View Details</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- March Back in Time (Past) -->
-    <div class="s-card s-card-past" data-type="past">
-      <img class="s-card-bg" src="images/a84b4d3eec82.png" alt="March Back in Time" loading="lazy" style="opacity:0.5;">
-      <div class="s-card-overlay"></div>
-      <span class="s-past-badge">Past Session</span>
-      <div class="s-card-content">
-        <h3>MARCH BACK IN TIME</h3>
-        <p class="s-card-meta">5 weeks · March 2026</p>
-        <p class="s-card-desc">100% Black Dice moves &amp; history — from Grung Lizard to Free Kick.</p>
-        <div class="s-card-actions">
-          <button class="s-btn-ghost" onclick="location.href='march-back-in-time.html'">View Details</button>
+          <button class="s-btn-book" onclick="location.href='born-agen.html'">View Series</button>
+          <button class="s-btn-ghost" onclick="location.href='series.html#pricing'">Pricing</button>
         </div>
       </div>
     </div>
@@ -1712,17 +1698,39 @@
   </div>
 </section>
 
-<!-- CLASH -->
-<section id="clash-section" style="background:var(--dark);padding:0 80px 60px;border-top:none;">
+<!-- CLASH INNA DANCEHALL -->
+<section id="clash-section" style="background:var(--dark);padding:40px 80px 60px;border-top:1px solid var(--border);">
   <div style="max-width:960px;margin:0 auto;">
-    <div class="tile tile-full tile-clash" id="clash" style="position:relative;overflow:hidden;min-height:320px;">
-      <img src="images/clash-inna-dancehall.png" alt="Clash Inna Dancehall" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.5;" loading="lazy">
-      <div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);z-index:1;pointer-events:none;"></div>
-      <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 40px;min-height:320px;gap:12px;">
-        <span class="tile-badge" style="background:rgba(0,207,255,0.15);color:#00CFFF;border:1px solid rgba(0,207,255,0.4);">May 2026</span>
-        <h3 class="tile-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin:0;">CLASH INNA DANCEHALL WITH PASSION STUDIO</h3>
-        <p class="tile-desc" style="margin:0;max-width:520px;">Prep for the Academy, with thanks to Passion Studio</p>
-        <button class="btn-sm-ghost" onclick="location.href='clash.html'" style="border-color:rgba(0,207,255,0.4);color:#00CFFF;margin-top:8px;">More Info</button>
+    <p class="section-label" style="text-align:center;color:#00CFFF;">Clash Events</p>
+    <h2 class="section-title" style="text-align:center;margin-bottom:32px;">CLASH INNA <span style="color:#00CFFF;">DANCEHALL</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+      <!-- LITEFEET V DANCEHALL (May) — SHELL -->
+      <div class="tile tile-clash" id="clash-litefeet" style="position:relative;overflow:hidden;min-height:380px;border:1px solid rgba(0,207,255,0.25);border-radius:16px;" data-start="2026-05-01T19:00:00+10:00">
+        <div style="position:absolute;inset:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,rgba(0,207,255,0.1) 0%,rgba(17,17,17,0.95) 40%,rgba(0,207,255,0.05) 100%);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.1em;color:rgba(255,255,255,0.05);">LITEFEET V DANCEHALL</div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.15) 0%,rgba(10,10,10,0.8) 100%);z-index:1;pointer-events:none;"></div>
+        <div style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;height:100%;padding:24px;">
+          <span class="tile-badge" style="position:absolute;top:14px;right:14px;background:rgba(0,207,255,0.15);color:#00CFFF;border:1px solid rgba(0,207,255,0.4);">May 2026</span>
+          <h3 class="tile-title" style="font-size:1.6rem;">LITEFEET V DANCEHALL</h3>
+          <p class="tile-meta">with Passion Studio</p>
+          <p class="tile-desc" style="font-size:0.82rem;color:rgba(255,255,255,0.5);">Shell — image &amp; write-up to be provided by Esha</p>
+          <div style="display:flex;gap:10px;margin-top:10px;">
+            <button class="s-btn-book" onclick="location.href='litefeet-v-dancehall.html'" style="background:#00CFFF;color:var(--black);">View Event</button>
+          </div>
+        </div>
+      </div>
+      <!-- KRUMP V DANCEHALL (July) — SHELL -->
+      <div class="tile tile-clash" id="clash-krump" style="position:relative;overflow:hidden;min-height:380px;border:1px solid rgba(0,207,255,0.25);border-radius:16px;" data-start="2026-07-01T19:00:00+10:00">
+        <div style="position:absolute;inset:0;width:100%;height:100%;z-index:0;background:linear-gradient(135deg,rgba(0,207,255,0.08) 0%,rgba(17,17,17,0.95) 40%,rgba(0,150,255,0.06) 100%);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.1em;color:rgba(255,255,255,0.05);">KRUMP V DANCEHALL</div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.15) 0%,rgba(10,10,10,0.8) 100%);z-index:1;pointer-events:none;"></div>
+        <div style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;height:100%;padding:24px;">
+          <span class="tile-badge" style="position:absolute;top:14px;right:14px;background:rgba(0,207,255,0.15);color:#00CFFF;border:1px solid rgba(0,207,255,0.4);">July 2026</span>
+          <h3 class="tile-title" style="font-size:1.6rem;">KRUMP V DANCEHALL</h3>
+          <p class="tile-meta">with Passion Studio</p>
+          <p class="tile-desc" style="font-size:0.82rem;color:rgba(255,255,255,0.5);">Shell — image &amp; write-up to be provided by Esha</p>
+          <div style="display:flex;gap:10px;margin-top:10px;">
+            <button class="s-btn-book" onclick="location.href='krump-v-dancehall.html'" style="background:#00CFFF;color:var(--black);">View Event</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1823,6 +1831,16 @@
   </div>
 </section>
 
+<!-- ACKNOWLEDGMENT OF COUNTRY -->
+<section style="padding:48px 40px;text-align:center;border-top:1px solid var(--border);background:var(--black);">
+  <div style="max-width:680px;margin:0 auto;">
+    <div style="width:48px;height:48px;margin:0 auto 20px;background:linear-gradient(180deg,#000000 33%,#CC0000 33% 66%,#F9A825 66%);border-radius:50%;"></div>
+    <p style="font-size:0.88rem;line-height:1.75;color:rgba(255,255,255,0.4);font-style:italic;">
+      Acknowledgment of Country — content to be provided by Esha.
+    </p>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -1855,7 +1873,7 @@
     </div>
   </div>
   <div style="max-width:1100px;margin:20px auto 0;padding-top:16px;border-top:1px solid var(--border);text-align:center;">
-    <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Site made and managed by BBK Productions</p>
+    <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
   </div>
 </footer>
 

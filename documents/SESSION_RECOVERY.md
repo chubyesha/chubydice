@@ -104,6 +104,50 @@ This session implemented the client's Release 2A product requirements and subseq
 
 ---
 
+## Mobile UX Optimization (2026-04-03)
+
+### V1 (fix/mobile-optimization branch, commit e5523d3)
+- All 16 pages: Enhanced mobile CSS with WCAG 2.5.5 tap targets (min 44px)
+- Breakpoints added: 480px (small phones), 360px (smallest devices)
+- Common: nav sizing, menu overlay width, footer stacking, social icons
+- Page-specific: index (hero, tiles, carousel, artist), series (pricing 1-col), coaching (accordion, banner), about (mosaic, bio), sub-pages (pricing cards, hero)
+
+### V2 (fix/mobile-optimization branch, commit 0c28c8d)
+- shared-theme.css: Global mobile responsive rules (768px, 480px, 360px)
+- All 16 pages: Page-specific mobile CSS blocks
+- index.html: Animated orb sizes reduced at 640px to prevent overflow
+
+---
+
+## Release 2B — chubydice_version_2b (2026-04-03)
+
+**Path:** `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_2b`
+**Branch:** `feat/release-2b` (commit `bf42aa2`)
+**PRD:** `screenshots/Info Architecture - RELEASE 2 B.docx`
+
+### Architecture
+- 5 external CSS: shared-theme.css (tokens), components.css (nav/footer/buttons/cards), carousel.css, hero.css, utilities.css (animations/breakpoints)
+- 3 external JS: nav.js (menu/submenu), carousel.js (drag-swipe/dots/countdown), reveal.js (IntersectionObserver)
+- CSS custom properties for design tokens (purple/gold theme from V2)
+- Responsive breakpoints: 1024px, 768px, 480px, 360px + prefers-reduced-motion
+
+### Pages (15 total)
+- **index.html** — Hero, series carousel (4 new), clash section (2 events), coaching CTA, academy tile, artist, playlist, connect, acknowledgment of country, footer
+- **series.html** — All series cards carousel + 5-tier pricing grid
+- **street-vybz.html, spain-town-badness.html, hot-steppaz.html, born-agen.html** — Shell detail pages with placeholder image/text/Stripe
+- **clash.html** — 2-column grid (Litefeet May, Krump July)
+- **litefeet-v-dancehall.html, krump-v-dancehall.html** — Shell detail pages with Stripe placeholders
+- **coaching.html** — 3 coaching cards ($120/$440/$800) with Stripe placeholders
+- **academy.html, about.html, in-ya-city.html, contact.html, past-series.html** — Carry-forward pages
+
+### Placeholder Strategy
+- `Shell` = `.placeholder-image` (gradient bg with series name)
+- `Image` = placeholder awaiting client assets
+- `Write-up` = `.placeholder-text` (dashed border, italic)
+- `Stripe links` = `.btn-stripe-placeholder` (disabled with "Coming Soon" badge)
+
+---
+
 ## Known Pre-existing Issues (Not In Scope)
 1. Broken OG image meta tags (`chuby-profile-CkJq2sVN.jpg` doesn't exist)
 2. CORS wildcard on Netlify chat function
