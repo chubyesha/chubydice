@@ -6,16 +6,7 @@
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Chuby Dice"/>
 <meta property="og:title" content="Krump v Dancehall | Clash Inna Dancehall"/>
-<meta property="og:description" content="July 2026 · with Passion Studio — Shell page awaiting content from Esha."/>
-<meta property="og:url" content="https://graceful-cascaron-d11800.netlify.app/praise-flow.html"/>
-<meta property="og:image" content="https://graceful-cascaron-d11800.netlify.app/chuby-profile-CkJq2sVN.jpg"/>
-<meta property="og:image:width" content="898"/>
-<meta property="og:image:height" content="1600"/>
-<meta property="og:image:alt" content="Chuby Dice — Dancehall Artist"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Krump v Dancehall | Clash Inna Dancehall"/>
-<meta name="twitter:description" content="July 2026 · with Passion Studio — Shell page awaiting content from Esha."/>
-<meta name="twitter:image" content="https://graceful-cascaron-d11800.netlify.app/chuby-profile-CkJq2sVN.jpg"/>
+<meta property="og:description" content="Krump v Dancehall — Clash Inna Dancehall with Passion Studio, July 2026."/>
 <title>Krump v Dancehall | Clash Inna Dancehall</title>
 <link rel="icon" type="image/x-icon" href="images/09c9ec4a0ce4.ico"/>
 <link rel="icon" type="image/png" sizes="32x32" href="images/8cbe784dd268.png"/>
@@ -25,6 +16,7 @@
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"/></noscript>
 <style>
+
   :root {
     --yellow: #F5C518;
     --white: #FFFFFF;
@@ -69,7 +61,7 @@
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 0 80px 80px;
     position: relative; overflow: hidden;
-    background: radial-gradient(ellipse 80% 70% at 70% 40%, #3d3010 0%, #1a1508 40%, #0A0A0A 75%);
+    background: radial-gradient(ellipse 80% 70% at 70% 40%, #0a1a2a 0%, #050d15 40%, #0A0A0A 75%);
   }
   .hero-overlay {
     position: absolute; inset: 0;
@@ -116,7 +108,7 @@
 
   /* ─── BODY SECTION ─── */
   .body-section {
-    background: linear-gradient(180deg, #0A0A0A 0%, #1a1508 30%, #2a2010 55%, #141008 75%, #0A0A0A 100%);
+    background: linear-gradient(180deg, #0A0A0A 0%, #050d15 30%, #0a1520 55%, #040a0e 75%, #0A0A0A 100%);
     padding: 80px 80px 100px;
     display: grid;
     grid-template-columns: 1fr 380px;
@@ -156,6 +148,23 @@
     flex-shrink: 0;
   }
 
+  /* ─── PRICING SELECTOR ─── */
+  .pricing-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .price-option { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; cursor: pointer; transition: border-color 0.2s, background 0.2s; background: transparent; position: relative; }
+  .price-option:hover { border-color: rgba(245,197,24,0.25); background: rgba(245,197,24,0.03); }
+  .price-option.selected { border-color: var(--yellow); background: rgba(245,197,24,0.06); }
+  .price-option-left { display: flex; align-items: center; gap: 12px; }
+  .price-radio { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color 0.2s; }
+  .price-option.selected .price-radio { border-color: var(--yellow); }
+  .price-radio-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); opacity: 0; transform: scale(0); transition: opacity 0.2s, transform 0.2s; }
+  .price-option.selected .price-radio-dot { opacity: 1; transform: scale(1); }
+  .price-option-label { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.6); }
+  .price-option.selected .price-option-label { color: var(--white); }
+  .price-option-amount { font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; font-weight: 800; color: var(--yellow); }
+  .price-option-save { position: absolute; top: -8px; right: 12px; background: var(--yellow); color: var(--black); font-size: 0.55rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; }
+  .btn-book-now { display: block; width: 100%; background: var(--yellow); color: var(--black); border: none; border-radius: 8px; font-family: 'Bebas Neue', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 16px; cursor: pointer; text-align: center; margin-bottom: 12px; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-book-now:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,197,24,0.35); }
+
   /* Right booking card */
   .booking-card {
     background: #111;
@@ -184,99 +193,6 @@
     padding: 16px; cursor: default; text-align: center;
     margin-bottom: 12px;
   }
-
-  /* ─── PRICING SELECTOR ─── */
-  .pricing-options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-  .price-option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-    background: transparent;
-    position: relative;
-  }
-  .price-option:hover {
-    border-color: rgba(245,197,24,0.25);
-    background: rgba(245,197,24,0.03);
-  }
-  .price-option.selected {
-    border-color: var(--yellow);
-    background: rgba(245,197,24,0.06);
-  }
-  .price-option-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .price-radio {
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.2);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: border-color 0.2s;
-  }
-  .price-option.selected .price-radio {
-    border-color: var(--yellow);
-  }
-  .price-radio-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--yellow);
-    opacity: 0;
-    transform: scale(0);
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .price-option.selected .price-radio-dot {
-    opacity: 1;
-    transform: scale(1);
-  }
-  .price-option-label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.6);
-  }
-  .price-option.selected .price-option-label {
-    color: var(--white);
-  }
-  .price-option-amount {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 800;
-    color: var(--yellow);
-  }
-  .price-option-save {
-    position: absolute;
-    top: -8px; right: 12px;
-    background: var(--yellow);
-    color: var(--black);
-    font-size: 0.55rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 4px;
-  }
-  .btn-book-now {
-    display: block; width: 100%;
-    background: var(--yellow); color: var(--black);
-    border: none; border-radius: 8px;
-    font-family: 'Bebas Neue', sans-serif; font-weight: 900;
-    font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 16px; cursor: pointer; text-align: center;
-    margin-bottom: 12px;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .btn-book-now:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,197,24,0.35); }
   .btn-book-series {
     display: block; width: 100%;
     background: transparent; color: var(--yellow);
@@ -424,39 +340,8 @@
   }
   .menu-group-items a:hover { color: var(--yellow) !important; }
 
-  /* ─── SHELL PLACEHOLDERS ─── */
-  .shell-hero { min-height: 50vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 60px; position: relative; overflow: hidden; }
-  .shell-hero-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--yellow); margin-bottom: 12px; }
-  .shell-hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 10vw, 7rem); line-height: 0.9; letter-spacing: 0.02em; }
-  .shell-hero-desc { font-size: 1rem; color: rgba(255,255,255,0.45); margin-top: 16px; max-width: 560px; line-height: 1.65; }
-  .shell-content { max-width: 800px; margin: 0 auto; padding: 0 40px 80px; }
-  .shell-back { display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 32px; transition: color 0.2s; }
-  .shell-back:hover { color: var(--yellow); }
-  .shell-image { aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; margin-bottom: 32px; border: 1px solid var(--border); }
-  .shell-placeholder-img { width: 100%; height: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.08); }
-  .shell-placeholder-text { padding: 24px; border: 1px dashed rgba(255,255,255,0.08); border-radius: 12px; background: rgba(255,255,255,0.02); color: rgba(255,255,255,0.35); font-style: italic; font-size: 0.9rem; line-height: 1.7; text-align: center; margin-bottom: 48px; }
-  .shell-booking { text-align: center; }
-  .shell-booking h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; margin-bottom: 24px; letter-spacing: 0.04em; }
-  .shell-booking-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn-shell-stripe { background: var(--yellow); color: var(--black); border: none; font-family: 'Bebas Neue', sans-serif; font-weight: 800; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 32px; border-radius: 50px; opacity: 0.45; cursor: not-allowed; position: relative; }
-  .btn-shell-stripe::after { content: 'COMING SOON'; position: absolute; top: -10px; right: -8px; font-size: 0.5rem; letter-spacing: 0.1em; background: #FF4444; color: white; padding: 2px 8px; border-radius: 50px; font-weight: 800; }
-  .shell-note { margin-top: 16px; font-size: 0.78rem; color: rgba(255,255,255,0.25); }
-  /* Acknowledgment */
-  .acknowledgment { padding: 60px 24px; text-align: center; border-top: 1px solid var(--border); }
-  .acknowledgment-inner { max-width: 720px; margin: 0 auto; }
-  .acknowledgment-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 16px; }
-  .acknowledgment-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem); letter-spacing: 0.04em; margin-bottom: 20px; }
-  .acknowledgment-line { width: 40px; height: 2px; background: var(--yellow); margin: 0 auto 24px; border-radius: 2px; }
-  .acknowledgment-text { color: rgba(255,255,255,0.6); font-size: 0.92rem; line-height: 1.9; margin-bottom: 16px; }
-  .acknowledgment-note { color: rgba(255,255,255,0.3); font-size: 0.82rem; line-height: 1.7; font-style: italic; }
-  /* Home button */
-  .btn-home { display: inline-flex; align-items: center; gap: 8px; font-family: 'Bebas Neue', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; padding: 10px 20px; border: 1px solid var(--border); border-radius: 50px; transition: color 0.2s, border-color 0.2s; margin-top: 12px; }
-  .btn-home:hover { color: var(--yellow); border-color: rgba(245,197,24,0.3); }
-  @media (max-width: 768px) { .shell-hero { padding: 120px 16px 48px; min-height: 40vh; } .shell-content { padding: 0 16px 60px; } .acknowledgment { padding: 40px 16px; } }
-  @media (max-width: 480px) { .shell-hero-title { font-size: clamp(2.5rem, 12vw, 5rem); } .shell-placeholder-img { min-height: 200px; } .shell-booking-cards { flex-direction: column; align-items: center; } .btn-shell-stripe { width: 100%; max-width: 280px; } }
 
 </style>
-
 </head>
 <body>
 
@@ -479,8 +364,8 @@
 
 <div class="menu-overlay" id="menuOverlay">
   <a href="index.html">Home</a>
-  <a href="series.html" class="active">Chuby Dice Series</a>
-  <a href="clash.html">Clash Inna Dancehall</a>
+  <a href="series.html" >Chuby Dice Series</a>
+  <a href="clash.html" class="active">Clash Inna Dancehall</a>
   <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
   <a href="academy.html">Dancehall Academy</a>
   <a href="about.html">About Chuby Dice</a>
@@ -501,45 +386,148 @@
   <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
 </div>
 
-<!-- SHELL HERO -->
-<section class="shell-hero">
-  <p class="shell-hero-label">Clash Inna Dancehall</p>
-  <h1 class="shell-hero-title">KRUMP V DANCEHALL</h1>
-  <p class="shell-hero-desc">July 2026 · with Passion Studio — Shell page awaiting content from Esha.</p>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div style="position:absolute;inset:0;width:100%;height:100%;z-index:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,12vw,8rem);letter-spacing:0.1em;color:rgba(255,255,255,0.03);">KRUMP V DANCEHALL</div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">KRUMP V DANCEHALL</h1>
+    <p class="hero-desc">Shell — image &amp; description to be provided by Esha</p>
+  </div>
 </section>
 
-<!-- SHELL CONTENT -->
-<main class="shell-content">
-  <a href="clash.html" class="shell-back">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    Back to Clash Events
-  </a>
+<!-- ─── INFO STRIP ─── -->
+<div class="info-strip">
+  <div class="info-pill">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    July 2026
+  </div>
+  <div class="info-pill">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Schedule TBC
+  </div>
+  <div class="info-pill coming-soon" style="color: #00CFFF; border-color: rgba(0,207,255,0.2); background: rgba(0,207,255,0.05);">
+    From $30
+  </div>
+</div>
 
-  <div class="shell-image">
-    <div class="shell-placeholder-img" style="background:linear-gradient(135deg,rgba(0,207,255,0.08) 0%,rgba(17,17,17,0.95) 40%,rgba(0,150,255,0.06) 100%);">KRUMP V DANCEHALL — Event Image</div>
+<!-- ─── BODY ─── -->
+<section class="body-section">
+
+  <div class="content-left">
+    <h2 class="section-heading">ABOUT <span>KRUMP V DANCEHALL</span></h2>
+
+    <p class="body-text" style="color:rgba(255,255,255,0.35);font-style:italic;">Write-up to be provided by Esha.</p>
+
+    <p class="body-text" style="color:rgba(255,255,255,0.35);font-style:italic;">This section will contain the series description, class format, what you'll learn, and what to expect.</p>
+
+    <p class="body-text" style="margin-bottom:4px;color:rgba(255,255,255,0.35);">In this Series, you'll cover:</p>
+    <ul class="learn-list">
+      <li style="color:rgba(255,255,255,0.35);font-style:italic;">Content to be provided</li>
+      <li style="color:rgba(255,255,255,0.35);font-style:italic;">Content to be provided</li>
+      <li style="color:rgba(255,255,255,0.35);font-style:italic;">Content to be provided</li>
+    </ul>
   </div>
 
-  <div class="shell-placeholder-text">
-    Write-up to be provided by Esha.<br/>This section will contain the event description, battle format, judges, venue details, and registration info.
-  </div>
+  <!-- Booking card -->
+  <div class="booking-card">
+    <div class="booking-card-title">READY TO <span>TRAIN?</span></div>
+    <p>Choose your pass for Krump v Dancehall — July 2026.</p>
 
-  <div class="shell-booking">
-    <h3>Book Your Spot</h3>
-    <div class="shell-booking-cards">
-      <button class="btn-shell-stripe">Register as Dancer</button>
-      <button class="btn-shell-stripe">Book Spectator Ticket</button>
+    <div class="pricing-options" id="pricingOptions">
+      <div class="price-option selected" data-price="30" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">Single Class</span>
+        </div>
+        <span class="price-option-amount">$30</span>
+      </div>
+      <div class="price-option" data-price="100" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">4 Classes</span>
+        </div>
+        <span class="price-option-amount">$100</span>
+      </div>
+      <div class="price-option" data-price="125" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">5 Classes</span>
+        </div>
+        <span class="price-option-amount">$125</span>
+      </div>
+      <div class="price-option" data-price="230" onclick="selectPrice(this)">
+        <span class="price-option-save">Save 23%</span>
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">10 Classes</span>
+        </div>
+        <span class="price-option-amount">$230</span>
+      </div>
+      <div class="price-option" data-price="450" onclick="selectPrice(this)">
+        <span class="price-option-save">Save 33%</span>
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">20 Classes</span>
+        </div>
+        <span class="price-option-amount">$450</span>
+      </div>
     </div>
-    <p class="shell-note">Stripe payment links will be connected once pricing is confirmed.</p>
+
+    <button class="btn-coming-soon">Stripe Links Coming Soon</button>
+    <button class="btn-book-series" onclick="location.href='clash.html'">Back to Clash Inna Dancehall</button>
+    <p class="price-note">From <strong>$30</strong> per session</p>
   </div>
 
-  <div style="text-align:center;margin-top:32px;">
-    <a href="series.html" class="btn-home">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Book Now
-    </a>
-    <a href="index.html" class="btn-home" style="margin-left:8px;">Home</a>
+</section>
+
+<!-- ─── LOCATION ─── -->
+<a href="https://maps.app.goo.gl/KFathEk6HmMajmHH7" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
+<div class="location-section" style="cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+  <div class="location-label">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Studio Location
   </div>
-</main>
+  <div class="location-name">HD Entertainment</div>
+  <p class="location-address">Level 2 &amp; 3, 34 King Street<br/>Enter Via, Mount St, Prahran VIC 3181, Australia</p>
+</div>
+</a>
+
+<script>
+  function toggleSubMenu(btn) {
+    var group = btn.parentElement;
+    group.classList.toggle('open');
+  }
+
+  function toggleMenu() {
+    const overlay = document.getElementById('menuOverlay');
+    const btn = document.getElementById('menuBtn');
+    const btnM = document.getElementById('menuBtnMobile');
+    overlay.classList.toggle('open');
+    btn.classList.toggle('open');
+    btnM.classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const overlay = document.getElementById('menuOverlay');
+    const btn = document.getElementById('menuBtn');
+    const btnM = document.getElementById('menuBtnMobile');
+    if (overlay && overlay.classList.contains('open') &&
+        !overlay.contains(e.target) && !btn.contains(e.target) && (!btnM || !btnM.contains(e.target))) {
+      overlay.classList.remove('open');
+      btn.classList.remove('open');
+      if (btnM) btnM.classList.remove('open');
+    }
+  });
+</script>
+<script>
+function selectPrice(el) {
+  document.querySelectorAll('.price-option').forEach(function(opt) {
+    opt.classList.remove('selected');
+  });
+  el.classList.add('selected');
+}
+</script>
 
 <!-- ACKNOWLEDGMENT OF COUNTRY -->
 <section style="padding:60px 24px;text-align:center;border-top:1px solid var(--border);">
@@ -552,69 +540,8 @@
   </div>
 </section>
 
-
-
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo">CHUBY <span>DICE</span></div>
-      <p class="footer-tagline">"Dancehall belongs to everybody — but it must stay connected to where it comes from."</p>
-      <p class="footer-address"><strong>HD Entertainment</strong> · Enter Via, Mount St, Prahran VIC 3181, Australia</p>
-      <div class="footer-socials">
-        <a href="https://www.instagram.com/chuby_dice" target="_blank" class="social-icon" style="text-decoration:none;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.272 2.69.072 7.052.014 8.333 0 8.741 0 12s.014 3.668.072 4.948c.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24s3.668-.014 4.948-.072c4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-links">
-      <h4>Quick Links</h4>
-      <a href="series.html">Classes</a>
-      <a href="coaching.html">Coaching</a>
-      <a href="about.html">About Chuby</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Chuby Dice Dance Academy. All rights reserved.</p>
-    <div class="footer-bottom-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-    </div>
-  </div>
-  <div style="max-width:1100px;margin:20px auto 0;padding-top:16px;border-top:1px solid var(--border);text-align:center;">
-    <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
-  </div>
+<footer style="background:#111111;border-top:1px solid #2A2A2A;padding:20px;text-align:center;">
+  <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
 </footer>
-
-<script>
-  function toggleSubMenu(btn) {
-    var group = btn.parentElement;
-    group.classList.toggle('open');
-  }
-
-  function toggleMenu() {
-    const overlay = document.getElementById('menuOverlay');
-    const btn = document.getElementById('menuBtn');
-    const btnMobile = document.getElementById('menuBtnMobile');
-    overlay.classList.toggle('open');
-    btn.classList.toggle('open');
-    btnMobile.classList.toggle('open');
-  }
-
-  document.addEventListener('click', function(e) {
-    const overlay = document.getElementById('menuOverlay');
-    const btn = document.getElementById('menuBtn');
-    const btnMobile = document.getElementById('menuBtnMobile');
-    if (overlay && overlay.classList.contains('open') &&
-        !overlay.contains(e.target) &&
-        !btn.contains(e.target) &&
-        (!btnMobile || !btnMobile.contains(e.target))) {
-      overlay.classList.remove('open');
-      btn.classList.remove('open');
-      if (btnMobile) btnMobile.classList.remove('open');
-    }
-  });
-</script>
 </body>
 </html>
