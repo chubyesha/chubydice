@@ -836,6 +836,26 @@
     margin-bottom: 36px;
   }
 
+  /* ─── SECTION SEPARATOR (animated glow line) ─── */
+  .section-sep {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,197,24,0.4), rgba(255,255,255,0.15), rgba(245,197,24,0.4), transparent);
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-sep::after {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(245,197,24,0.7), rgba(255,255,255,0.6), rgba(245,197,24,0.7), transparent);
+    animation: separatorSweep 4s ease-in-out infinite;
+  }
+  @keyframes separatorSweep {
+    0% { left: -60%; }
+    100% { left: 140%; }
+  }
+
   /* ─── VIBES ─── */
   #vibes {
     background: transparent;
@@ -1993,6 +2013,8 @@
     </div>
   </div>
 </section>
+
+<div class="section-sep"></div>
 
 <!-- PROFESSIONAL 1:1 COACHING -->
 <section id="coaching-section" style="padding:60px 80px;">
