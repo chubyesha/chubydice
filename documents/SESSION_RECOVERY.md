@@ -1,51 +1,41 @@
-# Session Recovery: Series Write-ups Content
+# Session Recovery: Series Card Hover Highlight
 
 **Session Date:** 2026-04-08
-**Current Branch:** feat/series-writeups-content
-**Previous Branch:** feat/release-2b-images-content (commit 71197f5)
-**Task:** Complete series write-ups with accurate document content from "Info Architecture - RELEASE 2B IMAGES.docx"
+**Current Branch:** feat/series-card-hover-highlight
+**Previous Branches:**
+- feat/release-2b-images-content (commit 71197f5) — images + clash deployment
+- feat/series-writeups-content (commit 0b7292e) — accurate write-up content
+- fix/series-card-text-readability (commit dd948c1) — dark gradient for text
+**Task:** Add V2-style hover highlight effect to homepage series cards
 
 ## Work Completed
 
-### Cross-Reference Audit
-Meticulously compared each page's current content against the exact text in the document. Found gaps:
+### V2 Hover Effect Adapted for V1
+Referenced V2 source at `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_2/index.html` lines 561-611 and `shared-theme.css` lines 293-341.
 
-### Fixes Applied
+**V2 uses:**
+- `.tile:hover`: translateY(-6px) scale(1.01), border glow, purple glow box-shadow
+- `.tile::before`: Purple gradient overlay fades in on hover
+- `.tile:hover img.tile-bg`: scale(1.03), opacity 0.75→0.85
+- Spring cubic-bezier(0.34,1.56,0.64,1) transitions
 
-**1. Street Vybz (street-vybz.html)**
-- Hero by-line: Added missing end phrase ", ensuring we know who originates these powerful cultural capsules."
-- Body content: Already complete and accurate from previous commit
+**V1 adaptation (yellow color scheme):**
+1. `.s-card` transition: Updated to `cubic-bezier(0.34,1.56,0.64,1)` spring feel
+2. `.s-card::before`: Golden gradient overlay (135deg, rgba(245,197,24,0.06)) fades in on hover, z-index:1
+3. `.s-card:hover`: translateY(-6px) scale(1.01), golden glow `0 0 36px rgba(245,197,24,0.18)`, stronger yellow border
+4. `.s-card-bg`: Added transition for transform (0.6s) and filter (0.4s)
+5. `.s-card:hover .s-card-bg`: brightness(1.15), scale(1.04) — image highlights on hover
+6. `.s-card-overlay`: Added transition opacity 0.4s
+7. `.s-card:hover .s-card-overlay`: opacity 0.85 — overlay lightens to reveal more image
 
-**2. Survival Story (survival-story.html)**
-- Hero by-line: Added missing second sentence "Dancehall's famous battle moves transform violence from the streets into dance, with Dancehall itself a witness to the realities of life in the garrison."
-- Body restructured with sub-headings from document:
-  - Added `<p class="body-quote">` for "Spanish Town era" (Roze Don, 2020) quote
-  - Added `<h3 class="body-sub-heading">` for "SPANISH TOWN & OTHER HARDCORE CREWS"
-  - Added `<hr class="body-separator">` as section divider
-  - Added `<h3 class="body-sub-heading">` for "DANCEHALL AS WITNESS AND WEALD"
-  - Added missing paragraph: "There is a tangible reality that underpins hardcore Dancehall..."
-  - Added "and New/Fresh/Future Skool eras." bracket text
-  - Split merged paragraph into two separate paragraphs as per document structure
-- CSS added: .body-sub-heading, .body-quote, .body-separator classes
-- Info strip: Updated "Schedule TBC" → "Every Tuesday · 7–8PM" (from flyer image)
-
-**3. Hot Steppaz (hot-steppaz.html)**
-- Verified complete and accurate — no changes needed
-
-**4. Born Agen (born-agen.html)**
-- Verified complete and accurate — no changes needed
-
-**5. Card Descriptions (index.html + series.html)**
-- Street Vybz card: Updated to include full by-line with "ensuring we know who originates these powerful cultural capsules"
-- Survival Story card: Added "like his own" personal context from document
+### Code Review Fix
+- `::before` z-index changed from 3 to 1 (was rendering above text content at z-index:2)
 
 ## Commit
-`0b7292e` on branch `feat/series-writeups-content`
+`22e1c7f` on branch `feat/series-card-hover-highlight`
 
-## Document Status per Client
-- Street Vybz (July): CLEARED by client
-- Survival Story (August): Text provided, awaiting Chuby's proof
-- Hot Steppaz (September): CLEARED by client
-- Born Agen (October): CLEARED by client
-- Clash Litefeet v Dancehall (May): Write-up NOT READY YET
-- Clash Krump v Dancehall (July/Aug): Write-up NOT READY YET
+## All Session Branches (2026-04-08)
+1. `feat/release-2b-images-content` — 8 images optimized, August renamed, clash images deployed
+2. `feat/series-writeups-content` — Accurate write-ups from document
+3. `fix/series-card-text-readability` — V2-style dark gradient on card bottom
+4. `feat/series-card-hover-highlight` — V2-style hover highlight effect
