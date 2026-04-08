@@ -753,38 +753,63 @@
   }
 
   .academy-tile {
-    max-width: 100%;
+    max-width: 900px; margin: 0 auto;
     background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
+    border: 1px solid rgba(245,197,24,0.15);
+    border-radius: 24px;
     overflow: hidden;
     position: relative;
-    padding: 56px 60px;
+    padding: 72px 60px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
+    transition: transform 0.45s cubic-bezier(0.34,1,0.64,1), border-color 0.3s, box-shadow 0.4s;
   }
+  .academy-tile:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(245,197,24,0.4);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 60px rgba(245,197,24,0.25), 0 0 120px rgba(245,197,24,0.1);
+  }
+  .academy-tile img { transition: transform 0.6s cubic-bezier(0.34,1,0.64,1), opacity 0.4s; }
+  .academy-tile:hover img { transform: scale(1.05); opacity: 0.45; }
 
   .academy-tile::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(245,197,24,0.07), transparent 70%);
-    pointer-events: none;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,197,24,0.5), rgba(245,197,24,0.8), rgba(245,197,24,0.5), transparent);
+    z-index: 3;
+  }
+  .academy-tile::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,197,24,0.08), transparent 60%);
+    pointer-events: none; z-index: 2;
   }
 
   .coming-soon-tag {
+    display: inline-flex; align-items: center; gap: 8px;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 0.98rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--yellow);
     border: 1px solid rgba(245,197,24,0.3);
-    padding: 5px 14px;
+    background: rgba(245,197,24,0.05);
+    padding: 7px 16px;
     border-radius: 50px;
-    margin-bottom: 24px;
-    display: inline-block;
+    margin-bottom: 28px;
+  }
+  .coming-soon-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--yellow);
+    animation: pulseDot 2s ease-in-out infinite;
+  }
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
   }
 
   .academy-title {
@@ -1960,8 +1985,8 @@
   <div class="academy-tile" style="position:relative;overflow:hidden;">
     <img src="images/academy-tile-bg.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.3;" loading="lazy">
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
-    <span class="coming-soon-tag" style="position:relative;z-index:2;">Coming Soon</span>
-    <div style="position:relative;z-index:2;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;">
+    <span class="coming-soon-tag" style="position:relative;z-index:4;"><span class="coming-soon-dot"></span>Launching 2026</span>
+    <div style="position:relative;z-index:4;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;">
       <h2 class="academy-title"><span>DANCEHALL ACADEMY</span></h2>
       <p class="academy-launch">Chuby Dice Dancehall Academy — Out of many, one</p>
       <button class="btn-primary" onclick="location.href='academy.html'">Learn More</button>
