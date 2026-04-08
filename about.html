@@ -153,7 +153,6 @@
   /* ─── STATS STRIP ─── */
   .stats-strip {
     background: var(--dark);
-    border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 40px 24px;
     display: flex; justify-content: center;
@@ -183,8 +182,7 @@
   .brings-section {
     padding: 100px 24px;
     background: var(--black);
-    border-top: 1px solid var(--border);
-  }
+    }
   .brings-inner {
     max-width: 1100px; margin: 0 auto;
   }
@@ -236,7 +234,7 @@
   }
 
   /* ─── FOOTER ─── */
-  footer { background: transparent; border-top: 1px solid var(--border); padding: 60px 36px 36px; }
+  footer { background: transparent; padding: 60px 36px 36px; }
   .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; max-width: 1100px; margin: 0 auto 48px; }
   .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.05em; }
   .footer-logo span { color: var(--yellow); }
@@ -536,6 +534,27 @@
     .orb { animation: none !important; }
   }
 
+
+  /* ─── SECTION SEPARATOR (animated glow line) ─── */
+  .section-sep {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245,197,24,0.4), rgba(255,255,255,0.15), rgba(245,197,24,0.4), transparent);
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-sep::after {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(245,197,24,0.7), rgba(255,255,255,0.6), rgba(245,197,24,0.7), transparent);
+    animation: separatorSweep 4s ease-in-out infinite;
+  }
+  @keyframes separatorSweep {
+    0% { left: -60%; }
+    100% { left: 140%; }
+  }
+
 </style>
 </head>
 <body>
@@ -702,7 +721,8 @@
 </section>
 
 <!-- ACKNOWLEDGMENT OF COUNTRY -->
-<section style="padding:60px 24px;text-align:center;border-top:1px solid var(--border);">
+<div class="section-sep"></div>
+<section style="padding:60px 24px;text-align:center;">
   <div style="max-width:720px;margin:0 auto;">
     <p style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;">Acknowledgment</p>
     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.2rem,2.5vw,1.6rem);letter-spacing:0.04em;margin-bottom:20px;">ACKNOWLEDGMENT OF COUNTRY</h2>
@@ -713,6 +733,7 @@
 </section>
 
 <!-- ─── FOOTER ─── -->
+<div class="section-sep"></div>
 <footer>
   <div class="footer-top">
     <div>
