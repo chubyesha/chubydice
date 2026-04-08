@@ -1,300 +1,148 @@
-# Resume Instructions: Stripe Payment Security Fixes
+# Resume Instructions: Chuby Dice V1
 
-**Previous Session:** 2026-04-06 (Security Review)
-**Current Task:** Implement security fixes for Stripe payment links
-**Files to Modify:** 6 shell pages (street-vybz.html, born-agen.html, dancehall-royalty.html, hot-steppaz.html, motherland.html, praise-flow.html)
+**Last Updated:** 2026-04-08
+**Previous Session:** Release 2B images, write-ups, and UI/UX refactors
+**Project:** `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_1`
+
+---
 
 ## Quick Context
 
-A security review was completed on the Stripe Payment Link implementation. Five critical and medium security issues were identified that must be fixed before processing real money.
+Chuby Dice V1 is a **static HTML site (22 pages)** with no build system. All CSS/JS is inline per page. The site uses **Bebas Neue** as the unified font. Design tokens: `--yellow (#F5C518)`, `--black (#0A0A0A)`, `--pink (#E040FB)`.
 
-**DO NOT skip reading:** `documents/SECURITY_REVIEW_STRIPE_PAYMENT.md` for full vulnerability details.
+**V2 exists at:** `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_2/` — used as design reference only. **DO NOT modify V2.**
 
-## TL;DR - What Needs Fixing
+---
 
-### 1. HIGH Priority - Replace indexOf() with URL API (ALL 6 files)
+## Start of Session Checklist
 
-**Current (WEAK):**
-```javascript
-function bookNow() {
-  if (!selectedStripeLink || selectedStripeLink.indexOf('https://buy.stripe.com/') !== 0) return;
-  window.open(selectedStripeLink, '_blank');
+1. Read `documents/SESSION_RECOVERY.md` for full state of completed work
+2. Read `README.md` for project structure and feature overview
+3. Check `git log --oneline -10` to see recent commits
+4. Check `git branch -a` to see all branches
+5. **NEVER checkout main/master** — always create feature branches from current HEAD
+
+---
+
+## Current State (as of 2026-04-08)
+
+### What was done this session:
+
+1. **Release 2B images**: 8 PNG flyers optimized to JPEG, deployed to 6 pages
+2. **August series renamed**: "Spain Town Badness" → "Survival Story" (new page, old deleted)
+3. **Clash flyer images**: Deployed to clash.html, litefeet-v-dancehall.html, krump-v-dancehall.html, homepage tiles
+4. **Series write-ups**: Full client-provided content added to Street Vybz, Survival Story, Hot Steppaz, Born Agen
+5. **Homepage carousel**: Added 3 missing cards (Praise Flow, Motherland, Dancehall Royalty) — now 7 total
+6. **Card UI/UX**: Dark gradient overlay for text readability + V2-style hover highlight (brighten, glow, spring animation)
+7. **Glow-line separators**: Replaced ALL plain `border-top` borders with animated golden glow-line across all 22 pages
+8. **Academy tile**: V2-style glow border, hover effects, "Launching 2026" pulsing label
+9. **Academy shell cards**: 4 cards (Auditions, Scholarships, Curriculum, Vision 2030) in 2x2 grid
+10. **Coaching title**: Pink theme color (#E040FB) applied to "1:1 COACHING"
+11. **Clash hero**: Title split into 2 rows (gold/white), nav row flex layout (back-link left, date right)
+
+### What's pending:
+
+| Item | Status | Action |
+|------|--------|--------|
+| Clash write-ups | NOT READY | Wait for Esha to provide Litefeet and Krump text |
+| Clash Stripe links | NOT READY | Wait for client to provide Stripe links for clash events |
+| Academy card content | NOT READY | Wait for Esha: Auditions, Scholarships, Curriculum, Vision 2030 |
+| Acknowledgment of Country | Placeholder | Wait for Esha to provide final text and image |
+| Clash runsheet images | Ready | `clash-may-runsheet.jpg` and `clash-august-runsheet.jpg` optimized, deploy when page design finalized |
+| `spain-town-badness-flyer.jpg` | Cleanup | Old unused image in `images/`, safe to delete |
+
+---
+
+## Key Design Patterns
+
+### Animated Glow-Line Separator (`.section-sep`)
+```css
+.section-sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245,197,24,0.4), rgba(255,255,255,0.15), rgba(245,197,24,0.4), transparent);
+  position: relative; overflow: hidden;
+}
+.section-sep::after {
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(245,197,24,0.7), rgba(255,255,255,0.6), rgba(245,197,24,0.7), transparent);
+  animation: separatorSweep 4s ease-in-out infinite;
 }
 ```
+This CSS + `@keyframes separatorSweep` exists in ALL 22 pages. Insert `<div class="section-sep"></div>` between sections.
 
-**Replace with (SECURE):**
-```javascript
-function bookNow() {
-  if (!selectedStripeLink) return;
-  
-  try {
-    const url = new URL(selectedStripeLink);
-    
-    // Verify protocol is HTTPS
-    if (url.protocol !== 'https:') return;
-    
-    // Verify hostname is exactly buy.stripe.com
-    if (url.hostname !== 'buy.stripe.com') return;
-    
-    // Verify path starts with / (Stripe format)
-    if (!url.pathname.startsWith('/')) return;
-    
-    window.open(selectedStripeLink, '_blank', 'noopener,noreferrer');
-  } catch (error) {
-    console.error('Invalid payment link');
-    return;
-  }
-}
-```
+### Card Hover Effect (`.s-card` on homepage)
+- Image: `filter: brightness(1.15)` + `transform: scale(1.04)` on hover
+- Card: `translateY(-6px) scale(1.01)` + golden glow box-shadow
+- `::before`: golden gradient overlay fades in
+- Transition: `cubic-bezier(0.34,1.56,0.64,1)` spring
 
-### 2. HIGH Priority - Use Immutable Whitelist (ALL 6 files)
+### Series Card Overlay (`.s-card-overlay`)
+4-stop gradient: `rgba(10,10,10,0.05) 0%, 0.2 35%, 0.8 60%, 0.95 100%` — keeps top clear, bottom dark for text.
 
-**Current (VULNERABLE - DOM can be modified):**
-```javascript
-var selectedStripeLink = 'https://buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b';
+### Stripe Payment Security
+All series pages use immutable `STRIPE_LINKS` object with `new URL()` validation. See `documents/SECURITY_REVIEW_STRIPE_PAYMENT.md` and `documents/STRIPE_LINKS_SHELL_PAGES.md`.
 
-function selectPrice(el) {
-  var link = el.getAttribute('data-link');
-  if (link) selectedStripeLink = link;  // Any script can change this
-}
-```
+---
 
-**Replace with (SECURE):**
-```javascript
-// Immutable whitelist - cannot be modified
-const STRIPE_PAYMENT_LINKS = Object.freeze({
-  '30': 'https://buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b',
-  '100': 'https://buy.stripe.com/6oUbJ16033xgeRYfRB4F20c',
-  '125': 'https://buy.stripe.com/5kQ8wPbkn4Bk25cbBl4F20d',
-  '230': 'https://buy.stripe.com/eVqdR97473xg25ccFp4F20e',
-  '450': 'https://buy.stripe.com/9B6fZhagj0l4fW28p94F20f'
-});
+## File Reference
 
-let selectedPrice = '30';
+### 22 HTML Pages
+| Page | Purpose |
+|------|---------|
+| `index.html` | Homepage (hero, 7-card carousel, clash tiles, academy, coaching, artist, vibes, connect) |
+| `series.html` | Series listing with All/Current/Past tabs |
+| `praise-flow.html` | April 2026 series |
+| `motherland.html` | May 2026 series |
+| `dancehall-royalty.html` | June 2026 series |
+| `street-vybz.html` | July 2026 series (full write-up) |
+| `survival-story.html` | August 2026 series (full write-up, formerly Spain Town Badness) |
+| `hot-steppaz.html` | September 2026 series (full write-up) |
+| `born-agen.html` | October 2026 series (full write-up) |
+| `march-back-in-time.html` | March 2026 (past) |
+| `lovers-rock.html` | Past series |
+| `full-series.html` | Full collection (past) |
+| `past-series.html` | Past events archive |
+| `clash.html` | Clash Inna Dancehall overarching + 2 event cards |
+| `litefeet-v-dancehall.html` | Clash #1: Litefeet v Dancehall, Sat 23 May |
+| `krump-v-dancehall.html` | Clash #2: Krump v Dancehall, Sat 1 Aug |
+| `coaching.html` | Professional 1:1 Coaching |
+| `academy.html` | Dancehall Academy + 4 shell cards (2x2 grid) |
+| `about.html` | About Chuby Dice |
+| `contact.html` | Contact / Instagram |
+| `in-ya-city.html` | Chuby Dice in Ya City |
+| `in-ya-city-adelaide.html` | Adelaide event |
 
-function selectPrice(el) {
-  const price = el.getAttribute('data-price');
-  if (STRIPE_PAYMENT_LINKS[price]) {
-    selectedPrice = price;
-  }
-}
+### Key Image Assets
+| Image | Size | Used On |
+|-------|------|---------|
+| `street-vybz-flyer.jpg` | 269KB | street-vybz.html, index.html, series.html |
+| `survival-story-flyer.jpg` | 323KB | survival-story.html, index.html, series.html |
+| `hot-steppaz-flyer.jpg` | 210KB | hot-steppaz.html, index.html, series.html |
+| `born-agen-flyer.jpg` | 226KB | born-agen.html, index.html, series.html |
+| `clash-overarching-photo.jpg` | 241KB | clash.html hero |
+| `clash-may-photo.jpg` | 297KB | litefeet-v-dancehall.html, clash.html, index.html |
+| `clash-august-photo.jpg` | 307KB | krump-v-dancehall.html, clash.html, index.html |
+| `clash-may-runsheet.jpg` | 231KB | Not deployed yet |
+| `clash-august-runsheet.jpg` | 248KB | Not deployed yet |
 
-function bookNow() {
-  const link = STRIPE_PAYMENT_LINKS[selectedPrice];
-  if (link) {
-    try {
-      const url = new URL(link);
-      if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com') return;
-      window.open(link, '_blank', 'noopener,noreferrer');
-    } catch (error) {
-      console.error('Invalid payment link');
-    }
-  }
-}
-```
+### Reference Documents
+| Document | Purpose |
+|----------|---------|
+| `STRIPE_LINKS_SHELL_PAGES.md` | All Stripe payment links, page mapping, JS code |
+| `SECURITY_REVIEW_STRIPE_PAYMENT.md` | Security audit + fix instructions |
+| `HERO_VIDEO_POSITION_STYLING.md` | `--hero-video-y` CSS tuning (20% sweet spot) |
+| `VERTICAL_FLOATING_MENU_SOCIALS.md` | Floating sidebar specs |
+| `ANIMATED_GRADIENT_ORBS_BACKGROUND.md` | Orb CSS architecture, z-index stack |
 
-### 3. MEDIUM Priority - Add Rate Limiting (ALL 6 files)
+---
 
-**Add before bookNow() function:**
-```javascript
-let lastPaymentTime = 0;
-const PAYMENT_COOLDOWN = 2000; // 2 seconds
+## Critical Rules
 
-function bookNow() {
-  const now = Date.now();
-  
-  // Prevent rapid-fire clicks
-  if (now - lastPaymentTime < PAYMENT_COOLDOWN) {
-    console.warn('Please wait before trying again');
-    return;
-  }
-  
-  const link = STRIPE_PAYMENT_LINKS[selectedPrice];
-  if (!link) return;
-  
-  try {
-    const url = new URL(link);
-    if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com') return;
-    
-    lastPaymentTime = now;
-    window.open(link, '_blank', 'noopener,noreferrer');
-  } catch (error) {
-    console.error('Invalid payment link');
-  }
-}
-```
-
-### 4. MEDIUM Priority - Add User Confirmation (ALL 6 files)
-
-**Update button HTML:**
-```html
-<button class="btn-book-now" id="bookBtn" onclick="bookNow()">Book Now — $30</button>
-```
-
-**Update bookNow() to include confirmation:**
-```javascript
-function bookNow() {
-  const now = Date.now();
-  if (now - lastPaymentTime < PAYMENT_COOLDOWN) return;
-  
-  const price = selectedPrice || '30';
-  const confirmed = confirm(`Confirm payment of $${price} for Chuby Dice?`);
-  if (!confirmed) return;
-  
-  const link = STRIPE_PAYMENT_LINKS[selectedPrice];
-  if (!link) return;
-  
-  try {
-    const url = new URL(link);
-    if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com') return;
-    
-    lastPaymentTime = now;
-    window.open(link, '_blank', 'noopener,noreferrer');
-  } catch (error) {
-    console.error('Invalid payment link');
-  }
-}
-```
-
-## Implementation Plan
-
-### Step 1: Create Feature Branch
-```bash
-git checkout -b fix/stripe-payment-security
-```
-
-### Step 2: Fix Each File in Sequence
-
-For each of the 6 shell pages (in this order):
-1. street-vybz.html
-2. born-agen.html
-3. dancehall-royalty.html
-4. hot-steppaz.html
-5. motherland.html
-6. praise-flow.html
-
-**For each file:**
-1. Locate the script block with `var selectedStripeLink = ...`
-2. Replace entire script block with secure version (see above)
-3. Test in browser that price selection works
-4. Test that clicking "Book Now" opens Stripe correctly
-5. Git add and commit with message: `fix: secure Stripe payment validation in [filename]`
-
-### Step 3: Verify All Files
-
-After fixing all 6:
-```bash
-git log --oneline | head -6  # Verify 6 commits
-grep -l "STRIPE_PAYMENT_LINKS" *.html | wc -l  # Should be 6
-```
-
-### Step 4: Testing Checklist
-
-For EACH file, test these scenarios in browser DevTools:
-
-```javascript
-// Test 1: Normal flow works
-// 1. Click $30 option
-// 2. Click Book Now
-// 3. Verify Stripe payment page opens
-// Expected: Opens https://buy.stripe.com/... in new tab
-
-// Test 2: DOM manipulation doesn't work (CRITICAL)
-document.querySelector('[data-price="30"]').setAttribute('data-link', 'https://attacker.com');
-bookNow();
-// Expected: Still opens Stripe URL, NOT attacker URL
-
-// Test 3: Modifying global variable doesn't work
-selectedStripeLink = 'https://attacker.com';
-bookNow();
-// Expected: Opens Stripe URL, NOT attacker URL
-// (This variable should no longer exist in secure version)
-
-// Test 4: Rate limiting works
-// Click button 5 times rapidly
-// Expected: Only opens once, subsequent clicks blocked
-
-// Test 5: Invalid URLs are rejected
-// This is automatic with URL API - any non-HTTPS or non-buy.stripe.com fails
-```
-
-### Step 5: Commit Changes
-
-After all files are fixed and tested:
-
-```bash
-git add street-vybz.html born-agen.html dancehall-royalty.html hot-steppaz.html motherland.html praise-flow.html
-
-git commit -m "fix: secure Stripe payment validation and add rate limiting
-
-- Replace weak indexOf() validation with URL API
-- Use immutable whitelist instead of DOM attributes
-- Add 2-second rate limiting to prevent double-clicks
-- Add user confirmation modal before payment
-- Add noopener,noreferrer to window.open()
-- Apply fixes to all 6 shell pages consistently
-
-Fixes security issues identified in SECURITY_REVIEW_STRIPE_PAYMENT.md:
-- HIGH: DOM-based XSS via data-link manipulation
-- HIGH: Weak URL validation (indexOf bypass)
-- MEDIUM: Client-side URL storage is mutable
-- MEDIUM: No rate limiting
-- MEDIUM: No user confirmation"
-```
-
-### Step 6: Create Pull Request
-
-```bash
-gh pr create --title "Fix Stripe payment security vulnerabilities" --body "..."
-```
-
-## Key Points to Remember
-
-1. **Same fix for all 6 files** - They all have identical vulnerable code
-2. **Test after each fix** - Don't batch them without testing
-3. **Use STRIPE_PAYMENT_LINKS object** - This is the core security improvement
-4. **Verify window.open() has noopener,noreferrer** - For LOW issue fix
-5. **Data-link attributes remain in HTML** - Just not used by JavaScript anymore
-6. **Remove old selectedStripeLink global** - It's now in the STRIPE_PAYMENT_LINKS object
-
-## File Locations
-
-All files in: `/var/www/html/contract/daniel_projects/esha_chuby/chubydice_version_1/`
-
-1. street-vybz.html (line ~685-702)
-2. born-agen.html (similar script block)
-3. dancehall-royalty.html (similar script block)
-4. hot-steppaz.html (similar script block)
-5. motherland.html (similar script block)
-6. praise-flow.html (similar script block)
-
-## Testing Evidence
-
-After implementing, share screenshots of:
-1. Browser payment flow working with new code
-2. DevTools console showing rate limiting in action
-3. Confirmation modal appearing before payment
-4. Failed DOM manipulation attempt (attacker URL ignored)
-
-## When You Have Questions
-
-Refer to: `documents/SECURITY_REVIEW_STRIPE_PAYMENT.md`
-
-This document has:
-- Detailed explanations of each vulnerability
-- Proof of concept attacks
-- Why each fix is important
-- Alternative implementation approaches
-- Testing recommendations
-
-## Success Criteria
-
-- All 6 files updated consistently
-- bookNow() uses URL API for validation
-- STRIPE_PAYMENT_LINKS is immutable (Object.freeze)
-- Rate limiting implemented (2-second cooldown)
-- User confirmation modal present
-- window.open includes noopener,noreferrer
-- All tests pass (normal flow + security tests)
-- Tests pass in multiple browsers (Chrome, Firefox, Safari)
-
+1. **V1 ONLY** — Do not touch V2 or V2B directories
+2. **Never checkout main/master** — Always branch from current HEAD
+3. **Bebas Neue only** — No Barlow, no Outfit, no Arial Narrow (V1 uses Bebas Neue exclusively)
+4. **No `any` types** — If TypeScript is used, create proper interfaces
+5. **Immutable patterns** — Use `Object.freeze()` for payment link whitelists
+6. **Image optimization** — Convert PNGs to JPEG: `convert input.png -resize 1200x -quality 85 -strip output.jpg`
+7. **Create git branches** — Every change gets its own branch: `feat/`, `fix/`, `docs/`, `chore/`
