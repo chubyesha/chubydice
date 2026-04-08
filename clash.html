@@ -137,11 +137,12 @@
     opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
   }
   .hero-title .clash-word {
+    display: block;
     background: linear-gradient(90deg, #F5C518 0%, #FFB300 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
-  .hero-title .dash { color: rgba(255,255,255,0.4); margin: 0 8px; }
-  .hero-title .battle-word { color: var(--white); }
+  .hero-title .dash { display: none; }
+  .hero-title .battle-word { display: block; color: var(--white); font-size: 0.45em; letter-spacing: 0.08em; margin-top: 8px; }
 
   .hero-desc {
     font-size: 1.2rem; line-height: 1.75;
