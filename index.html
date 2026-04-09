@@ -1751,6 +1751,17 @@
   .playlist-cover { width: 180px; height: 180px; border-radius: 14px; object-fit: cover; display: block; transition: transform 0.2s; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
   .playlist-cover:hover { transform: scale(1.04); }
 
+
+  /* ─── SHARED INLINE-TO-CSS CLASSES ─── */
+  .ack-label { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 16px; }
+  .ack-divider { width: 40px; height: 2px; background: var(--yellow); margin: 0 auto 24px; border-radius: 2px; }
+  .bbk-divider { max-width: 1100px; margin: 20px auto 0; padding-top: 16px; border-top: 1px solid var(--border); text-align: center; }
+
+
+  .clash-tile-btn { background: #00CFFF; color: var(--black); }
+  .coaching-title-accent { color: var(--pink); }
+  .coaching-btn { border-color: rgba(224,64,251,0.4); color: var(--pink); margin-top: 8px; }
+
 </style>
 </head>
 <body>
@@ -1995,7 +2006,7 @@
           <p class="tile-meta">Phil Eazy &amp; Chuby Dice</p>
           <p class="tile-desc" style="font-size:1.15rem;color:rgba(255,255,255,0.5);">Collab Workshop + Clash · Feature 1v1 Showcases · 3v3 Battle</p>
           <div style="display:flex;gap:10px;margin-top:10px;">
-            <button class="s-btn-book" onclick="location.href='litefeet-v-dancehall.html'" style="background:#00CFFF;color:#0A0A0A;">View Event</button>
+            <button class="s-btn-book clash-tile-btn" onclick="location.href='litefeet-v-dancehall.html'">View Event</button>
           </div>
         </div>
       </div>
@@ -2009,7 +2020,7 @@
           <p class="tile-meta">Antagonize &amp; Chuby Dice</p>
           <p class="tile-desc" style="font-size:1.15rem;color:rgba(255,255,255,0.5);">Collab Workshop + Clash · Guest Showcases · Battles</p>
           <div style="display:flex;gap:10px;margin-top:10px;">
-            <button class="s-btn-book" onclick="location.href='krump-v-dancehall.html'" style="background:#00CFFF;color:#0A0A0A;">View Event</button>
+            <button class="s-btn-book clash-tile-btn" onclick="location.href='krump-v-dancehall.html'">View Event</button>
           </div>
         </div>
       </div>
@@ -2026,8 +2037,8 @@
       <img src="images/coaching-hero.jpg" alt="Professional 1:1 Coaching" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:0.9;" loading="lazy">
       <div style="position:absolute;inset:0;background:rgba(0,0,0,0.55);z-index:1;pointer-events:none;"></div>
       <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 40px;min-height:320px;gap:12px;">
-        <h3 class="tile-title" style="font-size:clamp(2.4rem,6vw,5rem);margin:0;">PROFESSIONAL <span style="color:#E040FB;">1:1 COACHING</span></h3>
-        <button class="btn-sm-ghost" onclick="location.href='coaching.html'" style="border-color:rgba(224,64,251,0.4);color:#E040FB;margin-top:8px;">More Info</button>
+        <h3 class="tile-title" style="font-size:clamp(2.4rem,6vw,5rem);margin:0;">PROFESSIONAL <span class="coaching-title-accent">1:1 COACHING</span></h3>
+        <button class="btn-sm-ghost coaching-btn" onclick="location.href='coaching.html'">More Info</button>
       </div>
     </div>
   </div>
@@ -2125,9 +2136,9 @@
 <div class="section-sep"></div>
 <section style="padding:60px 24px;text-align:center;">
   <div style="max-width:720px;margin:0 auto;">
-    <p style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#F5C518;margin-bottom:16px;">Acknowledgment</p>
+    <p class="ack-label">Acknowledgment</p>
     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.2rem,2.5vw,1.6rem);letter-spacing:0.04em;margin-bottom:20px;">ACKNOWLEDGMENT OF COUNTRY</h2>
-    <div style="width:40px;height:2px;background:#F5C518;margin:0 auto 24px;border-radius:2px;"></div>
+    <div class="ack-divider"></div>
     <p style="color:rgba(255,255,255,0.6);font-size:1.12rem;line-height:1.9;margin-bottom:16px;">We acknowledge the Traditional Custodians of the land on which we operate, and pay respect to Elders past, present and emerging.</p>
   </div>
 </section>
@@ -2170,7 +2181,7 @@
       <a href="#">Terms of Service</a>
     </div>
   </div>
-  <div style="max-width:1100px;margin:20px auto 0;padding-top:16px;border-top:1px solid #242424;text-align:center;">
+  <div class="bbk-divider">
     <p style="font-size:1.12rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
   </div>
 </footer>
