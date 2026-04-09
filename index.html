@@ -1747,6 +1747,10 @@
     .orb { animation: none !important; }
   }
 
+
+  .playlist-cover { width: 180px; height: 180px; border-radius: 14px; object-fit: cover; display: block; transition: transform 0.2s; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+  .playlist-cover:hover { transform: scale(1.04); }
+
 </style>
 </head>
 <body>
@@ -2073,7 +2077,7 @@
     <h2 class="section-title"><span>CHUBY'S PLAYLIST</span></h2>
     <div class="playlist-placeholder">
       <a href="https://music.youtube.com/playlist?list=PLrAdqr-L9aFuh7nhS0tQS6kzWIUGm4aBL&si=9x9uK9TnQ-uZxcIW" target="_blank" style="display:block;cursor:pointer;">
-        <img src="images/2104822c8d2d.png" alt="Dancehall Vibes Playlist" style="width:180px;height:180px;border-radius:14px;object-fit:cover;display:block;transition:transform 0.2s;box-shadow:0 8px 32px rgba(0,0,0,0.5);" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+        <img src="images/2104822c8d2d.png" alt="Dancehall Vibes Playlist" class="playlist-cover" loading="lazy">
       </a>
       <p style="font-size:1.2rem;color:rgba(255,255,255,0.5);letter-spacing:0.05em;">Dancehall Vibes · YouTube Music</p>
     </div>

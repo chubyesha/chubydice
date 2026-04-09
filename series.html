@@ -944,6 +944,15 @@
     100% { left: 140%; }
   }
 
+
+  .past-sessions-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    color: rgba(255,255,255,0.3); transition: color 0.2s, gap 0.2s;
+  }
+  .past-sessions-link:hover { color: #F5C518; gap: 14px; }
+
 </style>
 </head>
 <body>
@@ -1258,7 +1267,7 @@
 
   <!-- Past Sessions Link -->
   <div style="text-align:center;padding:48px 0 0;">
-    <a href="past-series.html" style="display:inline-flex;align-items:center;gap:10px;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s,gap 0.2s;" onmouseover="this.style.color='#F5C518';this.style.gap='14px'" onmouseout="this.style.color='rgba(255,255,255,0.3)';this.style.gap='10px'">
+    <a class="past-sessions-link" href="past-series.html">
       Looking for a past session? View Past Sessions
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
