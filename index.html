@@ -452,6 +452,24 @@
   }
   .s-btn-ghost:hover { border-color: rgba(255,255,255,0.5); }
 
+  .series-nav { text-align: center; padding: 28px 0 0; }
+  .series-nav-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    color: rgba(255,255,255,0.35); transition: color 0.2s;
+  }
+  .series-nav-link:hover { color: #F5C518; }
+  .series-nav-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    color: #F5C518; margin-left: 24px;
+    border: 1px solid rgba(245,197,24,0.3); padding: 8px 18px; border-radius: 50px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .series-nav-pill:hover { background: rgba(245,197,24,0.08); border-color: #F5C518; }
+
   .s-past-badge {
     position: absolute; top: 14px; right: 14px; z-index: 10;
     background: rgba(255,255,255,0.08);
@@ -1946,12 +1964,12 @@
 
   </div>
 
-  <div style="text-align:center;padding:28px 0 0;">
-    <a href="series.html" style="display:inline-flex;align-items:center;gap:8px;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#F5C518'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">
+  <div class="series-nav">
+    <a class="series-nav-link" href="series.html">
       View All Series
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
-    <a href="series.html#pricing" style="display:inline-flex;align-items:center;gap:8px;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--yellow);text-decoration:none;margin-left:24px;border:1px solid rgba(245,197,24,0.3);padding:8px 18px;border-radius:50px;transition:background 0.2s,border-color 0.2s;" onmouseover="this.style.background='rgba(245,197,24,0.08)';this.style.borderColor='var(--yellow)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(245,197,24,0.3)'">
+    <a class="series-nav-pill" href="series.html#pricing">
       Series Collection Pack
     </a>
   </div>
