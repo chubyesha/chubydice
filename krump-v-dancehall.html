@@ -667,7 +667,7 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <img src="images/clash-august-photo.jpg" alt="Krump v Dancehall — Clash Inna Dancehall, Sat 1 Aug 2026" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:0;" />
+  <img src="images/clash-august-upd-photo.png" alt="Krump v Dancehall — Clash Inna Dancehall, Sat 1 Aug 2026" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:0;" />
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="hero-title">KRUMP V DANCEHALL</h1>
@@ -714,8 +714,35 @@
 
   <!-- Booking card -->
   <div class="booking-card">
-    <div class="booking-card-title">BOOKINGS <span>OPEN SOON</span></div>
-    <p style="margin-bottom:16px;">Bookings open 11 April 2026.</p>
+    <div class="booking-card-title">READY TO <span>BOOK?</span></div>
+    <p>Choose your pass for Krump v Dancehall — Sat 1 Aug 2026.</p>
+
+    <div class="pricing-options" id="pricingOptions">
+      <div class="price-option selected" data-price="45" onclick="selectPrice(this)">
+        <span class="price-option-save">Best Value</span>
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">Full Pass</span>
+        </div>
+        <span class="price-option-amount">$45</span>
+      </div>
+      <div class="price-option" data-price="35" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">Workshop Only</span>
+        </div>
+        <span class="price-option-amount">$35</span>
+      </div>
+      <div class="price-option" data-price="20" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">Clash Only</span>
+        </div>
+        <span class="price-option-amount">$20</span>
+      </div>
+    </div>
+
+    <button class="btn-book-now" id="bookBtn" onclick="bookNow()">Book Now — $45</button>
     <button class="btn-book-series" onclick="location.href='clash.html'">Back to Clash Inna Dancehall</button>
   </div>
 
@@ -760,11 +787,29 @@
   });
 </script>
 <script>
+var STRIPE_LINKS = {
+  '45': 'https://buy.stripe.com/fZu8wP4VZ8RAdNUcFp4F20j',
+  '35': 'https://buy.stripe.com/6oU00jdsvffY5ho8p94F20m',
+  '20': 'https://buy.stripe.com/bJe4gz3RV6JsfW29td4F20l'
+};
+var selectedPrice = '45';
+
 function selectPrice(el) {
-  document.querySelectorAll('.price-option').forEach(function(opt) {
-    opt.classList.remove('selected');
-  });
+  document.querySelectorAll('.price-option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
+  var price = el.getAttribute('data-price');
+  if (STRIPE_LINKS[price]) selectedPrice = price;
+  document.getElementById('bookBtn').textContent = 'Book Now — $' + price;
+}
+
+function bookNow() {
+  var link = STRIPE_LINKS[selectedPrice];
+  if (!link) return;
+  try {
+    var url = new URL(link);
+    if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com') return;
+    window.open(link, '_blank', 'noopener,noreferrer');
+  } catch(e) { return; }
 }
 </script>
 

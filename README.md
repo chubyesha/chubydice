@@ -50,7 +50,7 @@ chubydice_version_1/
 - **Font** — Bebas Neue (unified across all 22 pages).
 - **Design Tokens** — `--yellow (#F5C518)`, `--black (#0A0A0A)`, `--dark (#111111)`, `--pink (#E040FB)`, `--border (#242424)`.
 - **Netlify Functions** — Serverless chat at `/.netlify/functions/chat` (Anthropic Claude API).
-- **Stripe** — Live payment links for 5 class pass tiers + coaching. Clash payments deferred to Release 3.
+- **Stripe** — Live payment links for 5 class pass tiers + coaching + CLash 3-tiered passes + Dancehall Academy registration (free).
 
 ## Key Features
 
@@ -66,7 +66,7 @@ chubydice_version_1/
 ### Clash Pages
 - `clash.html` — Hero: "CLASH INNA" (white) + "DANCEHALL" (blue #00CFFF), no "WITH PASSION STUDIO", no May 2026 pill. About Clash text from IA. NO PASSION images.
 - `litefeet-v-dancehall.html` — Full write-up + Phil Eazy bio with Recent Achievements (5 items). Booking cards deferred ("Bookings open 11 April 2026").
-- `krump-v-dancehall.html` — Full write-up + Antagonize bio. Booking cards deferred.
+- `krump-v-dancehall.html` — Full write-up + Antagonize bio. Booking cards now implemented.
 
 ### Series Pages
 - All write-ups word-for-word from client's IA document
@@ -74,8 +74,11 @@ chubydice_version_1/
 - Street Vybz, Hot Steppaz, Born Agen: Client-cleared write-ups
 
 ### Academy Page (`academy.html`)
-- 4 shell cards in 2x2 grid: Auditions (13 Jun 2026), Scholarships, Curriculum, Vision 2030
-- No "Shell — Content TBC" or "coming soon" text — production-ready labels
+- Auditions Now Open card is active for registration via Stripe (13 June 2026).
+- 3 remaining shell cards have been consolidated into one shell.
+- Hero image is removed to improve UX
+- Chuby Dice V_3 had 4 shell cards in 2x2 grid: Auditions (13 Jun 2026), Scholarships, Curriculum, Vision 2030
+- Chuby Dice V_3 had no "Shell — Content TBC" or "coming soon" text — production-ready labels
 
 ## Stripe Pricing (Live)
 
@@ -87,8 +90,13 @@ chubydice_version_1/
 | 10 Classes | $230 | $23 |
 | 20 Classes | $450 | $22.50 |
 | 1:1 Coaching | $120 | — |
+|Full Pass | $45 | $45 |
+| Workshop Only | $35 | $35 |
+|Clash Only | $20 | $20 |
+| Dancehall Academy Registration | $0 | — |
 
-**Clash Stripe links:** Deferred to Release 3 (bookings open 11 April 2026).
+
+**Clash Stripe links:** Now included (bookings opened 11 April 2026).
 
 ## UI/UX Design System
 
@@ -123,6 +131,15 @@ python3 -m http.server   # Alternative
 
 - **Release 2B** (08-09 Apr 2026): Images, write-ups, clash deployment, UI/UX refactors, critical corrections
 - **Release 3** (10 Apr 2026): Clash Stripe payment links, Academy details, Acknowledgment update
+- **Release 3A** (11-12 Apr 2026): Clash Stripe payment links + image updates, Academy Audition details + redesign, Chuby Dice Series clean-up
+
+## Release Planning
+
+- **Release 3B** (24 Apr 2026): Dancehall Academy Drop 2 (Auditions Details for DJs & Dancers) + Terms & Conditions + Dancehall Fitness
+- **Release 3C** (8 May 2026): Dancehall Academy Drop 3 (video + scholarships info)
+- **Release 3D** (22 May 2026): Dancehall Academy Drop 4
+- **Release 3E** (5 Jun 2026): Dancehall Academy Drop 5
+- **Future Releases**: Chuby Dice Interviews + Performances + Video Projects + Funding + Consulting + Sponsorships  
 
 ---
 
