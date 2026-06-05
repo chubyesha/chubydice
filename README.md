@@ -3,7 +3,7 @@
 Official website for **Chuby Dice** — Dancehall artist, educator, and cultural practitioner based in Naarm (Melbourne), Australia.
 
 **Live site:** [chubydice.com](https://www.chubydice.com)
-**Hosting:** Netlify
+**Hosting:** VentraIP (cPanel)
 **Repo:** [github.com/chubyesha/chubydice](https://github.com/chubyesha/chubydice)
 **Version 2:** [github.com/chubyesha/chubydice_v2](https://github.com/chubyesha/chubydice_v2)
 
@@ -35,8 +35,8 @@ chubydice_version_1/
 ├── contact.html                # Contact / Instagram / Brand Ambassadorship
 ├── in-ya-city.html             # Chuby Dice in Ya City (Adelaide card with image)
 ├── in-ya-city-adelaide.html    # In Ya City — Adelaide (event flyer hero)
-├── chatbot.js                  # AI chatbot widget (Anthropic API via Netlify function)
-├── netlify/functions/chat.js   # Serverless chat function (Anthropic Claude API)
+├── chatbot.js                  # AI chatbot widget — disabled, kept for future use (needs cPanel backend)
+├── netlify/functions/chat.js   # Serverless chat function — disabled, kept for future reference
 ├── images/                     # All site images and flyers (optimized JPEGs)
 ├── videos/                     # Hero background videos (1-5.mp4)
 ├── screenshots/                # Client screenshots and IA documents (not deployed)
@@ -49,14 +49,14 @@ chubydice_version_1/
 - **Static HTML** — No build tools, no framework. Inline `<style>` and `<script>` per page.
 - **Font** — Bebas Neue (unified across all 22 pages).
 - **Design Tokens** — `--yellow (#F5C518)`, `--black (#0A0A0A)`, `--dark (#111111)`, `--pink (#E040FB)`, `--border (#242424)`.
-- **Netlify Functions** — Serverless chat at `/.netlify/functions/chat` (Anthropic Claude API).
+- **Chatbot** — Disabled. Was powered by Netlify Functions (`/.netlify/functions/chat`). Kept for future rebuild on cPanel (PHP proxy or Node.js app).
 - **Stripe** — Live payment links for 5 class pass tiers + coaching + CLash 3-tiered passes + Dancehall Academy registration (free).
 
 ## Key Features
 
 ### Home Page (`index.html`)
 - Full-screen hero video with `object-position: center 20%` sweet spot
-- **7-card horizontal swipe carousel** (Praise Flow → Born Agen) with dark gradient overlay, V2-style hover highlight
+- **5-card horizontal swipe carousel** (Dancehall Royalty → Born Agen) with dark gradient overlay, V2-style hover highlight — Praise Flow (Apr) and Motherland (May) removed as past series
 - **Clash Inna Dancehall** section (no "Clash Events" label) with 2 event tiles using NO PASSION flyer images
 - **Dancehall Academy** tile with golden glow border, "Launching 2026" pulsing label
 - **Professional 1:1 Coaching** tile with pink (#E040FB) theme, enlarged title (`clamp(2.4rem,6vw,5rem)`)
@@ -118,8 +118,8 @@ Image brightens (`filter: brightness(1.15)`), scales (`1.04`), golden glow box-s
 
 ```bash
 npx serve .              # Static server
-npx netlify dev          # With Netlify Functions (chatbot)
 python3 -m http.server   # Alternative
+# Note: npx netlify dev no longer used — hosting moved to VentraIP (cPanel)
 ```
 
 ## Git Workflow
@@ -132,6 +132,7 @@ python3 -m http.server   # Alternative
 - **Release 2B** (08-09 Apr 2026): Images, write-ups, clash deployment, UI/UX refactors, critical corrections
 - **Release 3** (10 Apr 2026): Clash Stripe payment links, Academy details, Acknowledgment update
 - **Release 3A** (11-12 Apr 2026): Clash Stripe payment links + image updates, Academy Audition details + redesign, Chuby Dice Series clean-up
+- **Cleanup** (Jun 2026): Netlify → VentraIP/cPanel migration — URLs updated to chubydice.com, chatbot disabled, past series (Praise Flow, Motherland) removed from homepage carousel, dead countdown script removed from series.html
 
 ## Release Planning
 

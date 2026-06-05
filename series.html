@@ -6,16 +6,16 @@
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Chuby Dice"/>
 <meta property="og:title" content="Chuby Dice Series | Dancehall Classes"/>
-<meta property="og:description" content="Book into the Chuby Dice Series — Lovers Rock, March Back in Time, and more. Weekly Dancehall classes in Melbourne."/>
-<meta property="og:url" content="https://graceful-cascaron-d11800.netlify.app/series.html"/>
-<meta property="og:image" content="https://graceful-cascaron-d11800.netlify.app/chuby-profile-CkJq2sVN.jpg"/>
+<meta property="og:description" content="Book into the Chuby Dice Series — Dancehall Royalty, Street Vybz, and more. Weekly Dancehall classes in Melbourne."/>
+<meta property="og:url" content="https://chubydice.com/series.html"/>
+<meta property="og:image" content="https://chubydice.com/chuby-profile.jpg"/>
 <meta property="og:image:width" content="898"/>
 <meta property="og:image:height" content="1600"/>
 <meta property="og:image:alt" content="Chuby Dice — Dancehall Artist"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Chuby Dice Series | Dancehall Classes"/>
-<meta name="twitter:description" content="Book into the Chuby Dice Series — Lovers Rock, March Back in Time, and more. Weekly Dancehall classes in Melbourne."/>
-<meta name="twitter:image" content="https://graceful-cascaron-d11800.netlify.app/chuby-profile-CkJq2sVN.jpg"/>
+<meta name="twitter:description" content="Book into the Chuby Dice Series — Dancehall Royalty, Street Vybz, and more. Weekly Dancehall classes in Melbourne."/>
+<meta name="twitter:image" content="https://chubydice.com/chuby-profile.jpg"/>
 <title>Chuby Dice Series</title>
 <link rel="icon" type="image/x-icon" href="images/09c9ec4a0ce4.ico"/>
 <link rel="icon" type="image/png" sizes="32x32" href="images/8cbe784dd268.png"/>
@@ -439,7 +439,8 @@
   .card:nth-child(3) { animation-delay: 0.3s; }
   .card:nth-child(4) { animation-delay: 0.4s; }
 
-  /* ─── ENDS BADGE (countdown) ─── */
+  /* ─── ENDS BADGE (countdown) — commented out, countdownBadge element no longer in DOM ─── */
+  /*
   .ends-badge {
     position: absolute;
     top: 14px; right: 14px;
@@ -465,6 +466,7 @@
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.4; transform: scale(0.8); }
   }
+  */
 
 
   /* ─── COMING SOON PRICE ─── */
@@ -1458,12 +1460,14 @@
   });
 })();
 </script>
-<script src="/chatbot.js"></script>
+<!-- chatbot disabled — Netlify backend removed, file kept for future use -->
+<!-- <script src="/chatbot.js"></script> -->
 
 <!-- Card stack removed — replaced by horizontal scroll carousel -->
 <!-- Keeping reference: old card-stack IIFE was here, used cardStackSeries element which no longer exists -->
 
-<!-- Countdown Timer for March Back in Time -->
+<!-- Countdown Timer for March Back in Time — commented out, countdownBadge no longer in DOM -->
+<!--
 <script>
 (function() {
   var badge = document.getElementById('countdownBadge');
@@ -1495,6 +1499,7 @@
   setInterval(update, 60000);
 })();
 </script>
+-->
 
 <script>
 function filterSeries(type, el) {
