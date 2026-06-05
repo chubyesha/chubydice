@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
           protocol: ftps
           local-dir: ./
-          server-dir: /home/chubydic/public_html/
+          server-dir: /public_html/
           dangerous-clean-slate: true
           exclude: |
             **/.git*
