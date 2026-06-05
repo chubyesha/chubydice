@@ -1066,54 +1066,6 @@
 
     <!-- MARCH BACK IN TIME (Archived — moved to past per Release 2B) -->
 
-    <!-- PRAISE FLOW -->
-    <div class="card" data-type="current">
-      <div class="card-img" style="position:relative;overflow:hidden;">
-        <img src="images/praise-flow.png" alt="Praise Flow" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
-        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
-        <div class="card-img-title" style="position:relative;z-index:2;">
-          <h3>PRAISE FLOW</h3>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span>April 2026</span>
-          <span class="card-meta-dot"></span>
-          <span>Tuesdays · 7:30–8:30pm</span>
-          <span class="card-meta-dot"></span>
-          <strong>From $30</strong>
-        </div>
-      <!--  <p class="card-desc">"Let's enter this hall, under one accord, to praise the Lord, no matter the faith" — Chuby Dice</p> -->
-        <div class="card-actions">
-          <button class="btn-book" onclick="location.href='praise-flow.html'">Book Now</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- MOTHERLAND -->
-    <div class="card" data-type="current">
-      <div class="card-img" style="position:relative;overflow:hidden;">
-        <img src="images/motherland-may-2026.jpg" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
-        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
-        <div class="card-img-title" style="position:relative;z-index:2;">
-          <h3>MOTHERLAND</h3>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span>May 2026</span>
-          <span class="card-meta-dot"></span>
-          <span>Tuesdays · 7:30–8:30pm</span>
-          <span class="card-meta-dot"></span>
-          <strong>From $30</strong>
-        </div>
-     <!--   <p class="card-desc">Thank your mum with Jamaican Dancehall</p>-->
-        <div class="card-actions">
-          <button class="btn-book" onclick="location.href='motherland.html'">Book Now</button>
-        </div>
-      </div>
-    </div>
-
     <!-- DANCEHALL ROYALTY -->
     <div class="card" data-type="current">
       <div class="card-img" style="position:relative;overflow:hidden;">
@@ -1271,6 +1223,52 @@
      <!--   <p class="card-desc">The full Q1 2026 Chuby Dice Series — Lovers' Rock + March Back in Time combined.</p> -->
         <div class="card-actions">
           <button class="btn-more" onclick="location.href='full-series.html'">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRAISE FLOW (Past — April 2026) -->
+    <div class="card past-session" data-type="past">
+      <div class="card-img" style="position:relative;overflow:hidden;">
+        <img src="images/praise-flow.png" alt="Praise Flow" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.55;" loading="lazy">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
+        <span class="past-watermark"><span class="past-watermark-dot"></span> Past Session</span>
+        <div class="card-img-title" style="position:relative;z-index:2;">
+          <h3>PRAISE FLOW</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span>4 weeks</span>
+          <span class="card-meta-dot"></span>
+          <span>April 2026</span>
+        </div>
+      <!--  <p class="card-desc">"Let's enter this hall, under one accord, to praise the Lord, no matter the faith" — Chuby Dice</p> -->
+        <div class="card-actions">
+          <button class="btn-more" onclick="location.href='praise-flow.html'">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTHERLAND (Past — May 2026) -->
+    <div class="card past-session" data-type="past">
+      <div class="card-img" style="position:relative;overflow:hidden;">
+        <img src="images/motherland-may-2026.jpg" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.55;" loading="lazy">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
+        <span class="past-watermark"><span class="past-watermark-dot"></span> Past Session</span>
+        <div class="card-img-title" style="position:relative;z-index:2;">
+          <h3>MOTHERLAND</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span>4 weeks</span>
+          <span class="card-meta-dot"></span>
+          <span>May 2026</span>
+        </div>
+      <!--  <p class="card-desc">Thank your mum with Jamaican Dancehall</p> -->
+        <div class="card-actions">
+          <button class="btn-more" onclick="location.href='motherland.html'">View Details</button>
         </div>
       </div>
     </div>
@@ -1591,11 +1589,11 @@ function filterSeries(type, el) {
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Chuby Dice Dance Academy. All rights reserved.</p>
-    <div class="footer-bottom-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
+        <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
     </div>
-  </div>
   <div class="bbk-divider">
     <p style="font-size:1.12rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
   </div>

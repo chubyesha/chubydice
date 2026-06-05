@@ -55,23 +55,24 @@ chubydice_version_1/
 ## Key Features
 
 ### Home Page (`index.html`)
-- Full-screen hero video with `object-position: center 20%` sweet spot
-- **5-card horizontal swipe carousel** (Dancehall Royalty → Born Agen) with dark gradient overlay, V2-style hover highlight — Praise Flow (Apr) and Motherland (May) removed as past series
-- **Clash Inna Dancehall** section (no "Clash Events" label) with 2 event tiles using NO PASSION flyer images
-- **Dancehall Academy** tile with golden glow border, "Launching 2026" pulsing label
+- Full-screen hero video with `object-position: center 20%` sweet spot; poster fallback: `hero-poster.jpg`
+- **5-card horizontal swipe carousel** (Dancehall Royalty → Born Agen) — Praise Flow (Apr) and Motherland (May) commented out as past series
+- **Clash Inna Dancehall** section with 2 event tiles: Litefeet v Dancehall (Sat 23 May — past, styled dimmed) + Krump v Dancehall (Sat 1 Aug — upcoming)
+- **Dancehall Academy** tile with golden glow border, "Launching 13 June 2026" pulsing label
 - **Professional 1:1 Coaching** tile with pink (#E040FB) theme, enlarged title (`clamp(2.4rem,6vw,5rem)`)
 - **Animated glow-line separators** between all sections
 - Floating social sidebar, animated gradient orbs background
 
 ### Clash Pages
 - `clash.html` — Hero: "CLASH INNA" (white) + "DANCEHALL" (blue #00CFFF), no "WITH PASSION STUDIO", no May 2026 pill. About Clash text from IA. NO PASSION images.
-- `litefeet-v-dancehall.html` — Full write-up + Phil Eazy bio with Recent Achievements (5 items). Booking cards deferred ("Bookings open 11 April 2026").
-- `krump-v-dancehall.html` — Full write-up + Antagonize bio. Booking cards now implemented.
+- `litefeet-v-dancehall.html` — **PAST EVENT (23 May 2026).** Full write-up + Phil Eazy bio with Recent Achievements (5 items). Tile on homepage is styled as past (dimmed, "Past Event" badge, "View Recap" button).
+- `krump-v-dancehall.html` — Upcoming (Sat 1 Aug 2026). Full write-up + Antagonize bio. Booking cards implemented.
 
 ### Series Pages
 - All write-ups word-for-word from client's IA document
 - Survival Story (August): Corrected text — Black Blingaz, Black Dice, Black Eagles, Overload Skankaz
 - Street Vybz, Hot Steppaz, Born Agen: Client-cleared write-ups
+- **Praise Flow (Apr) and Motherland (May):** Marked as past sessions on `series.html` (dimmed, "Past Session" watermark, "View Details" button). Still accessible via their individual pages.
 
 ### Academy Page (`academy.html`)
 - Auditions Now Open card is active for registration via Stripe (13 June 2026).
@@ -132,7 +133,7 @@ python3 -m http.server   # Alternative
 - **Release 2B** (08-09 Apr 2026): Images, write-ups, clash deployment, UI/UX refactors, critical corrections
 - **Release 3** (10 Apr 2026): Clash Stripe payment links, Academy details, Acknowledgment update
 - **Release 3A** (11-12 Apr 2026): Clash Stripe payment links + image updates, Academy Audition details + redesign, Chuby Dice Series clean-up
-- **Cleanup** (Jun 2026): Netlify → VentraIP/cPanel migration — URLs updated to chubydice.com, chatbot disabled, past series (Praise Flow, Motherland) removed from homepage carousel, dead countdown script removed from series.html
+- **Cleanup** (6 Jun 2026): Netlify → VentraIP/cPanel migration — URLs updated to chubydice.com, chatbot disabled, dead countdown script removed from series.html; hero video poster fixed (`hero-poster.jpg`); Litefeet v Dancehall marked as past event on homepage; Praise Flow + Motherland removed from homepage carousel and marked as past sessions on series.html; individual pages for Praise Flow, Motherland, March Back in Time updated to "Session Ended" booking state (pricing options commented out, 4 weeks / $100 or $125 / module); Praise Flow + Motherland added to past-series.html; series.html past section reordered Feb → Mar → Feb-Mar → Apr → May
 
 ## Release Planning
 

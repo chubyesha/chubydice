@@ -111,7 +111,8 @@
     font-size: 1.2rem; font-weight: 600; color: rgba(255,255,255,0.7);
   }
   .info-pill svg { color: rgba(255,255,255,0.4); }
-  .info-pill.coming-soon { color: var(--yellow); border-color: rgba(245,197,24,0.2); background: rgba(245,197,24,0.05); }
+  .info-pill.price { color: var(--yellow); border-color: rgba(245,197,24,0.2); background: rgba(245,197,24,0.05); }
+  .info-pill.price span { color: rgba(255,255,255,0.4); font-weight: 400; }
 
   /* ─── BODY SECTION ─── */
   .body-section {
@@ -685,15 +686,11 @@
 <div class="section-sep"></div>
 <div class="info-strip">
   <div class="info-pill">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-    May 2026
-  </div>
-  <div class="info-pill">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-    Tuesdays · 7:30–8:30pm
+    4 weeks
   </div>
-  <div class="info-pill coming-soon">
-    From $30
+  <div class="info-pill price">
+    $100 <span>/ module</span>
   </div>
 </div>
 
@@ -720,8 +717,9 @@
   <!-- Booking card -->
   <div class="booking-card">
     <div class="booking-card-title">READY TO <span>TRAIN?</span></div>
-    <p>Choose your pass for Motherland — every Tuesday, May 2026.</p>
+    <p>Choose 1: MOTHERLAND with Chuby to boost your Dancehall training &amp; fluency.</p>
 
+    <!-- PRICING OPTIONS (session ended — commented out June 2026)
     <div class="pricing-options" id="pricingOptions">
       <div class="price-option selected" data-price="30" data-link="https://buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b" onclick="selectPrice(this)">
         <div class="price-option-left">
@@ -761,9 +759,11 @@
         <span class="price-option-amount">$450</span>
       </div>
     </div>
+    -->
 
-    <button class="btn-book-now" id="bookBtn" onclick="bookNow()">Book Now — $30</button>
-    <button class="btn-book-series" onclick="location.href='past-series.html'">View Past Sessions</button>
+    <button class="btn-book-now" onclick="alert('This session has ended. View current series at chubydice.com/series.html')">Session Ended</button>
+    <button class="btn-book-series" onclick="location.href='series.html'">Book Full Series</button>
+    <p class="price-note"><strong>$100</strong> · 4 weeks</p>
   </div>
 
 </section>
@@ -885,11 +885,11 @@ function bookNow() {
   </div>
   <div class="footer-bottom">
     <p>&copy; 2026 Chuby Dice Dance Academy. All rights reserved.</p>
-    <div class="footer-bottom-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
+        <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
     </div>
-  </div>
   <div class="bbk-divider">
     <p style="font-size:1.12rem;color:rgba(255,255,255,0.2);">Site managed by BBK Productions</p>
   </div>
