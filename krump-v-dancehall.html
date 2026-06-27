@@ -110,7 +110,7 @@
     background: linear-gradient(180deg, #0A0A0A 0%, #050d15 30%, #0a1520 55%, #040a0e 75%, #0A0A0A 100%);
     padding: 80px 80px 100px;
     display: grid;
-    grid-template-columns: 1fr 380px;
+    grid-template-columns: 1fr;
     gap: 60px;
     align-items: start;
   }
@@ -594,6 +594,73 @@
   .ack-divider { width: 40px; height: 2px; background: var(--yellow); margin: 0 auto 24px; border-radius: 2px; }
   .bbk-divider { max-width: 1100px; margin: 20px auto 0; padding-top: 16px; border-top: 1px solid var(--border); text-align: center; }
 
+  /* ─── EVENT ACTION BAR ─── */
+  .event-action-bar {
+    border: 1px solid rgba(245,197,24,0.28);
+    border-radius: 14px;
+    margin: 36px 80px 0;
+    padding: 0 0 0 40px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    background: #0f0f0f;
+    box-shadow: 0 0 48px rgba(245,197,24,0.07), 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .event-meta { display: flex; align-items: center; flex-wrap: wrap; padding: 26px 0; gap: 0; }
+  .meta-item {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.78); padding-right: 28px;
+  }
+  .meta-item svg { color: rgba(255,255,255,0.35); flex-shrink: 0; }
+  .meta-sep { width: 1px; height: 22px; background: rgba(255,255,255,0.1); margin-right: 28px; flex-shrink: 0; }
+  .event-cta {
+    display: flex; align-items: center; justify-content: center; gap: 20px; flex-shrink: 0;
+    padding: 22px 36px 22px 32px;
+    background: rgba(245,197,24,0.07);
+    border-left: 1px solid rgba(245,197,24,0.22);
+    border-radius: 0 13px 13px 0;
+  }
+  .cta-price-block { text-align: right; line-height: 1.15; }
+  .cta-price-label { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.16em; color: rgba(255,255,255,0.28); }
+  .cta-price-amount { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--yellow); letter-spacing: 0.01em; line-height: 1; }
+  .cta-book-btn {
+    background: var(--yellow); color: var(--black); border: none;
+    font-family: 'Bebas Neue', sans-serif; font-weight: 900; font-size: 1.15rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 14px 28px; border-radius: 8px; cursor: pointer; white-space: nowrap;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-book-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,197,24,0.4); }
+  .cta-btn-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .cta-other-btn {
+    background: none; border: none; font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.18);
+    cursor: pointer; padding: 0; transition: color 0.2s; white-space: nowrap;
+  }
+  .cta-other-btn:hover { color: rgba(255,255,255,0.42); }
+  .other-options-panel {
+    position: absolute; top: calc(100% + 6px); right: 0;
+    background: #131313; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 12px; width: 300px;
+    display: none; flex-direction: column; gap: 6px;
+    z-index: 200; box-shadow: 0 20px 50px rgba(0,0,0,0.65);
+  }
+  .other-options-panel.open { display: flex; }
+  @media (max-width: 960px) { .event-action-bar { margin: 28px 32px 0; padding-left: 28px; } .event-cta { padding-right: 28px; } .other-options-panel { right: 0; } }
+  @media (max-width: 768px) {
+    .event-action-bar { flex-direction: column; align-items: flex-start; margin: 20px 16px 0; padding: 20px 0 0 20px; gap: 0; overflow: visible; border-radius: 12px; }
+    .event-meta { padding: 0 0 16px; gap: 12px; }
+    .meta-sep { display: none; }
+    .meta-item { padding-right: 0; font-size: 1.18rem; }
+    .event-cta { width: 100%; justify-content: space-between; padding: 16px 20px; border-left: none; border-top: 1px solid rgba(245,197,24,0.22); border-radius: 0 0 12px 12px; }
+    .cta-price-block { text-align: left; }
+    .other-options-panel { right: 0; left: 0; width: auto; }
+  }
+  @media (max-width: 480px) { .event-action-bar { margin: 16px 12px 0; padding-left: 16px; } .event-cta { padding: 14px 16px; } .cta-book-btn { padding: 12px 20px; } }
+
 </style>
 </head>
 <body>
@@ -667,7 +734,7 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <img src="images/clash-august-upd-photo.png" alt="Krump v Dancehall — Clash Inna Dancehall, Sat 1 Aug 2026" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:0;" />
+  <img src="images/2clash-august-upd-photo.jpeg" alt="Krump v Dancehall — Clash Inna Dancehall, Sat 15 Aug 2026" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:0;" />
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="hero-title">KRUMP V DANCEHALL</h1>
@@ -675,19 +742,59 @@
   </div>
 </section>
 
-<!-- ─── INFO STRIP ─── -->
+<!-- ─── EVENT ACTION BAR ─── -->
 <div class="section-sep"></div>
-<div class="info-strip">
-  <div class="info-pill">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-    August 2026
+<div class="event-action-bar">
+  <div class="event-meta">
+    <div class="meta-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Sat 15 Aug 2026
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      6PM – 10PM
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      HD Entertainment, Prahran
+    </div>
   </div>
-  <div class="info-pill">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-    Sat 1 Aug · 6PM–10PM
+  <div class="event-cta">
+    <div class="cta-price-block">
+      <span class="cta-price-label" id="ctaPriceLabel">FULL PASS</span>
+      <span class="cta-price-amount" id="ctaPriceAmount">$45</span>
+    </div>
+    <div class="cta-btn-wrap">
+      <button class="cta-book-btn" id="ctaBookBtn" onclick="bookNow()">Book Now</button>
+      <button class="cta-other-btn" id="otherToggle" onclick="toggleOtherOptions()">other options ↓</button>
+    </div>
   </div>
-  <div class="info-pill coming-soon" style="color: #00CFFF; border-color: rgba(0,207,255,0.2); background: rgba(0,207,255,0.05);">
-    From $20
+  <!-- Ticket options dropdown -->
+  <div class="other-options-panel" id="otherPanel">
+    <div class="price-option selected" data-price="45" onclick="selectPrice(this)">
+      <span class="price-option-save">Most Popular</span>
+      <div class="price-option-left">
+        <div class="price-radio"><div class="price-radio-dot"></div></div>
+        <span class="price-option-label">Full Pass</span>
+      </div>
+      <span class="price-option-amount">$45</span>
+    </div>
+    <div class="price-option" data-price="35" onclick="selectPrice(this)">
+      <div class="price-option-left">
+        <div class="price-radio"><div class="price-radio-dot"></div></div>
+        <span class="price-option-label">Workshop Only</span>
+      </div>
+      <span class="price-option-amount">$35</span>
+    </div>
+    <div class="price-option" data-price="20" onclick="selectPrice(this)">
+      <div class="price-option-left">
+        <div class="price-radio"><div class="price-radio-dot"></div></div>
+        <span class="price-option-label">Clash Only</span>
+      </div>
+      <span class="price-option-amount">$20</span>
+    </div>
   </div>
 </div>
 
@@ -712,39 +819,6 @@
     <p class="body-text">Passionate about community and culture, Antagonize also produces workshops and events that create platforms for the next generation of dancers to grow, connect, and express.</p>
   </div>
 
-  <!-- Booking card -->
-  <div class="booking-card">
-    <div class="booking-card-title">READY TO <span>BOOK?</span></div>
-    <p>Choose your pass for Krump v Dancehall — Sat 1 Aug 2026.</p>
-
-    <div class="pricing-options" id="pricingOptions">
-      <div class="price-option selected" data-price="45" onclick="selectPrice(this)">
-        <span class="price-option-save">Best Value</span>
-        <div class="price-option-left">
-          <div class="price-radio"><div class="price-radio-dot"></div></div>
-          <span class="price-option-label">Full Pass</span>
-        </div>
-        <span class="price-option-amount">$45</span>
-      </div>
-      <div class="price-option" data-price="35" onclick="selectPrice(this)">
-        <div class="price-option-left">
-          <div class="price-radio"><div class="price-radio-dot"></div></div>
-          <span class="price-option-label">Workshop Only</span>
-        </div>
-        <span class="price-option-amount">$35</span>
-      </div>
-      <div class="price-option" data-price="20" onclick="selectPrice(this)">
-        <div class="price-option-left">
-          <div class="price-radio"><div class="price-radio-dot"></div></div>
-          <span class="price-option-label">Clash Only</span>
-        </div>
-        <span class="price-option-amount">$20</span>
-      </div>
-    </div>
-
-    <button class="btn-book-now" id="bookBtn" onclick="bookNow()">Book Now — $45</button>
-    <button class="btn-book-series" onclick="location.href='clash.html'">Back to Clash Inna Dancehall</button>
-  </div>
 
 </section>
 
@@ -794,13 +868,36 @@ var STRIPE_LINKS = {
 };
 var selectedPrice = '45';
 
+var otherOpen = false;
+
+function toggleOtherOptions() {
+  otherOpen = !otherOpen;
+  document.getElementById('otherPanel').classList.toggle('open', otherOpen);
+  document.getElementById('otherToggle').textContent = otherOpen ? 'hide options ↑' : 'other options ↓';
+}
+
 function selectPrice(el) {
   document.querySelectorAll('.price-option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
   var price = el.getAttribute('data-price');
+  var label = el.querySelector('.price-option-label').textContent.toUpperCase();
   if (STRIPE_LINKS[price]) selectedPrice = price;
-  document.getElementById('bookBtn').textContent = 'Book Now — $' + price;
+  document.getElementById('ctaPriceLabel').textContent = label;
+  document.getElementById('ctaPriceAmount').textContent = '$' + price;
+  otherOpen = false;
+  document.getElementById('otherPanel').classList.remove('open');
+  document.getElementById('otherToggle').textContent = 'other options ↓';
 }
+
+document.addEventListener('click', function(e) {
+  var panel = document.getElementById('otherPanel');
+  var toggle = document.getElementById('otherToggle');
+  if (panel && panel.classList.contains('open') && !panel.contains(e.target) && !toggle.contains(e.target)) {
+    otherOpen = false;
+    panel.classList.remove('open');
+    toggle.textContent = 'other options ↓';
+  }
+});
 
 function bookNow() {
   var link = STRIPE_LINKS[selectedPrice];
