@@ -253,48 +253,81 @@
   .footer-bottom-links a { font-size: 0.98rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
   .footer-bottom-links a:hover { color: rgba(255,255,255,0.5); }
 
-  /* ─── BIO ACCORDION ─── */
-  .bio-accordion { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-  .bio-acc-item {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .bio-acc-item:hover, .bio-acc-item.open {
-    border-color: rgba(245,197,24,0.25);
-    background: rgba(245,197,24,0.02);
-  }
-  .bio-acc-header {
-    padding: 16px 20px;
-    font-size: 1.15rem; font-weight: 700;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--yellow);
-    cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .bio-acc-arrow {
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-    opacity: 0.4;
-  }
-  .bio-acc-item.open .bio-acc-arrow { transform: rotate(180deg); opacity: 0.8; }
-  .bio-acc-body {
-    max-height: 0;
+  /* ─── SCROLL STORY ─── */
+  .story-scroll { position: relative; height: 600vh; }
+  .story-stage {
+    position: sticky; top: 0;
+    height: 100vh;
     overflow: hidden;
-    transition: max-height 0.4s ease;
-    padding: 0 20px;
+    background: var(--black);
   }
-  .bio-acc-item.open .bio-acc-body {
-    max-height: 600px;
-    padding: 0 20px 20px;
+  .story-scene { position: absolute; inset: 0; }
+  .scene-media { position: absolute; inset: -10% -5%; overflow: hidden; }
+  .scene-media img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.55) saturate(1.05);
+    transform: scale(1.15);
   }
-  .bio-acc-body p {
-    font-size: 1.15rem; line-height: 1.78;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 12px;
+  .scene-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.94) 100%);
   }
-  .bio-acc-body p:last-child { margin-bottom: 0; }
+  .scene-content {
+    position: relative; z-index: 3;
+    height: 100%;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    max-width: 680px;
+    padding: 0 60px 100px;
+  }
+  .scene-eyebrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--yellow); margin-bottom: 14px;
+  }
+  .scene-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.1rem, 5vw, 4rem);
+    line-height: 1.05; margin-bottom: 20px;
+    display: flex; flex-wrap: wrap;
+  }
+  .scene-title .char { display: inline-block; will-change: transform, opacity; }
+  .scene-body {
+    font-size: 1.12rem; line-height: 1.75;
+    color: rgba(255,255,255,0.78);
+    max-width: 560px;
+  }
+  .scene-cutout {
+    position: absolute; right: 4%; bottom: 0;
+    height: 92%;
+    z-index: 2;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6));
+    will-change: transform;
+  }
+  .story-progress {
+    position: absolute; right: 28px; top: 50%; transform: translateY(-50%);
+    z-index: 4;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .story-progress .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .story-progress .dot.is-active { background: var(--yellow); transform: scale(1.3); }
+
+  @media (max-width: 768px) {
+    .story-scroll { height: 500vh; }
+    .scene-content { padding: 0 24px 60px; max-width: 100%; }
+    .scene-body { max-width: 100%; }
+    .scene-cutout { display: none; }
+    .story-progress { right: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .story-scroll { height: auto; }
+    .story-stage { position: relative; height: auto; display: flex; flex-direction: column; }
+    .story-scene { position: relative; height: 90vh; min-height: 560px; }
+    .story-progress { display: none; }
+  }
 
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
@@ -612,6 +645,8 @@
 <div class="menu-overlay" id="menuOverlay">
   <a href="index.html">Home</a>
   <a href="series.html">Chuby Dice Series</a>
+<a href="technique-tuesdays.html">Technique Tuesdays</a>
+<a href="jamaican-dance-fitness.html">Jamaican Dance Fitness</a>
   <a href="clash.html">Clash Inna Dancehall</a>
   <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
   <a href="academy.html">Dancehall Academy</a>
@@ -627,6 +662,7 @@
       <a href="contact.html">Contact / Instagram</a>
       <a href="contact.html">Brand Ambassadorship</a>
       <a href="past-series.html">Past Events</a>
+<a href="past-clashes.html">Past Clashes</a>
     </div>
   </div>
   <div class="menu-divider"></div>
@@ -653,76 +689,81 @@
     <h1 class="hero-title">Meet Chuby Dice</h1>
     <div class="hero-body">
       <p><em>Veteran performer, cultural practitioner. Leading representative of Jamaican Dancehall in Australia.</em></p>
-
-      <div class="bio-accordion">
-        <div class="bio-acc-item open">
-          <div class="bio-acc-header">
-            <span>From Spanish Town, Jamaica</span>
-            <svg class="bio-acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="bio-acc-body">
-            <p>Widely recognised as a veteran performer and a leading representative of authentic Jamaican Dancehall culture in Australia, Chuby (Desmond Malcolm) is a dancer, choreographer and educator from Spanish Town, Jamaica, now based in Naarm (Melbourne), Australia.</p>
-            <p>Raised in one of the historic centres of Dancehall culture, Chuby's Dancehall practice is grounded in the lived realities of Jamaican street life, shaped by sound system &amp; sound clash traditions, community exchange, and sub-altern resilience.</p>
-            <p>Chuby's early engagement with dance began at Cumberland High School, where he formed the group Hot Steppaz. He later joined the foundational Black Dice crew in 2007, eventually rebuilding and leading the group, which has since gained international recognition for its presence in Dancehall street parties and storytelling.</p>
-          </div>
-        </div>
-
-        <div class="bio-acc-item">
-          <div class="bio-acc-header">
-            <span>Black Dice crew and street legacy</span>
-            <svg class="bio-acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="bio-acc-body">
-            <p>Chuby's style is influenced by foundational figures in Dancehall, including Gerald "Bogle" Levy. He is credited with developing a number of Dancehall party steps, including "Move a Foot", "Tek Piece a It", "Summer Kick", and "Air Flow". As a cultural pioneer &amp; creator, this practice is both rooted in tradition and continues to evolve street culture. Black Dice itself draws from classical Dancehall lineage, including mid-skool royalty Black Blingaz.</p>
-          </div>
-        </div>
-
-        <div class="bio-acc-item">
-          <div class="bio-acc-header">
-            <span>Global practice and performance</span>
-            <svg class="bio-acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="bio-acc-body">
-            <p>Chuby is a globally established performer and a cultural practitioner. Uniquely, Chuby has enabled direct access to many in the Australian dance community through his personal platform and brand.</p>
-            <p>Chuby's film and music video projects include Intent 2 and King of the Dancehall (directed by Nick Cannon), and has featured for artists such as Vybz Kartel, Busta Rhymes, Stylo G, Elephant Man and others.</p>
-          </div>
-        </div>
-
-        <div class="bio-acc-item">
-          <div class="bio-acc-header">
-            <span>Establishing Jamaican Dancehall in Australia</span>
-            <svg class="bio-acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="bio-acc-body">
-            <p>Since relocating to Australia in the late 2010s, Chuby has played a central role in representing Jamaican Dancehall and developing the local Dancehall scene. He has performed at major festivals including MONA FOMA, St Kilda Festival, and Moomba, supported international touring artists, and served as a judge for national Dancehall competitions. Alongside his performance work, he is a sought-after instructor, delivering workshops across Melbourne, Perth, Canberra, and internationally, with students travelling to learn directly from his practice.</p>
-            <p>As a cultural leader and one of a few full-time Dancehall dancers outside of Jamaica, Chuby has been instrumental in connecting Dancehall practitioners across Australia. Through initiatives linking dancers and communities across multiple cities, he has supported the development of a more cohesive national scene, while maintaining a clear emphasis on authenticity and direct connection to Jamaican roots.</p>
-          </div>
-        </div>
-
-        <div class="bio-acc-item">
-          <div class="bio-acc-header">
-            <span>Transmitting culture &amp; expertise</span>
-            <svg class="bio-acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="bio-acc-body">
-            <p>Chuby's work extends beyond performance into education and cultural transmission given his specialised expertise. Through long-standing engagements with institutions such as Fitzroy Community School, he has developed approaches that translate Dancehall from its street origins into structured learning environments, incorporating its historical, social, and political contexts. His teaching emphasises not only movement, but also cultural literacy, lineage, and respect for the origins of the form.</p>
-            <p>He has also contributed to expanding the geographic and cultural reach of Dancehall in Australia, with residencies and workshops in regional and remote contexts. Notably, his work has included engagement in Central Australia, where Dancehall has been introduced in dialogue with local communities, reflecting a broader commitment to cultural exchange grounded in origins.</p>
-          </div>
-        </div>
-
-        <div class="bio-acc-item">
-          <div class="bio-acc-header">
-            <span>Practice and philosophy — Dancehall as empowerment</span>
-            <svg class="bio-acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div class="bio-acc-body">
-            <p>Chuby's practice includes inclusive and community-based work, including Dancehall programs aligned with neurodivergent and disability contexts. Chuby tailors all his workshops to enable access to Dancehall's rhythmic and grounding elements and build coordination, expression and social connection.</p>
-            <p>Across performance, education, and community engagement, Chuby's work is defined by a consistent focus on lineage and accessibility. He operates as both a practitioner and a custodian of Jamaican Dancehall culture, contributing to its ongoing development in Australia while maintaining a clear connection to its origins.</p>
-          </div>
-        </div>
-      </div>
+      <p>Scroll to step through his journey — from Spanish Town, Jamaica to building Dancehall culture across Australia. ↓</p>
     </div>
     <button class="btn-book-class" onclick="location.href='series.html'">Book Class Now</button>
+  </div>
+</section>
+
+<!-- ─── SCROLL STORY ─── -->
+<section class="story-scroll" id="storyScroll" aria-label="Chuby Dice's story">
+  <div class="story-progress" aria-hidden="true">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+  <div class="story-stage">
+
+    <article class="story-scene" data-scene="0">
+      <div class="scene-media"><img src="images/about-6080-opt.jpg" alt="Chuby Dice in a Jamaican dancehall setting" loading="eager"></div>
+      <div class="scene-overlay"></div>
+      <div class="scene-content">
+        <p class="scene-eyebrow">Origin</p>
+        <h2 class="scene-title" data-scatter>From Spanish Town, Jamaica</h2>
+        <p class="scene-body">Widely recognised as a veteran performer and a leading representative of authentic Jamaican Dancehall culture in Australia, Chuby (Desmond Malcolm) is a dancer, choreographer and educator from Spanish Town, Jamaica, now based in Naarm (Melbourne), Australia.</p>
+      </div>
+    </article>
+
+    <article class="story-scene" data-scene="1">
+      <div class="scene-media"><img src="images/about-6081-opt.jpg" alt="Chuby Dice with crew" loading="lazy"></div>
+      <div class="scene-overlay"></div>
+      <div class="scene-content">
+        <p class="scene-eyebrow">Lineage</p>
+        <h2 class="scene-title">Black Dice Crew &amp; Street Legacy</h2>
+        <p class="scene-body">Chuby's style is influenced by foundational figures in Dancehall, including Gerald "Bogle" Levy. He is credited with developing a number of Dancehall party steps, including "Move a Foot", "Tek Piece a It", "Summer Kick", and "Air Flow".</p>
+      </div>
+    </article>
+
+    <article class="story-scene" data-scene="2">
+      <div class="scene-media"><img src="images/3c6ae3a24e7c.jpg" alt="Chuby Dice performing" loading="lazy"></div>
+      <div class="scene-overlay"></div>
+      <div class="scene-content">
+        <p class="scene-eyebrow">World Stage</p>
+        <h2 class="scene-title">Global Practice &amp; Performance</h2>
+        <p class="scene-body">Chuby is a globally established performer and a cultural practitioner. His film and music video projects include Intent 2 and King of the Dancehall (directed by Nick Cannon), and he has featured for artists such as Vybz Kartel, Busta Rhymes, Stylo G and Elephant Man.</p>
+      </div>
+    </article>
+
+    <article class="story-scene" data-scene="3">
+      <div class="scene-media"><img src="images/about-5940.jpg" alt="Chuby Dice teaching a workshop" loading="lazy"></div>
+      <div class="scene-overlay"></div>
+      <div class="scene-content">
+        <p class="scene-eyebrow">Naarm / Melbourne</p>
+        <h2 class="scene-title">Establishing Dancehall in Australia</h2>
+        <p class="scene-body">Since relocating to Australia in the late 2010s, Chuby has played a central role in representing Jamaican Dancehall. He has performed at MONA FOMA, St Kilda Festival, and Moomba, supported international touring artists, and served as a judge for national Dancehall competitions.</p>
+      </div>
+    </article>
+
+    <article class="story-scene" data-scene="4">
+      <div class="scene-media"><img src="images/about-5931.jpg" alt="Chuby Dice teaching students" loading="lazy"></div>
+      <div class="scene-overlay"></div>
+      <div class="scene-content">
+        <p class="scene-eyebrow">Education</p>
+        <h2 class="scene-title">Transmitting Culture &amp; Expertise</h2>
+        <p class="scene-body">Chuby's work extends beyond performance into education and cultural transmission. Through long-standing engagements with institutions such as Fitzroy Community School, he translates Dancehall from its street origins into structured learning environments.</p>
+      </div>
+    </article>
+
+    <article class="story-scene" data-scene="5">
+      <div class="scene-media"><img src="images/about-6080-opt.jpg" alt="Chuby Dice portrait background" loading="lazy"></div>
+      <div class="scene-overlay"></div>
+      <img class="scene-cutout" src="images/layers/chuby-cutout.png" alt="Chuby Dice portrait" loading="lazy">
+      <div class="scene-content">
+        <p class="scene-eyebrow">Philosophy</p>
+        <h2 class="scene-title">Dancehall as Empowerment</h2>
+        <p class="scene-body">Chuby's practice includes inclusive, community-based work — including Dancehall programs aligned with neurodivergent and disability contexts — tailoring workshops to build coordination, expression and social connection.</p>
+      </div>
+    </article>
+
   </div>
 </section>
 
@@ -766,6 +807,7 @@
       <a href="academy.html">Academy</a>
       <a href="clash.html">Clash Events</a>
       <a href="past-series.html">Past Events</a>
+<a href="past-clashes.html">Past Clashes</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -806,17 +848,102 @@
     }
   });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-  document.querySelectorAll('.bio-acc-header').forEach(function(header) {
-    header.addEventListener('click', function() {
-      var item = this.parentElement;
-      var wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.bio-acc-item.open').forEach(function(openItem) {
-        openItem.classList.remove('open');
-      });
-      if (!wasOpen) item.classList.add('open');
+(function() {
+  var scrollSection = document.getElementById('storyScroll');
+  if (!scrollSection || typeof gsap === 'undefined') return;
+
+  var scenes = Array.prototype.slice.call(scrollSection.querySelectorAll('.story-scene'));
+  var dots = Array.prototype.slice.call(scrollSection.querySelectorAll('.story-progress .dot'));
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setActive(index) {
+    dots.forEach(function(d, i) { d.classList.toggle('is-active', i === index); });
+  }
+
+  // Split the first scene's heading into per-letter spans for the scatter-in effect
+  var scatterTitle = scrollSection.querySelector('[data-scatter]');
+  var chars = [];
+  if (scatterTitle) {
+    var text = scatterTitle.textContent;
+    scatterTitle.textContent = '';
+    text.split('').forEach(function(ch) {
+      var span = document.createElement('span');
+      span.className = 'char';
+      span.textContent = ch === ' ' ? ' ' : ch;
+      scatterTitle.appendChild(span);
     });
+    chars = Array.prototype.slice.call(scatterTitle.querySelectorAll('.char'));
+  }
+
+  if (reduceMotion) {
+    setActive(0);
+    if (chars.length) gsap.set(chars, { opacity: 1, x: 0, y: 0 });
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Each scene starts fully hidden behind a closed circular mask, except the first
+  scenes.forEach(function(scene, i) {
+    if (i > 0) gsap.set(scene, { clipPath: 'circle(0% at 50% 40%)' });
   });
+
+  var tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: scrollSection,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 1,
+      onUpdate: function(self) {
+        var idx = Math.min(scenes.length - 1, Math.floor(self.progress * scenes.length));
+        setActive(idx);
+      }
+    }
+  });
+
+  scenes.forEach(function(scene, i) {
+    var img = scene.querySelector('.scene-media img');
+    if (img) {
+      tl.fromTo(img, { yPercent: -6 }, { yPercent: 6, ease: 'none', duration: 1 }, i);
+    }
+    if (i > 0) {
+      tl.fromTo(scene,
+        { clipPath: 'circle(0% at 50% 40%)' },
+        { clipPath: 'circle(150% at 50% 40%)', duration: 0.5, ease: 'power1.inOut' },
+        i - 0.25
+      );
+    }
+  });
+
+  // Foreground cutout on the closing scene drifts opposite the background for depth
+  var cutout = scrollSection.querySelector('.scene-cutout');
+  if (cutout) {
+    var lastIndex = scenes.length - 1;
+    tl.fromTo(cutout, { yPercent: 10 }, { yPercent: -10, ease: 'none', duration: 1 }, lastIndex);
+  }
+
+  // Letter-scatter plays once, when the story section first enters view
+  if (chars.length) {
+    gsap.set(chars, {
+      x: function() { return gsap.utils.random(-60, 60); },
+      y: function() { return gsap.utils.random(-40, 40); },
+      opacity: 0
+    });
+    ScrollTrigger.create({
+      trigger: scrollSection,
+      start: 'top 85%',
+      once: true,
+      onEnter: function() {
+        gsap.to(chars, { x: 0, y: 0, opacity: 1, duration: 1, stagger: 0.02, ease: 'power3.out' });
+      }
+    });
+  }
+
+  setActive(0);
+})();
 </script>
 <!-- chatbot disabled — Netlify backend removed, file kept for future use -->
 <!-- <script src="/chatbot.js"></script> -->

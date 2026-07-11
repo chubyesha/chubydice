@@ -125,6 +125,107 @@
   .modal-detail-text { font-family: 'Bebas Neue', sans-serif; font-size: 0.92rem; letter-spacing: 0.05em; color: rgba(255,255,255,0.5); line-height: 1.5; }
   .modal-detail-text strong { color: rgba(255,255,255,0.8); }
 
+  /* ─── CURRICULUM PROSPECTUS MODAL ─── */
+  .prospectus-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+  .prospectus-backdrop.open { opacity: 1; pointer-events: all; }
+  .prospectus-modal { background: #111; border: 1px solid #2a2a2a; border-radius: 20px; width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto; transform: scale(0.97); transition: transform 0.35s cubic-bezier(0.34,1.1,0.64,1); scrollbar-width: thin; scrollbar-color: rgba(245,197,24,0.2) transparent; }
+  .prospectus-backdrop.open .prospectus-modal { transform: scale(1); }
+
+  .prospectus-topbar { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; border-bottom: 1px solid rgba(255,255,255,0.06); position: sticky; top: 0; background: #111; z-index: 5; }
+  .prospectus-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.05em; color: var(--white); }
+  .prospectus-logo span { color: var(--yellow); }
+  .prospectus-topbar-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); text-transform: uppercase; }
+  .prospectus-topbar-right { display: flex; align-items: center; gap: 18px; }
+  .prospectus-close { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: rgba(255,255,255,0.6); transition: background 0.2s, color 0.2s; flex-shrink: 0; }
+  .prospectus-close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+  .prospectus-hero { padding: 36px 32px 8px; display: grid; grid-template-columns: 1fr 260px; gap: 32px; align-items: start; }
+  .prospectus-eyebrow { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.25em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 6px; }
+  .prospectus-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 6vw, 4rem); line-height: 0.95; letter-spacing: 0.01em; background: linear-gradient(90deg,#F5C518 0%,#A3E635 60%,#4ADE80 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
+  .prospectus-sub { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 16px; }
+  .prospectus-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.1em; color: var(--yellow); border: 1px solid rgba(245,197,24,0.3); background: rgba(245,197,24,0.06); border-radius: 50px; padding: 6px 16px; margin-bottom: 18px; }
+  .prospectus-badge::before { content: '•'; }
+  .prospectus-desc { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; line-height: 1.6; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.01em; }
+  .prospectus-desc strong { color: var(--yellow); font-weight: 400; }
+  .prospectus-image-placeholder { background: linear-gradient(160deg, rgba(245,197,24,0.06), rgba(0,0,0,0.4)); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; min-height: 220px; height: 100%; overflow: hidden; }
+  .prospectus-image-placeholder img { width: 100%; height: 100%; min-height: 220px; object-fit: cover; object-position: center 20%; display: block; }
+
+  .prospectus-pills { display: flex; flex-wrap: wrap; gap: 10px; padding: 20px 32px 0; }
+  .prospectus-pill { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.1em; padding: 8px 18px; border-radius: 50px; border: 1px solid; text-transform: uppercase; }
+  .prospectus-pill.gold { color: var(--yellow); border-color: rgba(245,197,24,0.35); background: rgba(245,197,24,0.05); }
+  .prospectus-pill.green { color: #4ADE80; border-color: rgba(74,222,128,0.35); background: rgba(74,222,128,0.05); }
+  .prospectus-pill.orange { color: #FF9F43; border-color: rgba(255,159,67,0.35); background: rgba(255,159,67,0.05); }
+  .prospectus-pill.blue { color: #38BDF8; border-color: rgba(56,189,248,0.35); background: rgba(56,189,248,0.05); }
+
+  .prospectus-info-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 24px 32px; }
+  .prospectus-info-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; }
+  .prospectus-info-card h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.08em; color: #4ADE80; margin-bottom: 8px; text-transform: uppercase; }
+  .prospectus-info-card p { font-family: 'Bebas Neue', sans-serif; font-size: 0.98rem; line-height: 1.55; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.01em; }
+
+  .prospectus-section { padding: 8px 32px 0; }
+  .prospectus-section-eyebrow { font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-top: 28px; }
+  .prospectus-section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: 0.02em; color: var(--white); margin: 6px 0 20px; }
+  .prospectus-section-title span { color: var(--yellow); }
+
+  .curriculum-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding-bottom: 8px; }
+  .curriculum-col-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 10px; }
+  .curriculum-col-label.gold { color: var(--yellow); }
+  .curriculum-col-label.green { color: #4ADE80; }
+  .curriculum-list { list-style: none; }
+  .curriculum-list li { font-family: 'Bebas Neue', sans-serif; font-size: 0.98rem; line-height: 1.55; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.01em; padding: 8px 0 8px 18px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .curriculum-list li:last-child { border-bottom: none; }
+  .curriculum-list li::before { content: '•'; position: absolute; left: 0; }
+  .curriculum-list.gold li::before { color: var(--yellow); }
+  .curriculum-list.green li::before { color: #4ADE80; }
+
+  .roadmap-row { display: grid; grid-template-columns: 220px 1fr; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .roadmap-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.92rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.55); text-transform: uppercase; }
+  .roadmap-track { position: relative; height: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; }
+  .roadmap-bar { position: absolute; top: 0; left: 0; height: 100%; border-radius: 6px; }
+
+  .roadmap-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin: 24px 0 32px; }
+  .roadmap-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; }
+  .roadmap-card h5 { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.08em; margin-bottom: 8px; text-transform: uppercase; }
+  .roadmap-card p { font-family: 'Bebas Neue', sans-serif; font-size: 0.88rem; line-height: 1.45; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.01em; }
+
+  .prospectus-page-divider { display: flex; justify-content: space-between; align-items: center; padding: 18px 32px; border-top: 1px solid rgba(255,255,255,0.06); font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+  .prospectus-page-divider strong { color: var(--yellow); }
+  .prospectus-page2-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; flex-wrap: wrap; gap: 8px; }
+
+  .agreement-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; }
+  .agreement-card h5 { font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: 0.06em; margin-bottom: 8px; text-transform: uppercase; }
+  .agreement-card p { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; line-height: 1.5; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.01em; }
+
+  .timeline-col-label { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+  .timeline-item { display: flex; gap: 12px; padding-bottom: 20px; }
+  .timeline-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .timeline-when { font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .timeline-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 0.04em; color: var(--white); text-transform: uppercase; margin: 2px 0 6px; }
+  .timeline-desc { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; line-height: 1.5; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.01em; }
+
+  .scholar-highlight-box { background: rgba(245,197,24,0.05); border-left: 3px solid var(--yellow); border-radius: 0 10px 10px 0; padding: 18px 20px; margin-top: 8px; }
+  .scholar-highlight-box h5 { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.06em; color: var(--yellow); margin-bottom: 8px; text-transform: uppercase; }
+  .scholar-highlight-box p { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; line-height: 1.55; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.01em; }
+
+  .pathways-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .prospectus-final-quote { background: var(--yellow); color: var(--black); border-radius: 14px; padding: 32px; margin: 28px 32px 0; text-align: center; }
+  .prospectus-final-quote p { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.1rem, 2.4vw, 1.4rem); line-height: 1.5; letter-spacing: 0.01em; text-transform: uppercase; }
+
+  .prospectus-footer-bar { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: center; padding: 20px 32px; font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+  .prospectus-footer-bar strong { color: var(--yellow); }
+  .prospectus-footer-bar .sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+
+  @media (max-width: 700px) {
+    .prospectus-hero { grid-template-columns: 1fr; }
+    .prospectus-image-placeholder { min-height: 160px; order: -1; }
+    .prospectus-info-cards { grid-template-columns: 1fr; }
+    .curriculum-columns { grid-template-columns: 1fr; gap: 8px; }
+    .roadmap-row { grid-template-columns: 1fr; gap: 6px; }
+    .roadmap-cards { grid-template-columns: 1fr 1fr; }
+    .pathways-grid { grid-template-columns: 1fr; }
+  }
+
   /* ORBS */
   .orb { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 1; will-change: transform; }
 .orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 70%); top: -200px; left: -150px; animation: orbFloat1 18s ease-in-out infinite; }
@@ -240,13 +341,15 @@
   </div>
   <div class="nav-right">
     <button class="menu-btn" id="menuBtnMobile" onclick="toggleMenu()" style="display:none;">MENU <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></button>
-    <button class="book-btn" id="navBookBtn" onclick="openTasterModal()">Sign Up</button>
+    <button class="book-btn" id="navBookBtn" onclick="openCurriculumModal()">View Curriculum</button>
   </div>
 </nav>
 
 <div class="menu-overlay" id="menuOverlay">
   <a href="index.html">Home</a>
   <a href="series.html">Chuby Dice Series</a>
+<a href="technique-tuesdays.html">Technique Tuesdays</a>
+<a href="jamaican-dance-fitness.html">Jamaican Dance Fitness</a>
   <a href="clash.html">Clash Inna Dancehall</a>
   <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
   <a href="academy.html" class="active">Dancehall Academy</a>
@@ -259,10 +362,11 @@
       <a href="contact.html">Contact / Instagram</a>
       <a href="contact.html">Brand Ambassadorship</a>
       <a href="past-series.html">Past Events</a>
+<a href="past-clashes.html">Past Clashes</a>
     </div>
   </div>
   <div class="menu-divider"></div>
-  <button class="menu-book" onclick="openTasterModal()">Sign Up — Taster + Tryouts</button>
+  <button class="menu-book" onclick="openCurriculumModal()">View Curriculum</button>
 </div>
 
 <div class="page-hero">
@@ -282,18 +386,18 @@
         </div>
         <div class="taster-card-body">
           <div>
-            <div class="taster-live-badge"><div class="taster-live-dot"></div>SIGN-UPS NOW OPEN</div>
-            <div class="taster-card-date-row">13 JUNE 2026 &nbsp;·&nbsp; 3PM &nbsp;·&nbsp; DSOUL STUDIO</div>
+            <div class="taster-live-badge"><div class="taster-live-dot" style="animation:none;"></div>COHORT 1 · SELECTION CLOSED</div>
+            <div class="taster-card-date-row">TASTER HELD 13 JUNE 2026 &nbsp;·&nbsp; DSOUL STUDIO</div>
             <div class="taster-card-title">TASTER +<br><span>TRYOUTS</span></div>
-            <div class="taster-card-desc">Your first step into the Dancehall Academy. Train directly with Chuby — free workshop + selection for Cohort 1.</div>
+            <div class="taster-card-desc">The Academy's first step. Selection for Cohort 1 is now complete and training is underway.</div>
             <div class="taster-card-pills">
-              <span class="taster-pill">Free Taster Class</span>
-              <span class="taster-pill">Cohort 1 Selection</span>
-              <span class="taster-pill">All Welcome</span>
+              <span class="taster-pill">Completed</span>
+              <span class="taster-pill">Cohort 1 Selected</span>
+              <span class="taster-pill">Training Underway</span>
             </div>
           </div>
-          <button class="btn-taster-open" onclick="openTasterModal(); event.stopPropagation();">
-            Sign Up Now
+          <button class="btn-taster-open" onclick="openCurriculumModal(); event.stopPropagation();">
+            View Curriculum
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </div>
@@ -313,9 +417,13 @@
     </div>
 -->
 <div class="academy-card" style="width:100%; grid-column: 1 / -1;">
-  <span class="academy-card-badge">Long Vision</span>
-  <h3>CURRICULUM, SCHOLARSHIPS, VISION 2030</h3>
-  <p>Future Drops till TryOuts</p>
+  <span class="academy-card-badge">Cohort 1 &middot; 2026-2027</span>
+  <h3>CURRICULUM &amp; VISION 2030</h3>
+  <p>A structured academy pathway for dancers who want to perform, understand, preserve and contribute to Dancehall with integrity. Explore the full program: roadmap, membership inclusions, conditions of training, and future pathways.</p>
+  <button class="btn-taster-open" style="margin-top:16px;" onclick="openCurriculumModal()">
+    View Curriculum
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
 </div>
 
   </div>
@@ -330,15 +438,14 @@
       <div class="modal-hero-content">
         <div class="modal-hero-tag">DANCEHALL ACADEMY</div>
         <div class="modal-hero-title">TASTER + TRYOUTS</div>
-        <div class="modal-hero-sub">SIGN-UPS NOW OPEN</div>
+        <div class="modal-hero-sub">COHORT 1 SELECTED</div>
       </div>
       <button class="modal-close-btn" onclick="closeTasterModal()" aria-label="Close">&#x2715;</button>
     </div>
     <div class="modal-info-strip">
-      <div class="modal-info-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>13 JUNE 2026</div>
-      <div class="modal-info-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>3PM</div>
+      <div class="modal-info-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>HELD 13 JUNE 2026</div>
       <div class="modal-info-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>DSOUL STUDIO</div>
-      <div class="modal-info-pill accent">FREE TASTER + TRYOUT</div>
+      <div class="modal-info-pill accent">COHORT 1 · CLOSED</div>
     </div>
     <div class="modal-body-grid">
       <div>
@@ -346,7 +453,7 @@
         <p class="modal-body-text">Dancehall Academy is a structured pathway into Dancehall, built to develop depth, knowledge, and quality in Australia. Led by Chuby, leader of Black Dice Crew from Spanish Town, Jamaica, the Academy centres on direct teaching, mentorship, and deep cultural grounding in the music, movement, and history of Dancehall.</p>
         <p class="modal-body-text">Taster + Tryouts is both a free workshop and a selection process. Participants will train directly with Chuby and collaborators, experiencing the Academy's approach across movement, musicality, and cultural understanding.</p>
         <div class="modal-section-title">COHORT 1</div>
-        <p class="modal-body-text">Cohort 1 will be limited — 8 to 10 dancers — focused on serious, advanced students ready to commit to a deeper journey. The Academy journey is a one to two year journey at minimum, to chart the future of Dancehall in Naarm and more widely.</p>
+        <p class="modal-body-text">Cohort 1 is limited to 8 to 10 dancers, focused on serious, advanced students ready to commit to a deeper journey. The Academy journey is a one to two year journey at minimum, to chart the future of Dancehall in Naarm and more widely.</p>
         <div class="modal-section-title">WHY THIS MATTERS</div>
         <p class="modal-body-text">This marks the first, and not the last, time in Australia that a Dancehall crew is being led, developed, and deployed by a Jamaican Dancehall creator.</p>
         <ul class="modal-list">
@@ -359,17 +466,284 @@
       </div>
       <div class="modal-booking-side">
         <div class="modal-booking-card">
-          <div class="modal-booking-title">READY TO <span>SIGN UP?</span></div>
-          <div class="modal-booking-sub">Registrations via chubydice.com</div>
-          <div class="modal-detail-row"><span class="modal-detail-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><span class="modal-detail-text"><strong>Saturday 13 June 2026</strong></span></div>
-          <div class="modal-detail-row"><span class="modal-detail-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span><span class="modal-detail-text"><strong>3PM</strong></span></div>
+          <div class="modal-booking-title">WANT THE <span>FULL PICTURE?</span></div>
+          <div class="modal-booking-sub">Cohort 1 selection is closed</div>
+          <div class="modal-detail-row"><span class="modal-detail-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><span class="modal-detail-text"><strong>Taster held Saturday 13 June 2026</strong></span></div>
           <div class="modal-detail-row"><span class="modal-detail-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="modal-detail-text"><strong>DSOUL Studio</strong><br>Naarm / Melbourne</span></div>
-          <div class="modal-detail-row"><span class="modal-detail-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span><span class="modal-detail-text"><strong>Free</strong> — Taster class + tryout</span></div>
-          <button class="btn-modal-book" onclick="bookTaster()">SIGN UP NOW</button>
-          <div class="modal-book-note">Secure via Stripe &nbsp;·&nbsp; Limited spots</div>
+          <div class="modal-detail-row"><span class="modal-detail-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span><span class="modal-detail-text"><strong>Cohort 1</strong> now in training</span></div>
+          <button class="btn-modal-book" onclick="closeTasterModal(); openCurriculumModal();">VIEW CURRICULUM</button>
+          <div class="modal-book-note">Full 2026-2027 prospectus &nbsp;&middot;&nbsp; Roadmap, pathways &amp; more</div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- CURRICULUM PROSPECTUS MODAL -->
+<div class="prospectus-backdrop" id="prospectusBackdrop" onclick="handleProspectusBackdropClick(event)">
+  <div class="prospectus-modal" id="prospectusModal" role="dialog" aria-modal="true" aria-label="Dancehall Academy Cohort 1 Prospectus">
+
+    <div class="prospectus-topbar">
+      <div class="prospectus-logo">CHUBY <span>DICE</span></div>
+      <div class="prospectus-topbar-right">
+        <div class="prospectus-topbar-label">Cohort 1 Prospectus &middot; 2026-2027</div>
+        <button class="prospectus-close" onclick="closeCurriculumModal()" aria-label="Close">&#x2715;</button>
+      </div>
+    </div>
+
+    <div class="prospectus-hero">
+      <div>
+        <p class="prospectus-eyebrow">Chuby Dice Presents</p>
+        <h2 class="prospectus-title">Dancehall<br>Academy</h2>
+        <p class="prospectus-sub">High-Level Prospectus &middot; 2026-2027</p>
+        <div class="prospectus-badge">Out of Many, One</div>
+        <p class="prospectus-desc">A structured academy pathway for dancers who want to <strong>perform, understand, preserve</strong> and contribute to Dancehall with integrity.</p>
+      </div>
+      <div class="prospectus-image-placeholder">
+        <img src="chuby-profile.jpg" alt="Chuby Dice, Dancehall Academy" onerror="this.style.display='none'">
+      </div>
+    </div>
+
+    <div class="prospectus-pills">
+      <span class="prospectus-pill gold">Training</span>
+      <span class="prospectus-pill green">Culture</span>
+      <span class="prospectus-pill orange">Performance</span>
+      <span class="prospectus-pill blue">Leadership</span>
+    </div>
+
+    <div class="prospectus-info-cards">
+      <div class="prospectus-info-card">
+        <h4>Creators First</h4>
+        <p>Learn with respect for the people, places and innovators who created the movement.</p>
+      </div>
+      <div class="prospectus-info-card">
+        <h4>Culture First</h4>
+        <p>Technique, vocabulary and performance are taught alongside context, history and transmission.</p>
+      </div>
+    </div>
+
+    <div class="prospectus-section">
+      <p class="prospectus-section-eyebrow">What Scholars Study in Year One</p>
+      <h3 class="prospectus-section-title">The 2026 <span>Curriculum</span></h3>
+      <div class="curriculum-columns">
+        <div>
+          <p class="curriculum-col-label gold">Core Learning &middot; 2026</p>
+          <ul class="curriculum-list gold">
+            <li>Movement vocabulary &amp; provenance — crews &amp; sub-genres</li>
+            <li>Execution, timing, groove and technique</li>
+            <li>Freestyle, expression and performance energy</li>
+            <li>High-level cultural foundations and creators-first learning</li>
+          </ul>
+        </div>
+        <div>
+          <p class="curriculum-col-label green">Development &middot; 2026</p>
+          <ul class="curriculum-list green">
+            <li>Music literacy and teaching foundations</li>
+            <li>Choreography coaching and movement application</li>
+            <li>One-on-one feedback during the assessment period</li>
+            <li>Future creator mentorship opportunities</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="prospectus-section">
+      <p class="prospectus-section-eyebrow">The Long Game</p>
+      <h3 class="prospectus-section-title">Roadmap to <span>Vision 2030</span></h3>
+
+      <div class="roadmap-row">
+        <span class="roadmap-label">Weekly Academy Training</span>
+        <div class="roadmap-track"><div class="roadmap-bar" style="width:58%;background:#F5C518;"></div></div>
+      </div>
+      <div class="roadmap-row">
+        <span class="roadmap-label">Vocabulary, Choreo &amp; Freestyle</span>
+        <div class="roadmap-track"><div class="roadmap-bar" style="width:58%;background:#4ADE80;"></div></div>
+      </div>
+      <div class="roadmap-row">
+        <span class="roadmap-label">Culture + Theory</span>
+        <div class="roadmap-track"><div class="roadmap-bar" style="width:58%;background:#38BDF8;"></div></div>
+      </div>
+      <div class="roadmap-row">
+        <span class="roadmap-label">Chuby Dice Series</span>
+        <div class="roadmap-track"><div class="roadmap-bar" style="width:58%;background:#FF9F43;"></div></div>
+      </div>
+      <div class="roadmap-row">
+        <span class="roadmap-label">Street Sessions</span>
+        <div class="roadmap-track"><div class="roadmap-bar" style="width:58%;background:#B794F6;"></div></div>
+      </div>
+      <div class="roadmap-row">
+        <span class="roadmap-label">Summer Deep Dive</span>
+        <div class="roadmap-track"><div class="roadmap-bar" style="left:62%;width:14%;background:#F5C518;"></div></div>
+      </div>
+      <div class="roadmap-row">
+        <span class="roadmap-label">2027 Program</span>
+        <div class="roadmap-track"><div class="roadmap-bar" style="left:68%;width:20%;background:#4ADE80;"></div></div>
+      </div>
+
+      <div class="roadmap-cards">
+        <div class="roadmap-card">
+          <h5 style="color:var(--yellow);">2026 Foundations</h5>
+          <p>Dancehall vocabulary, technique and freestyle expression.</p>
+        </div>
+        <div class="roadmap-card">
+          <h5 style="color:var(--white);">Summer Project</h5>
+          <p>History &amp; political landscape of Jamaican dancehall.</p>
+        </div>
+        <div class="roadmap-card">
+          <h5 style="color:#38BDF8;">2027 Advanced</h5>
+          <p>Eras, advanced styles, battling vs choreography, mentorship.</p>
+        </div>
+        <div class="roadmap-card">
+          <h5 style="color:#FF9F43;">Performance</h5>
+          <p>Clash 2, Clash 3 &amp; monthly practice as community.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="prospectus-page-divider">
+      <span>Chuby Dice &middot; Dancehall Academy</span>
+      <strong>01 / 02</strong>
+    </div>
+
+    <!-- PAGE 2: THE ACADEMY SCHOLAR — CONDITIONS & PATHWAYS -->
+    <div class="prospectus-page2-header">
+      <div class="prospectus-logo">CHUBY <span>DICE</span></div>
+      <div class="prospectus-topbar-label">The Academy Scholar &middot; Conditions &amp; Pathways</div>
+    </div>
+
+    <div class="prospectus-section">
+      <p class="prospectus-section-eyebrow">What Scholars Receive After Selection</p>
+      <h3 class="prospectus-section-title">Membership <span>Inclusions</span></h3>
+      <div class="roadmap-cards" style="margin-top:0;">
+        <div class="roadmap-card">
+          <h5 style="color:var(--yellow);">Saturday Training</h5>
+          <p>Core Academy training every Saturday through June, July, August, September and October.</p>
+        </div>
+        <div class="roadmap-card">
+          <h5 style="color:#FF9F43;">Tributary Series</h5>
+          <p>Eligible access to the Chuby Dice Series at HD Entertainment, subject to stream requirements.</p>
+        </div>
+        <div class="roadmap-card">
+          <h5 style="color:#F472B6;">Clash Access</h5>
+          <p>Academy-supported participation in designated clash components, including cyphers where applicable.</p>
+        </div>
+        <div class="roadmap-card">
+          <h5 style="color:#4ADE80;">Street Sessions</h5>
+          <p>Monthly practice sessions for cypher confidence, freestyle, etiquette and community.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="prospectus-section">
+      <p class="prospectus-section-eyebrow">Selection Is Followed by an Academy Agreement</p>
+      <h3 class="prospectus-section-title">Conditions of <span>Training</span></h3>
+      <div class="curriculum-columns">
+        <div>
+          <p class="curriculum-col-label gold" style="color:rgba(255,255,255,0.5);">Membership Agreements</p>
+          <div class="agreement-card">
+            <h5 style="color:var(--yellow);">Payment Cadence</h5>
+            <p>Fees, due dates, scholarship provisions and what is included or excluded.</p>
+          </div>
+          <div class="agreement-card">
+            <h5 style="color:#4ADE80;">Attendance</h5>
+            <p>How many classes may be missed, notice requirements and what counts as unexplained absence.</p>
+          </div>
+          <div class="agreement-card">
+            <h5 style="color:#FF9F43;">Compulsory Series</h5>
+            <p>Which classes, tributary sessions, assessments and clash components are required per stream.</p>
+          </div>
+          <div class="agreement-card">
+            <h5 style="color:#38BDF8;">Professional Standards</h5>
+            <p>Respect for creators, instructors, cohort members and the wider Dancehall community.</p>
+          </div>
+        </div>
+        <div>
+          <p class="timeline-col-label">Performance Map &middot; 2026</p>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background:#FF9F43;"></div>
+            <div>
+              <div class="timeline-when" style="color:#FF9F43;">Aug 2026</div>
+              <div class="timeline-title">Clash 2</div>
+              <p class="timeline-desc">All Academy members may participate in the cypher component and attend the supported workshop.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background:#F472B6;"></div>
+            <div>
+              <div class="timeline-when" style="color:#F472B6;">Oct 2026</div>
+              <div class="timeline-title">Clash 3</div>
+              <p class="timeline-desc">Participation determined by cohort progress, readiness and assessment needs.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background:#B794F6;"></div>
+            <div>
+              <div class="timeline-when" style="color:#B794F6;">Monthly</div>
+              <div class="timeline-title">Street Sessions</div>
+              <p class="timeline-desc">Freestyle, social dancing, cypher etiquette and community presence outside class.</p>
+            </div>
+          </div>
+          <div class="scholar-highlight-box">
+            <h5>The Academy Scholar</h5>
+            <p>Selection means joining a structured training cohort with expectations, benefits, assessment and future pathways — not only a casual class. Successful applicants receive an Academy agreement before confirming their place.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prospectus-section">
+      <p class="prospectus-section-eyebrow">2027 Moves From Foundation Into Specialisations</p>
+      <h3 class="prospectus-section-title">Future <span>Pathways</span></h3>
+      <div class="curriculum-columns">
+        <div class="pathways-grid">
+          <div class="agreement-card" style="margin-bottom:0;">
+            <h5 style="color:#38BDF8;">Teaching</h5>
+            <p>Class design, teaching methodology, cultural transmission and responsible facilitation.</p>
+          </div>
+          <div class="agreement-card" style="margin-bottom:0;">
+            <h5 style="color:#B794F6;">Choreography</h5>
+            <p>Original works, staging, performance direction and structured creative development.</p>
+          </div>
+          <div class="agreement-card" style="margin-bottom:0;">
+            <h5 style="color:#FF9F43;">Battling</h5>
+            <p>Advanced freestyle, cypher strategy, confidence and embodied musical response.</p>
+          </div>
+          <div class="agreement-card" style="margin-bottom:0;">
+            <h5 style="color:var(--yellow);">Mentorship</h5>
+            <p>Creator connection, cultural accountability and deeper learning through custodians.</p>
+          </div>
+        </div>
+        <div>
+          <p class="curriculum-col-label green">2027 Learning Focus</p>
+          <ul class="curriculum-list green">
+            <li>Deeper study of Dancehall periods, eras and major styles</li>
+            <li>History and political landscape of Jamaican Dancehall</li>
+            <li>Advanced style development and movement pathways</li>
+            <li>Choreography vs battling as separate, complementary skills</li>
+            <li>Teaching pathway introduced in the second half of 2027</li>
+            <li>Female Dancehall incorporated through a creators-first approach</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="prospectus-final-quote">
+      <p>The Academy builds dancers who represent Dancehall and understand where it comes from, who created it, and how to carry it forward with respect.</p>
+    </div>
+
+    <div class="prospectus-footer-bar">
+      <strong>HD Entertainment</strong>
+      <span class="sep"></span>
+      <span>Level 2 &amp; 3, 34 King Street &middot; Prahran VIC 3181</span>
+      <span class="sep"></span>
+      <strong>chubydice.com</strong>
+    </div>
+
+    <div class="prospectus-page-divider" style="border-top:1px solid rgba(255,255,255,0.06);">
+      <span>Chuby Dice &middot; Dancehall Academy</span>
+      <strong>02 / 02</strong>
+    </div>
+
   </div>
 </div>
 
@@ -394,6 +768,11 @@
     try { var url = new URL(TASTER_STRIPE); if (url.protocol === 'https:' && url.hostname === 'book.stripe.com') window.open(TASTER_STRIPE, '_blank', 'noopener,noreferrer'); } catch(err) {}
   }
   if (new URLSearchParams(window.location.search).get('signup') === '1') { window.addEventListener('load', openTasterModal); }
+
+  function openCurriculumModal() { document.getElementById('prospectusBackdrop').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeCurriculumModal() { document.getElementById('prospectusBackdrop').classList.remove('open'); document.body.style.overflow = ''; }
+  function handleProspectusBackdropClick(e) { if (e.target === document.getElementById('prospectusBackdrop')) closeCurriculumModal(); }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCurriculumModal(); });
 </script>
 <!-- chatbot disabled — Netlify backend removed, file kept for future use -->
 <!-- <script src="/chatbot.js"></script> -->
@@ -432,6 +811,7 @@
       <a href="academy.html">Academy</a>
       <a href="clash.html">Clash Events</a>
       <a href="past-series.html">Past Events</a>
+<a href="past-clashes.html">Past Clashes</a>
     </div>
   </div>
   <div class="footer-bottom">

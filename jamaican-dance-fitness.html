@@ -5,18 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Chuby Dice"/>
-<meta property="og:title" content="Clash Inna Dancehall | Chuby Dice"/>
-<meta property="og:description" content="Clash Inna Dancehall aims to enrich the street dance culture in Naarm and establish Australia's Dancehall Academy."/>
-<meta property="og:url" content="https://chubydice.com/clash.html"/>
+<meta property="og:title" content="Jamaican Dance Fitness | Chuby Dice"/>
+<meta property="og:description" content="Fitness the Jamaican way. Weekly outdoor Dancehall-based fitness sessions at Coburg Lake Reserve with Chuby Dice."/>
+<meta property="og:url" content="https://chubydice.com/jamaican-dance-fitness.html"/>
 <meta property="og:image" content="https://chubydice.com/chuby-profile.jpg"/>
 <meta property="og:image:width" content="898"/>
 <meta property="og:image:height" content="1600"/>
 <meta property="og:image:alt" content="Chuby Dice — Dancehall Artist"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Clash: Dancehall Battle | Chuby Dice"/>
-<meta name="twitter:description" content="Clash Inna Dancehall aims to enrich the street dance culture in Naarm and establish Australia's Dancehall Academy."/>
+<meta name="twitter:title" content="Jamaican Dance Fitness | Chuby Dice"/>
+<meta name="twitter:description" content="Fitness the Jamaican way. Weekly outdoor Dancehall-based fitness sessions at Coburg Lake Reserve with Chuby Dice."/>
 <meta name="twitter:image" content="https://chubydice.com/chuby-profile.jpg"/>
-<title>Clash Inna Dancehall | Chuby Dice</title>
+<meta name="description" content="Jamaican Dance Fitness at Coburg Lake Reserve: outdoor Dancehall-based fitness with Chuby Dice. Build the strength, stamina and resilience that underpin the form."/>
+<title>Jamaican Dance Fitness – Chuby Dice</title>
 <link rel="icon" type="image/x-icon" href="images/09c9ec4a0ce4.ico"/>
 <link rel="icon" type="image/png" sizes="32x32" href="images/8cbe784dd268.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="images/8cbe784dd268.png"/>
@@ -27,11 +28,13 @@
 <style>
   :root {
     --yellow: #F5C518;
-    --cyan: #00E5FF;
+    --pink: #E040FB;
     --white: #FFFFFF;
     --black: #0A0A0A;
     --dark: #111111;
-    --border: #242424;
+    --card-bg: #161616;
+    --border: #282828;
+    --purple-deep: #1A0A2E;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,7 +43,12 @@
   @media (prefers-reduced-motion: no-preference) {
     html { scroll-behavior: smooth; }
   }
-  body { font-family: 'Bebas Neue', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+  body {
+    font-family: 'Bebas Neue', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
 
   /* ─── NAVBAR ─── */
   nav {
@@ -67,178 +75,284 @@
   .menu-overlay a:hover { background: rgba(255,255,255,0.06); color: var(--yellow); }
   .menu-overlay a.active { color: var(--yellow); }
   .menu-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 8px 0; }
-  .menu-book { background: var(--yellow); color: var(--black); border: none; font-family: 'Bebas Neue', sans-serif; font-weight: 800; font-size: 1.2rem; padding: 12px; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; width: 100%; transition: transform 0.15s; }
-  .menu-book:hover { transform: scale(1.02); }
+  .menu-book { background: var(--yellow); color: var(--black); border: none; font-family: 'Bebas Neue', sans-serif; font-weight: 800; font-size: 1.2rem; padding: 12px; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; width: 100%; transition: transform 0.15s, box-shadow 0.15s; }
+  .menu-book:hover { transform: scale(1.02); box-shadow: 0 4px 18px rgba(245,197,24,0.35); }
 
   /* ─── HERO ─── */
   .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 120px 24px 80px;
     position: relative;
+    min-height: 60vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 80px 0 40px;
     overflow: hidden;
-    background: #050C10;
+    background: url("images/academy-tile-bg.jpg") center center / cover no-repeat;
   }
 
-  /* Subtle animated glow */
+  .hero-watermark {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -52%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 14vw, 12rem);
+    letter-spacing: 0.02em;
+    line-height: 0.85;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+  .wm-line1 {
+    display: block;
+    background: linear-gradient(135deg, rgba(245,197,24,0.18) 0%, rgba(245,130,0,0.1) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: blur(0.5px);
+  }
+  .wm-line2 {
+    display: block;
+    background: linear-gradient(135deg, rgba(245,197,24,0.10) 0%, rgba(245,130,0,0.06) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    filter: blur(0.5px);
+  }
+
+  .hero-coaching-wm {
+    position: absolute;
+    top: 10%; right: -8%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    letter-spacing: 0.04em;
+    transform: rotate(-35deg);
+    transform-origin: top right;
+    background: linear-gradient(135deg, rgba(0,229,200,0.12) 0%, rgba(0,180,160,0.05) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    pointer-events: none; user-select: none;
+    z-index: 0;
+    white-space: nowrap;
+  }
+
   .hero::before {
     content: '';
     position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 50% 40% at 30% 50%, rgba(0,229,255,0.04) 0%, transparent 65%),
-      radial-gradient(ellipse 50% 40% at 70% 50%, rgba(245,197,24,0.04) 0%, transparent 65%);
-    pointer-events: none;
-  }
-
-  /* Giant ghost "CLASH" background text */
-  .hero-bg-text {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(12rem, 30vw, 28rem);
-    letter-spacing: 0.04em;
-    line-height: 1;
-    pointer-events: none; user-select: none;
-    background: linear-gradient(135deg, rgba(0,229,255,0.06) 0%, rgba(245,197,24,0.04) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    white-space: nowrap;
+    background: rgba(5, 8, 16, 0.62);
     z-index: 0;
   }
 
-  .hero-content { position: relative; z-index: 1; max-width: 800px; }
-
-  .hero-nav-row {
-    display: flex; justify-content: space-between; align-items: center;
-    width: 100%; margin-bottom: 28px;
+  .hero-tags {
+    display: flex; justify-content: center; gap: 24px;
+    margin-bottom: 12px;
+    pointer-events: none;
   }
-
-  .back-link {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 1.15rem; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: rgba(255,255,255,0.35);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .back-link:hover { color: rgba(255,255,255,0.65); }
-
-  .hero-title {
+  .hero-tag {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 9vw, 7.5rem);
-    line-height: 1; letter-spacing: 0.02em;
-    margin-bottom: 24px;
-    opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+    font-size: clamp(0.9rem, 2.5vw, 1.5rem);
+    letter-spacing: 0.15em;
+    color: rgba(245,197,24,0.55);
   }
-  .hero-title .clash-word {
-    display: block;
-    color: var(--white);
-  }
-  .hero-title .dash { display: none; }
+  .hero-tag.dim { color: rgba(255,255,255,0.18); }
 
-  .hero-desc {
-    font-size: 1.2rem; line-height: 1.75;
-    color: rgba(255,255,255,0.45);
-    max-width: 520px; margin: 0 auto 36px;
-    opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards;
-  }
-
-  .btn-stay-updated {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.15);
-    color: var(--white);
-    font-family: 'Bebas Neue', sans-serif; font-weight: 700;
-    font-size: 1.08rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 14px 28px; border-radius: 50px; cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-    opacity: 0; animation: fadeUp 0.6s ease 0.4s forwards;
-  }
-  .btn-stay-updated:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); transform: translateY(-2px); }
-
-  /* ─── WHILE YOU WAIT ─── */
-  .while-you-wait {
-    background: var(--black);
-    padding: 100px 24px;
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1100px; margin: 0 auto; padding: 0 48px;
     text-align: center;
   }
-  .wyw-title {
+  .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 700; letter-spacing: -0.01em;
-    color: var(--white); margin-bottom: 12px;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    line-height: 1.05; letter-spacing: 0.03em;
+    background: linear-gradient(90deg, #fff 0%, #e0c88a 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 18px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards;
   }
-  .wyw-sub {
-    font-size: 1.15rem; color: var(--yellow);
-    letter-spacing: 0.02em; margin-bottom: 52px;
+  .hero-subtitle {
+    font-size: 1.2rem; line-height: 1.75;
+    color: rgba(255,255,255,0.5); max-width: 560px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards;
+    margin: 0 auto;
   }
 
-  /* Series card */
-  .series-promo {
-    max-width: 700px; margin: 0 auto 60px;
-    background: #111;
-    border: 1px solid rgba(245,197,24,0.2);
-    border-radius: 16px; overflow: hidden;
-    position: relative; cursor: pointer;
-    transition: border-color 0.3s, transform 0.3s;
-    text-decoration: none; display: block;
+  .price-banner {
+    position: relative; z-index: 3;
+    background: rgba(10,10,10,0.7);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(245,197,24,0.2);
+    border-bottom: 1px solid rgba(245,197,24,0.2);
+    padding: 14px 48px;
+    display: flex; align-items: center; justify-content: center; gap: 28px;
+    flex-wrap: wrap;
+    margin-top: 40px;
   }
-  .series-promo:hover { border-color: rgba(245,197,24,0.5); transform: translateY(-4px); }
-
-  .series-promo-imgs {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    height: 220px; gap: 0;
-  }
-  .series-promo-img {
-    background: #1a1a1a;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.15rem; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(255,255,255,0.1);
-    border-right: 1px solid rgba(255,255,255,0.05);
-  }
-  .series-promo-img:last-child { border-right: none; }
-
-  .series-promo-overlay {
-    position: absolute; inset: 0;
-    background: rgba(0,0,0,0.55);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 8px;
-  }
-  .series-promo-overlay h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem; letter-spacing: 0.06em; color: var(--white);
-  }
-  .series-promo-overlay p {
+  .price-banner-item {
+    display: flex; align-items: center; gap: 8px;
     font-size: 1.08rem; color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
   }
-  .btn-view {
+  .price-banner-item svg { opacity: 0.5; flex-shrink: 0; }
+  .price-banner-item strong { color: var(--yellow); font-weight: 700; }
+  .price-banner-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.1); }
+
+  /* ─── MIDDLE SECTION ─── */
+  .middle {
+    background: linear-gradient(180deg, #0A0A0A 0%, #130818 40%, #0A0A0A 100%);
+    padding: 100px 24px;
+  }
+  .middle-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 380px; gap: 80px; align-items: start;
+  }
+
+  .middle-section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.12rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); margin-bottom: 8px;
+  }
+  .middle-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: 0.04em;
+    line-height: 1.1; margin-bottom: 28px;
+  }
+  .middle-title .grad {
+    background: linear-gradient(90deg, #F5C518 0%, #FF9500 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .middle-body p {
+    font-size: 1.18rem; line-height: 1.78;
+    color: rgba(255,255,255,0.55); margin-bottom: 18px;
+  }
+  .middle-cta-text {
+    font-style: italic; font-weight: 600;
+    color: var(--yellow) !important;
+    margin-top: 4px;
+  }
+
+  .focus-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); margin: 32px 0 14px;
+  }
+
+  .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+  .info-chip {
+    font-size: 1.02rem; letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.6);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+    border-radius: 999px;
+    padding: 8px 16px;
+  }
+
+  .expansion-note {
+    margin-top: 28px;
+    padding: 18px 22px;
+    border: 1px solid rgba(245,197,24,0.25);
+    background: rgba(245,197,24,0.04);
+    border-radius: 12px;
+  }
+  .expansion-note p { color: rgba(255,255,255,0.6); font-size: 1.08rem; line-height: 1.7; }
+  .expansion-note strong { color: var(--yellow); }
+
+  /* Booking card */
+  .booking-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 36px 32px;
+    position: sticky; top: 100px;
+  }
+  .booking-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem; letter-spacing: 0.04em; line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .booking-card-title span {
+    background: linear-gradient(90deg, #F5C518 0%, #FF9500 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .booking-card-sub {
+    font-size: 1.08rem; color: rgba(255,255,255,0.4);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+
+  .pricing-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .price-option { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border: 1px solid var(--border); border-radius: 10px; cursor: pointer; transition: border-color 0.2s, background 0.2s; background: transparent; position: relative; }
+  .price-option:hover { border-color: rgba(245,197,24,0.25); background: rgba(245,197,24,0.03); }
+  .price-option.selected { border-color: var(--yellow); background: rgba(245,197,24,0.06); }
+  .price-option-left { display: flex; align-items: center; gap: 12px; }
+  .price-radio { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color 0.2s; }
+  .price-option.selected .price-radio { border-color: var(--yellow); }
+  .price-radio-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--yellow); opacity: 0; transform: scale(0); transition: opacity 0.2s, transform 0.2s; }
+  .price-option.selected .price-radio-dot { opacity: 1; transform: scale(1); }
+  .price-option-label { font-size: 1.1rem; font-weight: 600; color: rgba(255,255,255,0.6); }
+  .price-option.selected .price-option-label { color: var(--white); }
+  .price-option-amount { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--yellow); }
+  .price-option-save { position: absolute; top: -8px; right: 12px; background: var(--yellow); color: var(--black); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; }
+
+  .btn-book-primary {
+    display: block; width: 100%;
     background: var(--yellow); color: var(--black); border: none;
-    font-family: 'Bebas Neue', sans-serif; font-weight: 900;
-    font-size: 1.15rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 10px 28px; border-radius: 50px; cursor: pointer;
-    margin-top: 8px; transition: transform 0.2s;
+    font-family: 'Bebas Neue', sans-serif; font-weight: 900; font-size: 1.1rem;
+    padding: 16px; border-radius: 10px;
+    cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em;
+    transition: transform 0.2s, box-shadow 0.2s; margin-bottom: 10px;
   }
-  .btn-view:hover { transform: scale(1.05); }
+  .btn-book-primary:hover { transform: scale(1.02); box-shadow: 0 6px 24px rgba(245,197,24,0.35); }
 
-  /* Instagram follow */
-  .insta-follow {
-    font-size: 1.12rem; color: rgba(255,255,255,0.4);
-    margin-bottom: 16px;
+  .btn-design {
+    display: block; width: 100%;
+    background: transparent; color: var(--yellow);
+    border: 1px solid rgba(245,197,24,0.4);
+    font-family: 'Bebas Neue', sans-serif; font-weight: 800; font-size: 1.1rem;
+    padding: 15px; border-radius: 10px;
+    cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em;
+    transition: background 0.2s, border-color 0.2s;
   }
-  .insta-handle {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'Bebas Neue', sans-serif; font-weight: 700;
-    font-size: 1.15rem; color: var(--white);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .insta-handle:hover { color: var(--yellow); }
+  .btn-design:hover { background: rgba(245,197,24,0.06); border-color: var(--yellow); }
 
-  /* ─── FOOTER ─── */
-  footer { background: transparent; padding: 60px 36px 36px; }
-  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; max-width: 1100px; margin: 0 auto 48px; }
+  .booking-price-note {
+    margin-top: 20px; padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 0.98rem; color: rgba(255,255,255,0.35);
+    text-align: center; line-height: 1.6;
+  }
+  .booking-price-note strong { color: var(--yellow); }
+
+  /* Location */
+  .location-section {
+    background: transparent;
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .location-inner { max-width: 600px; margin: 0 auto; }
+  .location-icon { color: var(--yellow); margin-bottom: 12px; }
+  .location-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.98rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 12px;
+  }
+  .location-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; letter-spacing: 0.06em;
+    color: var(--yellow); margin-bottom: 6px;
+  }
+  .location-sub {
+    font-size: 1.15rem; font-weight: 600;
+    color: rgba(255,255,255,0.6); margin-bottom: 28px;
+  }
+  .location-link { color: rgba(255,255,255,0.4); font-size: 1rem; text-decoration: underline; }
+  .location-link:hover { color: var(--yellow); }
+
+  /* Footer */
+  footer {
+    background: transparent; padding: 60px 36px 36px;
+  }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 40px; max-width: 1100px; margin: 0 auto 48px;
+  }
   .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.05em; }
   .footer-logo span { color: var(--yellow); }
   .footer-tagline { font-size: 1.1rem; color: rgba(255,255,255,0.3); font-style: italic; margin: 8px 0 16px; max-width: 280px; line-height: 1.5; }
@@ -256,36 +370,34 @@
   .footer-bottom-links a { font-size: 0.98rem; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
   .footer-bottom-links a:hover { color: rgba(255,255,255,0.5); }
 
-  /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .middle-inner { grid-template-columns: 1fr; gap: 48px; }
+    .booking-card { position: static; }
+    .hero-tags { display: none; }
+  }
   @media (max-width: 640px) {
-    section, .hero, .body-section, .location-section { padding-left: 16px !important; padding-right: 16px !important; }
+    section, .hero, .hero-content, .middle-inner, .price-banner { padding-left: 16px !important; padding-right: 16px !important; }
     nav { grid-template-columns: 1fr auto; padding: 14px 20px; backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(10,10,10,0.96); }
     .nav-center { display: none; }
     #navBookBtn { display: none; }
     #menuBtnMobile { display: flex !important; }
     .menu-overlay { top: 56px; left: 50%; right: auto; width: calc(100vw - 32px); backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(14,14,14,0.97); }
-    .hero-bg-text { font-size: 8rem; }
-    .series-promo-imgs { height: 160px; }
-    [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    .hero-content { padding: 0 24px; }
+    .price-banner { padding: 14px 20px; gap: 16px; }
   }
 
-
-  /* ─── ENHANCED MOBILE UX ─── */
   @media (max-width: 640px) {
-    /* Tap-friendly touch targets (WCAG 2.5.5 min 44px) */
     .menu-overlay a { padding: 12px 14px; min-height: 44px; display: flex; align-items: center; }
     .menu-group-toggle { padding: 12px 14px; min-height: 44px; }
     .menu-group-items a { padding: 10px 14px !important; min-height: 44px; display: flex !important; align-items: center; }
     .menu-book { padding: 14px; min-height: 44px; font-size: 1.1rem; }
     .book-btn { padding: 12px 24px; min-height: 44px; font-size: 1.2rem; }
     .nav-logo { font-size: 1.4rem; }
-    /* Footer mobile */
     footer { padding: 40px 16px 24px; }
     .footer-top { flex-direction: column; gap: 28px; }
     .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
@@ -310,13 +422,17 @@
     .menu-overlay { width: calc(100vw - 12px); }
   }
 
-
-  /* ─── CLASH MOBILE SPECIFICS ─── */
   @media (max-width: 480px) {
     .hero { min-height: 50vh; }
+    .hero-content { padding: 0 12px; }
+    .price-banner { padding: 12px 14px; gap: 12px; flex-direction: column; text-align: center; }
+    .booking-card { padding: 24px 16px; }
+    .booking-card h3 { font-size: 1.4rem; }
+  }
+  @media (max-width: 360px) {
+    .hero { min-height: 45vh; }
   }
 
-  /* Dis an Dat submenu */
   .menu-group { padding: 0; }
   .menu-group-toggle {
     width: 100%; background: none; border: none; cursor: pointer;
@@ -345,8 +461,6 @@
   }
   .menu-group-items a:hover { color: var(--yellow) !important; }
 
-
-  /* ─── FLOATING SOCIAL SIDEBAR ─── */
   .floating-sidebar {
     position: fixed;
     right: 24px;
@@ -386,7 +500,6 @@
     fill: currentColor;
   }
 
-  /* Tooltip — appears to the LEFT of icons */
   .sidebar-icon::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -419,8 +532,6 @@
     .floating-sidebar { display: none; }
   }
 
-
-  /* ─── ANIMATED GRADIENT ORBS ─── */
   .orb {
     position: fixed;
     border-radius: 50%;
@@ -469,7 +580,6 @@
     50% { transform: translate(50px, -70px) scale(1.1); }
   }
 
-
   @media (max-width: 768px) {
     .orb-1 { width: 350px; height: 350px; }
     .orb-2 { width: 250px; height: 250px; }
@@ -481,8 +591,6 @@
     .orb { animation: none !important; }
   }
 
-
-  /* ─── SECTION SEPARATOR (animated glow line) ─── */
   .section-sep {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(245,197,24,0.4), rgba(255,255,255,0.15), rgba(245,197,24,0.4), transparent);
@@ -502,24 +610,9 @@
     100% { left: 140%; }
   }
 
-
-  .clash-event-card {
-    position: relative; overflow: hidden; min-height: 380px;
-    border: 1px solid rgba(0,207,255,0.25); border-radius: 16px;
-    transition: transform 0.3s, border-color 0.3s;
-  }
-  .clash-event-card:hover { transform: translateY(-5px); border-color: rgba(0,207,255,0.5); }
-
-
-  /* ─── SHARED INLINE-TO-CSS CLASSES ─── */
   .ack-label { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--yellow); margin-bottom: 16px; }
   .ack-divider { width: 40px; height: 2px; background: var(--yellow); margin: 0 auto 24px; border-radius: 2px; }
   .bbk-divider { max-width: 1100px; margin: 20px auto 0; padding-top: 16px; border-top: 1px solid var(--border); text-align: center; }
-
-
-  .clash-btn-view { background: #00CFFF; color: var(--black); border: none; font-family: 'Bebas Neue', sans-serif; font-weight: 800; font-size: 1.12rem; padding: 9px 18px; border-radius: 50px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.06em; }
-  .clash-nav-book { display: inline-flex; align-items: center; gap: 8px; font-family: 'Bebas Neue', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow); text-decoration: none; padding: 10px 20px; border: 1px solid rgba(245,197,24,0.3); border-radius: 50px; }
-  .clash-nav-home { display: inline-flex; align-items: center; gap: 8px; font-family: 'Bebas Neue', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; padding: 10px 20px; border: 1px solid var(--border); border-radius: 50px; margin-left: 8px; }
 
 </style>
 </head>
@@ -564,7 +657,7 @@
       MENU
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-    <button class="book-btn" id="navBookBtn" onclick="location.href='series.html'">Book Now</button>
+    <button class="book-btn" id="navBookBtn" onclick="location.href='#booking'">Reserve Spot</button>
   </div>
 </nav>
 
@@ -572,9 +665,9 @@
 <div class="menu-overlay" id="menuOverlay">
   <a href="index.html">Home</a>
   <a href="series.html">Chuby Dice Series</a>
-<a href="technique-tuesdays.html">Technique Tuesdays</a>
-<a href="jamaican-dance-fitness.html">Jamaican Dance Fitness</a>
-  <a href="clash.html" class="active">Clash Inna Dancehall</a>
+  <a href="technique-tuesdays.html">Technique Tuesdays</a>
+  <a href="jamaican-dance-fitness.html" class="active">Jamaican Dance Fitness</a>
+  <a href="clash.html">Clash Inna Dancehall</a>
   <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
   <a href="academy.html">Dancehall Academy</a>
   <a href="about.html">About Chuby Dice</a>
@@ -589,95 +682,130 @@
       <a href="contact.html">Contact / Instagram</a>
       <a href="contact.html">Brand Ambassadorship</a>
       <a href="past-series.html">Past Events</a>
-      <a href="past-clashes.html">Past Clashes</a>
+<a href="past-clashes.html">Past Clashes</a>
     </div>
   </div>
   <div class="menu-divider"></div>
-  <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
+  <button class="menu-book" onclick="location.href='#booking'">Reserve My Spot</button>
 </div>
 
 <!-- ─── HERO ─── -->
-<section class="hero">
-  <img src="images/clash-overarching-photo.jpg" alt="Clash Inna Dancehall" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:0;opacity:0.6;" />
-  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.4) 0%,rgba(10,10,10,0.2) 40%,rgba(10,10,10,0.7) 80%,rgba(10,10,10,1) 100%);z-index:1;pointer-events:none;"></div>
-  <div class="hero-bg-text" style="z-index:2;">CLASH</div>
+<section class="hero" style="position:relative;overflow:hidden;">
+  <img src="images/JDfitness.jpeg" alt="Jamaican Dance Fitness" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;" />
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
+  <div class="hero-watermark">
+    <span class="wm-line1">CHUBY</span>
+    <span class="wm-line2">DICE</span>
+  </div>
+  <div class="hero-coaching-wm">JAM · FIT</div>
+
   <div class="hero-content" style="position:relative;z-index:3;">
-    <div class="hero-nav-row">
-      <a class="back-link" href="index.html">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L3 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        Back to Home
-      </a>
+    <div class="hero-tags">
+      <span class="hero-tag">OUTDOOR</span>
+      <span class="hero-tag dim">COMMUNITY</span>
+      <span class="hero-tag dim">GROOVE</span>
+      <span class="hero-tag">STAMINA</span>
     </div>
-    <h1 class="hero-title">
-      <span class="clash-word">CLASH INNA <span style="color:#00CFFF;">DANCEHALL</span></span>
-      <span class="dash">–</span>
-    </h1>
-    <p class="hero-desc">Clash Inna Dancehall aims to enrich the street dance culture in Naarm &amp; establish Australia&rsquo;s Dancehall Academy.</p>
-    <!--<a class="btn-stay-updated" href="https://instagram.com/chuby_dice" target="_blank">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      Stay Updated
-    </a> -->
+    <h1 class="hero-title">JAMAICAN DANCE FITNESS</h1>
+    <p class="hero-subtitle">Fitness the Jamaican way, at Coburg Lake Reserve.</p>
+  </div>
+
+  <div class="price-banner" style="position:relative;z-index:2;">
+    <div class="price-banner-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="white"/><path d="M8 5v3.5l2 2" stroke="white" stroke-linecap="round"/></svg>
+      Saturdays 10&ndash;11am &middot; Coburg Lake Reserve
+    </div>
+    <div class="price-banner-sep"></div>
+    <div class="price-banner-item">
+      <strong>From $25</strong>&nbsp;/ per class
+    </div>
   </div>
 </section>
 
-<!-- ─── ABOUT CLASH ─── -->
 <div class="section-sep"></div>
-<section class="while-you-wait">
-  <h2 class="wyw-title">ABOUT <span style="color:#00CFFF;">CLASH</span></h2>
 
-  <p class="wyw-sub" style="max-width:720px;margin:0 auto 20px;text-align:left;line-height:1.8;">Clash Inna Dancehall aims to enrich the street dance culture in Naarm &amp; establish Australia&rsquo;s Dancehall Academy.</p>
+<!-- ─── MIDDLE ─── -->
+<section class="middle">
+  <div class="middle-inner">
 
-  <p class="wyw-sub" style="max-width:720px;margin:0 auto 20px;text-align:left;line-height:1.8;">Clash is a deep dive. It combines &ldquo;Dancehall X&rdquo; workshops curated by specialists, clash showcases and rounds, including with Litefeet, Krump, Afro, and all-styles. The core ethos is to remain connected to the originators of BIPOC dance traditions.</p>
+    <div class="middle-left">
+      <p class="middle-section-label">Fitness the Jamaican way</p>
+      <h2 class="middle-title">HOLD A VIBE, <span class="grad">DANCEHALL STYLE</span></h2>
 
-  <p class="wyw-sub" style="max-width:720px;margin:0 auto 20px;text-align:left;line-height:1.8;">Dancehall is made and practiced directly on the streets. Maintaining and intensifying Dancehall&rsquo;s presence in Australia is to elevate Dancehall as a core expression of street culture. Clash will focus on building Dancehall vocabulary, through battles and cyphers &amp; learning from specialist teachers across a range of street styles in Naarm &amp; Australia more broadly.</p>
+      <div class="middle-body">
+        <p>Whether you're preparing for Dancehall Academy, looking to improve your fitness or simply wanting to reconnect with movement, Jamaican Dance Fitness builds the strength, stamina and resilience that underpin the form.</p>
+        <p>For years, Chuby Dice has used Jamaican Dance Fitness to build the stamina, strength and energy that Dancehall demands. It focuses on developing the physical engine that drives the explosiveness &amp; connection in Dancehall.</p>
+        <p>Chuby's weekly sessions at Coburg Lake Reserve use continuous movement to ingrain authentic Dancehall grooves, outdoor vibes and a community atmosphere inspired by the culture Dancehall grew from. Dancehall was always meant to be experienced moving together, outdoors and in community.</p>
+        <p class="middle-cta-text">Watch this space. Jamaican Dance Fitness may soon be coming to a neighbourhood near you in 2026–27.</p>
+      </div>
 
-  <p class="insta-follow">Follow on Instagram for announcements on dates, registration, and battle format.</p>
-  <a class="insta-handle" href="https://instagram.com/chuby_dice" target="_blank">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-    @chuby_dice
-  </a>
+      <p class="focus-label">What to expect</p>
+      <div class="chip-row">
+        <span class="info-chip">Outdoor session</span>
+        <span class="info-chip">Continuous movement</span>
+        <span class="info-chip">All fitness levels</span>
+        <span class="info-chip">Community atmosphere</span>
+        <span class="info-chip">No experience needed</span>
+      </div>
+
+      <div class="expansion-note">
+        <p><strong>Expanding across Melbourne.</strong> As demand grows throughout 2026–27, Chuby will bring Jamaican Dance Fitness to two more parks and public spaces across Melbourne.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Booking Card -->
+    <div class="booking-card" id="booking">
+      <h3 class="booking-card-title">JOIN THE <span>SESSION</span></h3>
+      <p class="booking-card-sub">Reserve your spot at Coburg Lake Reserve.</p>
+
+      <div class="pricing-options" id="pricingOptions">
+        <div class="price-option selected" data-price="25" onclick="selectPrice(this)">
+          <div class="price-option-left">
+            <div class="price-radio"><div class="price-radio-dot"></div></div>
+            <span class="price-option-label">Single Class</span>
+          </div>
+          <span class="price-option-amount">$25</span>
+        </div>
+        <div class="price-option" data-price="100" onclick="selectPrice(this)">
+          <span class="price-option-save">Save $25</span>
+          <div class="price-option-left">
+            <div class="price-radio"><div class="price-radio-dot"></div></div>
+            <span class="price-option-label">5 Classes</span>
+          </div>
+          <span class="price-option-amount">$100</span>
+        </div>
+        <div class="price-option" data-price="180" onclick="selectPrice(this)">
+          <span class="price-option-save">Save $70</span>
+          <div class="price-option-left">
+            <div class="price-radio"><div class="price-radio-dot"></div></div>
+            <span class="price-option-label">10 Classes</span>
+          </div>
+          <span class="price-option-amount">$180</span>
+        </div>
+      </div>
+
+      <button class="btn-book-primary" id="bookBtn" onclick="bookNow()">Book Now — $25</button>
+      <button class="btn-design" onclick="location.href='contact.html'">Ask a Question</button>
+
+      <div class="booking-price-note">
+        Note: this class is priced without public liability insurance.
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<!-- ─── CLASH EVENTS (Release 2B) ─── -->
+<!-- ─── LOCATION ─── -->
 <div class="section-sep"></div>
-<section style="padding:60px 40px;">
-  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);text-align:center;letter-spacing:0.04em;margin-bottom:32px;">UPCOMING <span style="color:#00CFFF;">CLASHES</span></h2>
-  <div style="display:grid;grid-template-columns:1fr;gap:20px;max-width:480px;margin:0 auto;">
-    <!-- LITEFEET V DANCEHALL (May — past, commented out June 2026)
-    <div class="clash-event-card">
-      <img src="images/clash-may-upd-photo.png" alt="Litefeet v Dancehall — Sat 23 May 2026" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:0;" loading="lazy" />
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.15) 0%,rgba(10,10,10,0.8) 100%);z-index:1;"></div>
-      <div style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;height:100%;padding:24px;">
-        <span style="position:absolute;top:14px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:rgba(0,207,255,0.15);color:#00CFFF;border:1px solid rgba(0,207,255,0.4);padding:5px 12px;border-radius:50px;">Sat 23 May</span>
-        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;margin-bottom:6px;">LITEFEET V DANCEHALL</h3>
-        <p style="font-size:1.1rem;color:rgba(255,255,255,0.55);margin-bottom:8px;">Phil Eazy &amp; Chuby Dice</p>
-        <p style="font-size:1.15rem;color:rgba(255,255,255,0.5);margin-bottom:14px;">Collab Workshop + Clash · Feature 1v1 Showcases · 3v3 Battle</p>
-        <button class="clash-btn-view" onclick="location.href='litefeet-v-dancehall.html'">View Event</button>
-      </div>
+<section class="location-section">
+  <div class="location-inner">
+    <div class="location-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-5.686-8-12a8 8 0 0116 0c0 6.314-8 12-8 12z"/><circle cx="12" cy="10" r="3"/></svg>
     </div>
-    -->
-    <!-- KRUMP V DANCEHALL (August) -->
-    <div class="clash-event-card">
-      <img src="images/2clash-august-upd-photo.jpeg" alt="Krump v Dancehall — Sat 15 Aug 2026" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:0;" loading="lazy" />
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.15) 0%,rgba(10,10,10,0.8) 100%);z-index:1;"></div>
-      <div style="position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;height:100%;padding:24px;">
-        <span style="position:absolute;top:14px;right:14px;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:rgba(0,207,255,0.15);color:#00CFFF;border:1px solid rgba(0,207,255,0.4);padding:5px 12px;border-radius:50px;">Sat 15 Aug</span>
-        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;margin-bottom:6px;">KRUMP V DANCEHALL</h3>
-        <p style="font-size:1.1rem;color:rgba(255,255,255,0.55);margin-bottom:8px;">Antagonize &amp; Chuby Dice</p>
-        <p style="font-size:1.15rem;color:rgba(255,255,255,0.5);margin-bottom:14px;">Collab Workshop + Clash · Guest Showcases · Battles</p>
-        <button class="clash-btn-view" onclick="location.href='krump-v-dancehall.html'">View Event</button>
-      </div>
-    </div>
-  </div>
-  <div style="text-align:center;margin-top:32px;">
-    <a href="https://buy.stripe.com/fZu8wP4VZ8RAdNUcFp4F20j" class="clash-nav-book">Book Now</a>
-    <a href="index.html" class="clash-nav-home">Home</a>
-  </div>
-  <div style="text-align:center;margin-top:24px;">
-    <a href="past-clashes.html" style="display:inline-flex;align-items:center;gap:8px;font-family:'Bebas Neue',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;">
-      Looking for a past clash? View Past Clashes
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+    <p class="location-label">Location</p>
+    <h3 class="location-title">Coburg Lake Reserve</h3>
+    <p class="location-sub">Saturdays 10&ndash;11am &middot; Melbourne</p>
+    <a class="location-link" href="contact.html">Get directions &rarr;</a>
   </div>
 </section>
 
@@ -712,16 +840,17 @@
     <div class="footer-links">
       <h4>Quick Links</h4>
       <a href="series.html">Series</a>
+      <a href="jamaican-dance-fitness.html">Jamaican Dance Fitness</a>
       <a href="coaching.html">Coaching</a>
-      <a href="about.html">About Chuby</a>
       <a href="contact.html">Contact</a>
     </div>
     <div class="footer-links">
       <h4>Discover</h4>
       <a href="academy.html">Academy</a>
+      <a href="technique-tuesdays.html">Technique Tuesdays</a>
       <a href="clash.html">Clash Events</a>
       <a href="past-series.html">Past Events</a>
-      <a href="past-clashes.html">Past Clashes</a>
+<a href="past-clashes.html">Past Clashes</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -763,8 +892,34 @@
   });
 </script>
 
+<script>
+var STRIPE_LINKS = {
+  '25': 'https://buy.stripe.com/28EdR9fADgk2eRY5cX4F20x',
+  '100': 'https://buy.stripe.com/dRm6oH747aZI4dkgVF4F20y',
+  '180': 'https://buy.stripe.com/14A14n3RV1p88tAeNx4F20z'
+};
+var selectedPrice = '25';
 
-<!-- chatbot disabled — Netlify backend removed, file kept for future use -->
-<!-- <script src="/chatbot.js"></script> -->
+function selectPrice(el) {
+  document.querySelectorAll('.price-option').forEach(function(opt) {
+    opt.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  var price = el.getAttribute('data-price');
+  if (STRIPE_LINKS[price]) selectedPrice = price;
+  var btn = document.getElementById('bookBtn');
+  if (btn) btn.textContent = 'Book Now — $' + price;
+}
+
+function bookNow() {
+  var link = STRIPE_LINKS[selectedPrice];
+  if (!link) return;
+  try {
+    var url = new URL(link);
+    if (url.protocol !== 'https:' || url.hostname !== 'buy.stripe.com') return;
+    window.open(link, '_blank', 'noopener,noreferrer');
+  } catch (e) { return; }
+}
+</script>
 </body>
 </html>
