@@ -767,7 +767,7 @@
   <div class="event-cta">
     <div class="cta-price-block">
       <span class="cta-price-label" id="ctaPriceLabel">FULL PASS</span>
-      <span class="cta-price-amount" id="ctaPriceAmount">$45</span>
+      <span class="cta-price-amount" id="ctaPriceAmount">$40</span>
     </div>
     <div class="cta-btn-wrap">
       <button class="cta-book-btn" id="ctaBookBtn" onclick="bookNow()">Book Now</button>
@@ -776,20 +776,13 @@
   </div>
   <!-- Ticket options dropdown -->
   <div class="other-options-panel" id="otherPanel">
-    <div class="price-option selected" data-price="45" onclick="selectPrice(this)">
+    <div class="price-option selected" data-price="40" onclick="selectPrice(this)">
       <span class="price-option-save">Most Popular</span>
       <div class="price-option-left">
         <div class="price-radio"><div class="price-radio-dot"></div></div>
         <span class="price-option-label">Full Pass</span>
       </div>
-      <span class="price-option-amount">$45</span>
-    </div>
-    <div class="price-option" data-price="35" onclick="selectPrice(this)">
-      <div class="price-option-left">
-        <div class="price-radio"><div class="price-radio-dot"></div></div>
-        <span class="price-option-label">Workshop Only</span>
-      </div>
-      <span class="price-option-amount">$35</span>
+      <span class="price-option-amount">$40</span>
     </div>
     <div class="price-option" data-price="20" onclick="selectPrice(this)">
       <div class="price-option-left">
@@ -865,11 +858,10 @@
 </script>
 <script>
 var STRIPE_LINKS = {
-  '45': 'https://buy.stripe.com/fZu8wP4VZ8RAdNUcFp4F20j',
-  '35': 'https://buy.stripe.com/6oU00jdsvffY5ho8p94F20m',
+  '40': 'https://buy.stripe.com/fZu8wP4VZ8RAdNUcFp4F20j',
   '20': 'https://buy.stripe.com/bJe4gz3RV6JsfW29td4F20l'
 };
-var selectedPrice = '45';
+var selectedPrice = '40';
 
 var otherOpen = false;
 
