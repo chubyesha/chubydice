@@ -740,8 +740,9 @@
   <!-- Booking card -->
   <div class="booking-card">
     <div class="booking-card-title">READY TO <span>TRAIN?</span></div>
-    <p>Choose your pass for Survival Story — August 2026.</p>
+    <p>Survival Story ran every Tuesday through August 2026.</p>
 
+    <!-- PRICING OPTIONS (session ended — commented out September 2026)
     <div class="pricing-options" id="pricingOptions">
       <div class="price-option selected" data-price="30" data-link="https://buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b" onclick="selectPrice(this)">
         <div class="price-option-left">
@@ -781,10 +782,11 @@
         <span class="price-option-amount">$450</span>
       </div>
     </div>
+    -->
 
-    <button class="btn-book-now" id="bookBtn" onclick="bookNow()">Book Now — $30</button>
-    <button class="btn-book-series" onclick="location.href='series.html'">Back to Chuby Dice Series</button>
-    <p class="price-note">From <strong>$30</strong> per session</p>
+    <button class="btn-book-now" onclick="alert('This session has ended. View current series at chubydice.com/series.html')">Session Ended</button>
+    <button class="btn-book-series" onclick="location.href='past-series.html'">View Past Sessions</button>
+    <p class="price-note"><strong>$30</strong> · 4 weeks</p>
   </div>
 
 </section>

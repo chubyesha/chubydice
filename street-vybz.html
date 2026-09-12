@@ -687,7 +687,7 @@
   </div>
   <div class="info-pill">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-    Schedule TBC
+    Every Tuesday · 7–8PM
   </div>
   <div class="info-pill coming-soon">
     From $30
@@ -722,8 +722,9 @@
   <!-- Booking card -->
   <div class="booking-card">
     <div class="booking-card-title">READY TO <span>TRAIN?</span></div>
-    <p>Choose your pass for Street Vybz — July 2026.</p>
+    <p>Street Vybz ran every Tuesday through July 2026.</p>
 
+    <!-- PRICING OPTIONS (session ended — commented out September 2026)
     <div class="pricing-options" id="pricingOptions">
       <div class="price-option selected" data-price="30" data-link="https://buy.stripe.com/4gMbJ1ewz9VE6ls5cX4F20b" onclick="selectPrice(this)">
         <div class="price-option-left">
@@ -763,10 +764,11 @@
         <span class="price-option-amount">$450</span>
       </div>
     </div>
+    -->
 
-    <button class="btn-book-now" id="bookBtn" onclick="bookNow()">Book Now — $30</button>
-    <button class="btn-book-series" onclick="location.href='series.html'">Back to Chuby Dice Series</button>
-    <p class="price-note">From <strong>$30</strong> per session</p>
+    <button class="btn-book-now" onclick="alert('This session has ended. View current series at chubydice.com/series.html')">Session Ended</button>
+    <button class="btn-book-series" onclick="location.href='past-series.html'">View Past Sessions</button>
+    <p class="price-note"><strong>$30</strong> · 4 weeks</p>
   </div>
 
 </section>
